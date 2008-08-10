@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		
+		<script src='../javascript/Hashtable.js' type='text/javascript'></script>
+		<script src='../javascript/Fisheye.js' type='text/javascript'></script>
+		<script src='../javascript/Matrix.js' type='text/javascript'></script>
+		<script src='../javascript/TableModel.js' type='text/javascript'></script>
+		<script src='../javascript/fisheyeTable.js' type='text/javascript'></script>
+		<script src='../javascript/FisheyeCellRenderer.js' type='text/javascript'></script>
+		<script src='../javascript/DefaultCellRenderer.js' type='text/javascript'></script>
+		<script src='../javascript/ScaleCellRenderer.js' type='text/javascript'></script>
+		<script src='../javascript/CanvasTextFunctions.js' type='text/javascript'></script>
+		<script src='../javascript/ColourGradient.js' type='text/javascript'></script>
+		
+		<title>Canvas Fisheye Table</title>
+		
+		<style type="text/css">
+			<!--
+			body
+			{
+				background-color: #6688cc;
+			}
+			
+			div#header
+			{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				text-align: center;
+				background-color:#6688cc;
+				width: 100%;
+				height:90px;
+			}
+			
+			div#outerWrap
+			{
+				position: absolute;
+				top: 8%;
+				height: 950px;
+				width: 100%;
+				min-width: 1400px;
+			}
+			
+			div#leftColumn
+			{
+				height: 100%;
+				float: left;
+				width: 115px;
+				background: #6688cc;
+			}
+			
+			div#rightColumn
+			{
+				height: 100%;
+				float: right;
+				width: 115px;
+				background: #6688cc;
+			}
+			
+			div#middleColumn
+			{
+				height: 100%;
+				background: #ffffff;
+			}
+			
+			div#innerWrap
+			{
+				position: absolute;
+				top: 0px;
+				height: 100%;
+				width: 100%;
+			}
+			
+			div#tableTargetDiv
+			{
+				width: 680px;
+				height: 100%;
+				float: left
+			}
+			
+			span.bodyText
+			{
+				font-family: arial;
+				color:#2233cc;
+			}
+			-->
+			</style>
+		
+	</head>
+	<body>
+		<div id='header'>
+			<br />
+			<span style="font-family:arial; font-size: 26pt; color:#ffffff";>
+				Magic table
+			</span>
+		</div>
+		<div id='outerWrap'>
+			<div id='leftColumn'></div>
+			<div id='rightColumn'></div>
+			<div id='middleColumn'>
+				<div style="position: absolute; left: 150px; width: 600px;">
+					<br />
+					<span style="font-family:arial; font-size: 16pt; color:#ff9933">Colour ramps</span>
+						<br />
+						<br />
+						<span class='bodyText'>This example demonstrates how to use colour ramps with the table.
+						The colours are only applied to cells that hold numbers, and the range of numbers across the whole table
+						determines which colour is taken from the ramp, from minimum to maximum.</span>
+				</div>
+				<div id='innerWrap'>
+					<div id='tableTargetDiv'></div>
+				</div>
+			</div>
+		</div>
+		
+		<script type='text/javascript'>
+			
+			var targetElement = document.getElementById('tableTargetDiv');
+			
+			/*********************************************************************************
+			 * When you instantiate the table model without explicitly setting a colour ramp,
+			 * the model defaults to the classic blue-through-red heatmap.
+			 *********************************************************************************/
+			function renderDefaultcolourRamp()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 150;
+				var tablePositionY = 130;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				var tableModel = new TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount);
+
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+						tableModel.setContentAt(i, j, i*j);
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "classic heatmap", targetElement);
+			}
+			
+			/*********************************************************************************
+			 * The colour ramp can be created by building an array of two or more colours...
+			 *********************************************************************************/
+			function renderBlueYellowRamp()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 470;
+				var tablePositionY = 130;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				// Create the ramp.
+				var colour1 = {red:0, green:0, blue:255};
+				var colour2 = {red:0, green:255, blue:254};
+				var colour3 = {red:1, green:255, blue:0};
+				var colour4 = {red:255, green:255, blue:2};
+				var ramp = [colour1, colour2, colour3, colour4];
+				
+				// ...and pass it into the table model
+				var tableModel = new TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+					{
+						tableModel.setContentAt(i, j, i*j);
+					}
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Blue to yellow", targetElement);
+			}
+			
+			/*********************************************************************************
+			 * The minimum value in the table is mapped to the first colour while the maximum
+			 * value in the table is allocated the last colour, with all values in between smoothly
+			 * mapped to the colour surface.
+			 *********************************************************************************/
+			function renderRedPurpleRamp()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 790;
+				var tablePositionY = 130;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				// Create the ramp. From 6 colours, this time.
+				var colour1 = {red:255, green:0, blue:0};
+				var colour2 = {red:66, green:0, blue:189};
+				var colour3 = {red:63, green:0, blue:191};
+				var colour4 = {red:63, green:191, blue:255};
+				var colour5 = {red:66, green:189, blue:255};
+				var colour6 = {red:255, green:0, blue:255};
+				var ramp = [colour1, colour2, colour3, colour4, colour5, colour6];
+				
+				// ...and pass it into the table model
+				var tableModel = new TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+					{
+						tableModel.setContentAt(i, j, i*j);
+					}
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Red to purple", targetElement);
+			}
+			
+			/*********************************************************************************
+			 * Here's a yellow to aqua ramp.
+			 *********************************************************************************/
+			function renderYellowAquaRamp()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 150;
+				var tablePositionY = 530;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				// Create the ramp.
+				var colour1 = {red:255, green:255, blue:0};
+				var colour2 = {red:255, green:127, blue:127};
+				var colour3 = {red:254, green:0, blue:255};
+				var colour4 = {red:126, green:128, blue:255};
+				var colour5 = {red:0, green:255, blue:255};
+				var ramp = [colour1, colour2, colour3, colour4, colour5];
+				
+				// ...and pass it into the table model
+				var tableModel = new TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+					{
+						tableModel.setContentAt(i, j, count++);
+					}
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Yellow to aqua", targetElement);
+			}
+			
+			/*********************************************************************************
+			 * Here's a blue to yellow ramp.
+			 *********************************************************************************/
+			function renderBlueGradientRamp()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 470;
+				var tablePositionY = 530;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				// Create the ramp. From 4 colours in this instance.
+				var colour1 = {red:0, green:0, blue:255};
+				var colour2 = {red:0, green:127, blue:255};
+				var colour3 = {red:0, green:191, blue:255};
+				var colour4 = {red:0, green:255, blue:255};
+				var ramp = [colour1, colour2, colour3, colour4];
+				
+				// ...and pass it into the table model
+				var tableModel = new TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+					{
+						tableModel.setContentAt(i, j, count++);
+					}
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Blue gradient", targetElement);
+			}
+			
+			/*********************************************************************************
+			 * Greyscale
+			 *********************************************************************************/
+			function renderGreyScale()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 790;
+				var tablePositionY = 530;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				// Create the ramp.
+				var colour1 = {red:0, green:0, blue:0};
+				var colour2 = {red:128, green:128, blue:128};
+				var colour3 = {red:255, green:255, blue:255};
+				var ramp = [colour1, colour2, colour3];
+				
+				// ...and pass it into the table model
+				var tableModel = new TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+					{
+						tableModel.setContentAt(i, j, count++);
+					}
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Greyscale", targetElement);
+			}
+			
+			renderDefaultcolourRamp();
+			renderBlueYellowRamp();
+			renderRedPurpleRamp();
+			renderYellowAquaRamp();
+			renderBlueGradientRamp();
+			renderGreyScale();
+					
+		</script>
+		
+	</body>
+</html>
