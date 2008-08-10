@@ -1,0 +1,357 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		
+		<script src='../../../jsunit/app/jsUnitCore.js' type='text/javascript'></script>
+		<script src='../javascript/Hashtable.js' type='text/javascript'></script>
+		<script src='../javascript/Fisheye.js' type='text/javascript'></script>
+		<script src='../javascript/Matrix.js' type='text/javascript'></script>
+		<script src='../javascript/TableModel.js' type='text/javascript'></script>
+		<script src='../javascript/fisheyeTable.js' type='text/javascript'></script>
+		<script src='../javascript/FisheyeCellRenderer.js' type='text/javascript'></script>
+		<script src='../javascript/DefaultCellRenderer.js' type='text/javascript'></script>
+		<script src='../javascript/ScaleCellRenderer.js' type='text/javascript'></script>
+		<script src='../javascript/CanvasTextFunctions.js' type='text/javascript'></script>
+		<script src='../javascript/ColourGradient.js' type='text/javascript'></script>
+		<script src='../javascript/reflection/reflection.js' type='text/javascript'></script>
+		
+		<script type='text/javascript'>
+			
+			// From prototype.js
+			if (!document.myGetElementsByClassName)
+			{
+				document.myGetElementsByClassName = function(className)
+				{
+						var children = document.getElementsByTagName('*') || document.all;
+						var elements = new Array();
+				  
+					for (var i = 0; i < children.length; i++)
+					{
+						var child = children[i];
+						var classNames = child.className.split(' ');
+						for (var j = 0; j < classNames.length; j++)
+						{
+							if (classNames[j] == className) 
+							{
+								elements.push(child);
+								break;
+							}
+						}
+					}
+					return elements;
+				}
+			}
+		
+		</script>
+		
+		<title>VMl table JSUnit tests</title>
+	</head>
+	<body>
+			
+		<script type='text/javascript'>
+			
+			var fisheyeTable;
+			var defaultColour = 'rgb(255, 255, 255)';
+			var minValue;
+			var maxValue;
+			
+			function setUp()
+			{
+				minValue = 0;
+				maxValue = 10;
+				
+				var rows = 5;
+				var columns = 7;
+				var rowHeight = 15;
+				var columnWidth = 15;
+				var tablePositionX = 0;
+				var tablePositionY = 40;
+				var tableHeight = 400;
+				var tableWidth = 400;
+				var rowHeaderCount = 1;
+				var columnHeaderCount = 1;
+				var count = 0;
+				
+				var tableModel = new TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount);
+				
+				for (var i = 0; i < rows; i++)
+					for (var j = 0; j < columns; j++)
+						tableModel.setContentAt(i, j, count++);
+						
+				tableModel.setContentAt(10, 10, "mouse");
+						
+				fisheyeTable = new FisheyeTable(tableModel, 50, 50, tableWidth, tableHeight, "Magic table");
+			}
+			
+			function tearDown()
+			{
+				fisheyeTable.removeTable("fiheyeTable1");
+			}
+			
+			function testRemoveTable()
+			{
+				fisheyeTable.removeTable("fiheyeTable1");
+				assertEquals(0, document.myGetElementsByClassName("fisheyeTable").length);
+				assertEquals(0, document.myGetElementsByClassName("buffer").length);
+			}
+			
+			function testContainerDivIsCreated()
+			{
+				assertEquals(1, document.myGetElementsByClassName("fisheyeTable").length);
+			}
+			
+			function testBufferCanvasIsCreated()
+			{
+				assertEquals(1, document.myGetElementsByClassName("buffer").length);
+			}
+			
+			function testMainCanvasIsCreated()
+			{
+				assertEquals(1, document.myGetElementsByClassName("tableCanvas").length);
+			}
+			
+			function testTitleIsCreated()
+			{
+				assertNotEquals(null, document.getElementById("tableTitle"));
+			}
+			
+			function testControlIsCreated()
+			{
+				assertNotEquals(null, document.getElementById("controlPanel"));
+			}
+			
+			function testControlFormIsCreated()
+			{
+				assertNotEquals(null, document.getElementById("fisheyeTableForm"));
+			}
+			
+			function testGetArea()
+			{
+				var area = TableGeometry.getArea(0, 0, 10, 0, 10, 10, 0, 10);
+				var expectedArea = 100;
+				
+				assertEquals(expectedArea, area);
+			}
+			
+			function testGetCentre()
+			{
+				var centre = TableGeometry.getCentre(0, 0, 10, 0, 10, 10, 0, 10);
+				var expectedX = 5;
+				var expectedY = 5;
+				
+				assertEquals(expectedX, centre.x);
+				assertEquals(expectedY, centre.y);
+			}
+			
+			function testIsNumber()
+			{
+				var notNumber = "blah";
+				var isStringInteger = "2";
+				var isStringFloat = "2.3";
+				var integer = 2;
+				var floatNumber = 2.3;
+				var blah;
+				
+				assertFalse(TableMath.isNumber(blah));
+				assertFalse(TableMath.isNumber(notNumber));
+				assertTrue(TableMath.isNumber(isStringInteger));
+				assertTrue(TableMath.isNumber(isStringFloat));
+				assertTrue(TableMath.isNumber(integer));
+				assertTrue(TableMath.isNumber(floatNumber));
+				assertFalse(TableMath.isNumber("0dfgdfgfd"));
+			}
+			
+			function getColourGradient()
+			{
+				var tableModel = new TableModel(1, 2, 5, 5, 0, 0);
+				tableModel.setContentAt(0, 0, minValue);
+				tableModel.setContentAt(0, 1, maxValue);
+						
+				assertEquals(minValue, tableModel.getMinValue());
+				assertEquals(maxValue, tableModel.getMaxValue());
+				
+				var colour1 = {red:253, green:72, blue:72};
+				var colour2 = {red:72, green:253, blue:72};
+				var colour3 = {red:253, green:253, blue:72};
+				var rgbArray = [colour1, colour2, colour3];
+				
+				var colourGradient = TableGradientColourProvider.createGradient(tableModel, rgbArray);
+				return colourGradient;
+			}
+			
+			function testColourGradientForMaxValue()
+			{
+				var colourGradient = getColourGradient();
+				
+				// Maximum value colour.
+				cellValue = maxValue;
+				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				
+				assertEquals('rgb(253,253,72)', colour);
+			}
+			
+			function testColourGradientForValueGreaterThanMax()
+			{
+				var defaultColour = 'rgb(255, 255, 255)';
+				var minValue = 10;
+				var maxValue = 50;
+				var tableModel = new TableModel(1, 1, 5, 5, 0, 0);
+				tableModel.setContentAt(0, 0, minValue);
+				tableModel.setContentAt(0, 1, maxValue);
+						
+				var colour1 = {red:253, green:72, blue:72};
+				var colour2 = {red:72, green:253, blue:72};
+				var colour3 = {red:253, green:253, blue:72};
+				var rgbArray = [colour1, colour2, colour3];
+				
+				// Test colour after adding a value that is greater than the max value.
+				cellValue = maxValue*2;
+				tableModel.setContentAt(0, 0, cellValue);
+				var colourGradient = TableGradientColourProvider.createGradient(tableModel, rgbArray);
+				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				
+				assertEquals('rgb(253,253,72)', colour);
+			}
+			
+			function testColourGradientForValueLessThanMin()
+			{
+				var defaultColour = 'rgb(255, 255, 255)';
+				var minValue = 10;
+				var maxValue = 50;
+				var tableModel = new TableModel(1, 1, 5, 5, 0, 0);
+				tableModel.setContentAt(0, 0, minValue);
+				tableModel.setContentAt(0, 1, maxValue);
+						
+				var colour1 = {red:253, green:72, blue:72};
+				var colour2 = {red:72, green:253, blue:72};
+				var colour3 = {red:253, green:253, blue:72};
+				var rgbArray = [colour1, colour2, colour3];
+				
+				// Test colour after adding a value that is less than the min value.
+				cellValue = 1;
+				tableModel.setContentAt(0, 0, cellValue);
+				colourGradient = TableGradientColourProvider.createGradient(tableModel, rgbArray);
+				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				
+				assertEquals('rgb(253,72,72)', colour);
+			}
+			
+			function testColourGradientForMinValue()
+			{
+				var colourGradient = getColourGradient();
+				
+				// Minimum value colour
+				var cellValue = minValue;
+				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				
+				assertEquals('rgb(253,72,72)', colour);
+			}
+			
+			function testColourGradientForMidValue()
+			{
+				var colourGradient = getColourGradient();
+				
+				// Midway value colour.
+				cellValue = minValue + (maxValue - minValue)/2;
+				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				
+				assertEquals('rgb(72,253,72)', colour);
+			}
+			
+			function testColourGradientForStringValue()
+			{
+				var colourGradient = getColourGradient();
+				
+				// String value colour.
+				cellValue = "eh?";
+				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				
+				assertEquals(defaultColour, colour);
+			}
+			
+			function testColourGradientForEqualMinAndMax()
+			{
+				var defaultColour = 'rgb(255, 255, 255)';
+				
+				var colour1 = {red:253, green:72, blue:72};
+				var colour2 = {red:72, green:253, blue:72};
+				var colour3 = {red:253, green:253, blue:72};
+				var rgbArray = [colour1, colour2, colour3];
+				
+				// Min and Max values are equal.
+				var tableModel = new TableModel(1, 1, 5, 5, 0, 0);
+				tableModel.setContentAt(0, 0, 1);
+				tableModel.setContentAt(0, 1, 1);
+				colourGradient = TableGradientColourProvider.createGradient(tableModel, rgbArray);
+				cellValue = 1;
+				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				
+				assertEquals('rgb(253,72,72)', colour);
+			}
+			
+			function testCalculateBarWidth()
+			{
+				var rows = 3;
+				var columns = 2;
+				var maxBarWidth = 12;
+				var tableModel = new TableModel(rows, columns, 12, maxBarWidth, 0, 0);
+				tableModel.setContentAt(0, 0, 0);
+				tableModel.setContentAt(1, 0, 1);
+				tableModel.setContentAt(2, 0, 2);
+				
+				var column = 0;
+				var cellValue = 2;
+				assertEquals(maxBarWidth, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+				
+				cellValue = 0;
+				assertEquals(0, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+				
+				cellValue = 1;
+				assertEquals(maxBarWidth/2, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+				
+				tableModel = new TableModel(rows, columns, 12, maxBarWidth, 0, 0);
+				tableModel.setContentAt(0, 0, 1);
+				tableModel.setContentAt(1, 0, -10);
+				tableModel.setContentAt(0, 1, 10);
+				tableModel.setContentAt(1, 1, 11);
+				
+				cellValue = 1;
+				assertEquals(maxBarWidth, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+				cellValue = -10;
+				assertEquals(0, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+			}
+			
+			function testCalculateBarWidthWithNoNumbersInTable()
+			{
+				var tableModel = new TableModel(2, 1, 12, 12, 0, 0);
+				tableModel.setContentAt(0, 0, "w");
+				tableModel.setContentAt(1, 0, "qw");
+				tableModel.setContentAt(2, 0, "qw");
+				
+				assertEquals(12, TableMath.calculateBarWidth(tableModel, 0, 12, 0));
+			}
+			
+			function testBarWidthWhenMinAndMacValuesAreEqual()
+			{
+				var rows = 3;
+				var columns = 2;
+				var maxBarWidth = 12;
+				var tableModel = new TableModel(rows, columns, 12, maxBarWidth, 0, 0);
+				tableModel.setContentAt(0, 0, 0);
+				tableModel.setContentAt(1, 0, 0);
+				tableModel.setContentAt(2, 0, 0);
+				
+				var column = 0;
+				var cellValue = 2;
+				assertEquals(maxBarWidth, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+			}
+			
+		</script>
+		
+		<div id='tableDiv'>
+			<!-- table goes here... -->
+		</div>
+		
+	</body>
+</html>

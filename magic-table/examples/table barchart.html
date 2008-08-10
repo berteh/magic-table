@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		
+		<script src='../javascript/Hashtable.js' type='text/javascript'></script>
+		<script src='../javascript/Fisheye.js' type='text/javascript'></script>
+		<script src='../javascript/Matrix.js' type='text/javascript'></script>
+		<script src='../javascript/TableModel.js' type='text/javascript'></script>
+		<script src='../javascript/fisheyeTable.js' type='text/javascript'></script>
+		<script src='../javascript/FisheyeCellRenderer.js' type='text/javascript'></script>
+		<script src='../javascript/DefaultCellRenderer.js' type='text/javascript'></script>
+		<script src='../javascript/ScaleCellRenderer.js' type='text/javascript'></script>
+		<script src='../javascript/CanvasTextFunctions.js' type='text/javascript'></script>
+		<script src='../javascript/ColourGradient.js' type='text/javascript'></script>
+		
+		<title>Fisheye tabe example - volatilities</title>
+		
+		<style type="text/css">
+			<!--
+			body
+			{
+				background-color: #6688cc;
+			}
+			
+			div#header
+			{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				text-align: center;
+				background-color:#6688cc;
+				width: 100%;
+				height:90px;
+			}
+			
+			div#outerWrap
+			{
+				position: absolute;
+				top: 8%;
+				height: 87%;
+				width: 100%;
+				min-width: 1300px;
+			}
+			
+			div#leftColumn
+			{
+				height: 100%;
+				float: left;
+				width: 115px;
+				background: #6688cc;
+			}
+			
+			div#rightColumn
+			{
+				height: 100%;
+				float: right;
+				width: 115px;
+				background: #6688cc;
+			}
+			
+			div#middleColumn
+			{
+				height: 100%;
+				background: #ffffff;
+			}
+			
+			div#innerWrap
+			{
+				position: absolute;
+				top: 0px;
+				height: 100%;
+				width: 100%;
+			}
+			
+			div#tableTargetDiv
+			{
+				width: 550px;
+				height: 100%;
+				float: left
+			}
+			
+			span.bodyText
+			{
+				font-family: arial;
+				color:#2233cc
+			}
+			-->
+			</style>
+			
+	</head>
+	<body>
+		
+		<div id='header'>
+			<br />
+			<span style="font-family:arial; font-size: 26pt; color:#ffffff";>
+				Magic table
+			</span>
+		</div>
+		
+		<div id='outerWrap'>
+			<div id='leftColumn'></div>
+			<div id='rightColumn'></div>
+			<div id='middleColumn'>
+				<div id='innerWrap'>
+					<div id='tableTargetDiv'></div>
+					<div style="width: 300px; height: 100%; float: right"></div>
+					<div style="height: 100%; margin: 50px; text-align: justify;">
+						<span style="font-family:arial; font-size: 16pt; color:#ff9933">Table of barcharts</span>
+						<br />
+						<br />
+						<span class='bodyText'>This example demonstrates how we can obain a sideways barchart view of data
+						with the table. This is achieved simply by filling each table cell by an amount proportional
+						to the value it contains. With large sets of data this tehnique can effectively depict
+						correlations between columns, especially when the fisheye is enabled.</span>
+						<br />
+						<br />
+						<span class='bodyText'>The barchart effect is obtained by calling the table's "setBarFill" method.
+						It can also be controlled by the "Bar fill" checkbox on the user interface.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type='text/javascript'>
+			
+			var targetElement = document.getElementById('tableTargetDiv');
+			
+			var defaultRowHeight = 25;
+			var defaultColumnWidth = 60;
+			var tablePositionX = 150;
+			var tablePositionY = 60;
+			var tableHeight = 403;
+			var tableWidth = 315;
+			var rowHeaderCount = 0;
+			var columnHeaderCount = 0;
+			var rows = 16 + columnHeaderCount;
+			var columns = 5 + rowHeaderCount;
+			var tableModel
+				
+			function drawTable()
+			{
+				tableModel = new TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
+
+				setData();
+				
+				var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Bar-fill", targetElement);
+				fisheyeTable.setBarFill(true);
+				fisheyeTable.enableFisheye(false);
+			}
+			
+			function setData()
+			{
+				var i = rows - 1;
+				var j;
+				
+				do
+				{
+					j = columns - 1;
+					do
+					{
+						tableModel.setContentAt(i, j, Math.round(Math.random()*10));
+					}
+					while (j-- > 0) 
+				}
+				while (i-- > 0)
+				
+				tableModel.recalculateMinMaxValues();
+			}
+			
+			drawTable();
+			
+		</script>
+		
+	</body>
+</html>
