@@ -1,4 +1,2 @@
 #labels Featured
-#Magic Table API guide
-
 =API and other stuff is in progress...=
