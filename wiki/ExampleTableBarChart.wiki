@@ -3,3 +3,20 @@
 This example demonstrates how we can obain a _sideways_ barchart view of data with the table. This is achieved simply by filling each table cell by an amount proportional to the value it contains. With large sets of data this tehnique can effectively depict correlations between columns, especially when the fisheye is enabled. 
 
 The barchart effect is obtained by calling the table's "setBarFill" method. It can also be controlled by the "Bar fill" checkbox on the user interface.
+
+http://magic-table.googlecode.com/svn/trunk/images/barchart.png
+
+{{{
+function drawTable()
+{
+	tableModel = new TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, 
+                rowHeaderCount, columnHeaderCount);
+
+	setData();
+				
+	var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+		tableWidth, tableHeight, "Bar-fill", targetElement);
+		fisheyeTable.setBarFill(true);
+		fisheyeTable.enableFisheye(false);
+}
+}}}
