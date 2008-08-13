@@ -1,6 +1,5 @@
 
-
-|| [http://code.google.com/p/magic-table/wiki/ExampleColourGradient http://magic-table.googlecode.com/svn/trunk/images/gradients_thumb.png] || *Colour gradients* ||
+|| [http://code.google.com/p/magic-table/wiki/ExampleColourGradient http://magic-table.googlecode.com/svn/trunk/images/gradients_thumb.png] || [http://code.google.com/p/magic-table/wiki/ExampleColourGradient *Colour gradients*] ||
 
 || [http://code.google.com/p/magic-table/wiki/ExampleScatterplot http://magic-table.googlecode.com/svn/trunk/images/scatterplot_thumb.png] || *Table as a scatterplot* ||
 
