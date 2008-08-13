@@ -1,0 +1,47 @@
+#labels Featured
+=Example - Colour ramp=
+
+This example demonstrates how to use colour ramps with the table. The colours are only applied to cells that hold numbers, and the range of numbers across the whole table determines which colour is taken from the ramp, from minimum to maximum.
+
+|| http://magic-table.googlecode.com/svn/trunk/images/gradients.png || [http://code.google.com/p/magic-table/source/browse/trunk/magic-table/examples/gradients.html Click here to see the code] ||
+
+{{{
+function drawTable()
+{
+	function renderBlueYellowRamp()
+	{
+		var rows = 20;
+		var columns = 25;
+		var rowHeight = 40;
+		var columnWidth = 70;
+		var tablePositionX = 470;
+		var tablePositionY = 130;
+		var tableHeight = 300;
+		var tableWidth = 300;
+		var rowHeaderCount = 0;
+		var columnHeaderCount = 0;
+		var count = 0;
+				
+		// Create the ramp.
+		var colour1 = {red:0, green:0, blue:255};
+		var colour2 = {red:0, green:255, blue:254};
+		var colour3 = {red:1, green:255, blue:0};
+		var colour4 = {red:255, green:255, blue:2};
+		var ramp = [colour1, colour2, colour3, colour4];
+				
+		// ...and pass it into the table model
+		var tableModel = new TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+		for (var i = 0; i < rows; i++) 
+			for (var j = 0; j < columns; j++)
+			{
+				tableModel.setContentAt(i, j, i*j);
+			}
+				
+		tableModel.recalculateMinMaxValues();
+				
+		var fisheyeTable = new FisheyeTable(tableModel, tablePositionX,
+                      tablePositionY, tableWidth, tableHeight, "Blue to yellow", targetElement);
+	}
+}
+}}}
