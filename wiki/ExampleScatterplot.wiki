@@ -4,7 +4,7 @@ It is also possible to render data that would normally lend themselves to a scat
 
 When you move the mouse over the surface of the table, the X-Y coordinates are displayed on the axes. Values at points near the focus are also rendered.
 
-|| http://magic-table.googlecode.com/svn/trunk/images/scatterplot.png || [http://code.google.com/p/magic-table/source/browse/trunk/magic-table/examples/table%20barchart.html Click here to see the code] ||
+|| http://magic-table.googlecode.com/svn/trunk/images/scatterplot.png || [http://code.google.com/p/magic-table/source/browse/trunk/magic-table/examples/table%20scatterplot.html Click here to see the code] ||
 
 {{{
 function drawTable()
