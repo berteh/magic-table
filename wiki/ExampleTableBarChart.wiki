@@ -4,7 +4,7 @@ This example demonstrates how we can obain a _sideways_ barchart view of data wi
 
 The barchart effect is obtained by calling the table's "setBarFill" method. It can also be controlled by the "Bar fill" checkbox on the user interface.
 
-http://magic-table.googlecode.com/svn/trunk/images/barchart.png
+|| http://magic-table.googlecode.com/svn/trunk/images/barchart.png || [http://code.google.com/p/magic-table/source/browse/trunk/magic-table/examples/table%20barchart.html Click here to see the code] ||
 
 {{{
 function drawTable()
