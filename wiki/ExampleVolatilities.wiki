@@ -1,3 +1,4 @@
+#labels Featured
 =Example - Table of financial volatlities=
 
 This example demonstrates a table view of financial volatilities. If the data were to be rendered in a normal table the number of rows and columns would make it difficult to view it all in one go. Uncheck the 'Fisheye' box and observe how you now have to scroll both horizontally and vertically. However, with the fisheye visualisation, you can now see all of the data simultaneously - no need for tiresome scrolling... 
@@ -6,7 +7,7 @@ When you move the mouse over the surface of the table, the row and column header
 
 Open the example and check the "Bar fill' box to see correlations and outliers.
 
-|| http://magic-table.googlecode.com/svn/trunk/images/volatilities.png || [http://code.google.com/p/magic-table/source/browse/trunk/magic-table/examples/table%20barchart.html Click here to see the code] ||
+|| http://magic-table.googlecode.com/svn/trunk/images/volatilities.png || [http://code.google.com/p/magic-table/source/browse/trunk/magic-table/examples/volatilities.html Click here to see the code] ||
 
 Here's a view of the same data but with the fisheye lens feature turned off.
 
