@@ -18,6 +18,18 @@ You should have received a copy of the GNU General Public License
 along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * The table model defines the data and meta-data for the table.
+ * @author Greg Ross
+ * @constructor
+ * @param rowCount the number of rows in the table, including headers
+ * @param columnCount the number of columns in the able, including headers
+ * @param defaultRowHeight the default row height when the fisheye feature is turned off
+ * @param defaultColumnWidth the default column width when the fisheye feature is turned off
+ * @param rowHeaderCount the number of row headers
+ * @param columnHeaderCount the number of column headers
+ * @param clrRamp the colour ramp applied to the table to encode numbers
+ */
 function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount, clrRamp)
 {
 	this.matrix = new Matrix();
@@ -67,6 +79,13 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 		return [colour1, colour2, colour3, colour4, colour5];
 	}
 	
+	/**
+	 * Return the cell render for the cell specified by the given row and column indices.
+	 * @member TableModel
+	 * @param row the row of the cell that is to be rendered
+	 * @param column the column of the cell that is to be rendered
+	 * @param isFisheyeCell true if the fisheye feature is turned on
+	 */
 	this.getCellRendererAt = function(row, column, isFisheyeCell)
 	{
 		if (isFisheyeCell) 
@@ -89,6 +108,11 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 		}
 	}
 	
+	/**
+	 * Returns the height of the given row.
+	 * @member TableModel
+	 * @param row
+	 */
 	this.getRowHeight = function(row)
 	{
 		if (!TableMath.isNumber(row)) return defaultRowHeight;
@@ -97,6 +121,11 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 		return this.rowHeights[row];
 	}
 	
+	/**
+	 * Returns the width of the given column.
+	 * @member TableModel
+	 * @param column
+	 */
 	this.getColumnWidth = function(column)
 	{
 		if (!TableMath.isNumber(column)) return defaultColumnWidth;
@@ -105,16 +134,33 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 		return this.columnWidths[column];
 	}
 	
+	/**
+	 * Use this method to set the height of the given row.
+	 * @member TableModel
+	 * @param row
+	 * @param height
+	 */
 	this.setRowHeight = function(row, height)
 	{
 		this.rowHeights[row] = height;
 	}
 	
+	/**
+	 * Use this method to set the width of the given column.
+	 * @member TableModel
+	 * @param column
+	 * @param width
+	 */
 	this.setColumnWidth = function(column, width)
 	{
 		this.columnWidths[column] = width;
 	}
 	
+	/**
+	 * Call this method after adding numerical data to the table. This allows the table to
+	 * track the maximum and minimum values across rows and columns.
+	 * @member TableModel
+	 */
 	this.recalculateMinMaxValues = function()
 	{
 		var i = this.rowCount;
@@ -156,6 +202,12 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 		while(--i > 0)
 	}
 	
+	/**
+	 * Return the value at the cell specified by the row and column parameters.
+	 * @member TableModel
+	 * @param row
+	 * @param column
+	 */
 	this.getContentAt = function(row, column)
 	{
 		if (!isRowValid(row) || !isColumnValid(column)) return null;
