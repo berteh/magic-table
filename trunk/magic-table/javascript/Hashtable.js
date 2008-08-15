@@ -1,18 +1,23 @@
-/*******************************************************************************************
- * Object: Hashtable
- * Description: Implementation of hashtable
- * Original Author: Uzi Refaeli
- *******************************************************************************************/
-
 Hashtable.prototype.hash = null;
 Hashtable.prototype.keys = null;
 
+/**
+ * A JavaScript implementation of a hash table.
+ * Original Author: Uzi Refaeli
+ * @constructor
+ */
 function Hashtable()
 {
     this.hash = new Array();
     this.keys = new Array();
 }
 
+/**
+ * Asociate an object with a key in the hash table
+ * @member Hashtable
+ * @param {Object} key
+ * @param {Object} value
+ */
 Hashtable.prototype.put = function(key, value)
 {
     if (value == null) 
@@ -24,11 +29,21 @@ Hashtable.prototype.put = function(key, value)
     this.hash[key] = value;
 }
 
+/**
+ * Get an item corresponding to the given key.
+ * @member Hashtable
+ * @param key
+ * @return the object corresponding to the given key
+ */
 Hashtable.prototype.get = function(key)
 {
     return this.hash[key];
 }
 
+/**
+ * Returns the number of items in the hash table.
+ * @member Hashtable
+ */
 Hashtable.prototype.size = function()
 {
     return this.hash.length;
@@ -36,12 +51,11 @@ Hashtable.prototype.size = function()
 
 
 /**
- * toString
  * Returns a string representation of this Hashtable object in the form of a set of entries,
  * enclosed in braces and separated by the ASCII characters ", " (comma and space).
  * Each entry is rendered as the key, an equals sign =, and the associated element,
  * where the toString method is used to convert the key and element to strings.
- * Return: a string representation of this hashtable.
+ * @member Hashtable
  */
 Hashtable.prototype.toString = function()
 {

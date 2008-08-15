@@ -31,13 +31,17 @@ function barfillCheckBoxClickEventHandler(checkbox)
 }
 
 /**
- * @param tableModel - contains the data and meta data for rendering the table
- * @param x - the x-axis position of the table
- * @param y - the y-axis position of the table
- * @param width - the table's with
- * @param height - the table's height
- * @param tableTitle - the title that appears above the table
- * @param targetElement - the element in which the table html will be nested. If this is ommitted the table's position
+ * 
+ * This is the library's core class.
+ * @author Greg Ross
+ * @constructor
+ * @param tableModel contains the data and meta data for rendering the table
+ * @param x the x-axis position of the table
+ * @param y the y-axis position of the table
+ * @param width the table's width
+ * @param height the table's height
+ * @param tableTitle the title that appears above the table
+ * @param targetElement the element in which the table html will be nested. If this is ommitted the table's position
  * will be absolute, otherwise it will be relative to the target element.
  */
 function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement)
