@@ -44,6 +44,10 @@ If there are one or more column or row headers defined on the table model, then 
 
 After adding all the data to the model, call the {{{tableModel.recalculateMinMaxValues()}}}. This ensures that the values used to determine colours and bar-fills properly reflect the data. It was decided not to call this as part of the the {{{setContentAt()}}} method because it would increase the time required to create the model by an order of magnitude. Instead, by calling it once after the addition of the data, the time required is linear with respect to the number of data items.
 
+{{{
+tableModel.recalculateMinMaxValues();
+}}}
+
 It is also possible to set individual row heights and column widths:
 
 {{{
