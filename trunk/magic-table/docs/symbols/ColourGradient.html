@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - FisheyeTable</title>
+		<title>JsDoc Reference - ColourGradient</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -224,7 +224,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class FisheyeTable
+				Class ColourGradient
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -234,13 +234,13 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_gregross_magic-table_magic-table_javascript_fisheyeTable.js.html">fisheyeTable.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_gregross_magic-table_magic-table_javascript_ColourGradient.js.html">ColourGradient.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class FisheyeTable.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class ColourGradient.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -253,9 +253,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/FisheyeTable.html#constructor">FisheyeTable</a></b>(tableModel, x, y, width, height, tableTitle, targetElement)
+								<b><a href="../symbols/ColourGradient.html#constructor">ColourGradient</a></b>(minValue, maxValue, rgbColourArray)
 							</div>
-							<div class="description">This is the library's core class.</div>
+							<div class="description">Class that is used to define a path through RGB space.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -269,7 +269,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class FisheyeTable.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class ColourGradient.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -282,36 +282,11 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#enableFisheye">enableFisheye</a></b>(setFisheye)
+								<div class="fixedFont"><b><a href="../symbols/ColourGradient.html#getColour">getColour</a></b>(value)
 								</div>
-								<div class="description">Setting this to true enables the fisheye lens feature.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#redraw">redraw</a></b>()
-								</div>
-								<div class="description">Calling this method tells the table to redraw its self.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#removeTable">removeTable</a></b>(id)
-								</div>
-								<div class="description">Call this to remove the table from the web page.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#setBarFill">setBarFill</a></b>(barfill)
-								</div>
-								<div class="description">Setting this to true fills in cells by an amount proportional to the value contained.</div>
+								<div class="description">Return a colour from a position on the path in RGB space that is proportioal to
+the number specified in relation to the minimum and maximum values from which the
+bounds of the path are derived.</div>
 							</td>
 						</tr>
 					
@@ -330,11 +305,11 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>FisheyeTable</b>(tableModel, x, y, width, height, tableTitle, targetElement)
+						<b>ColourGradient</b>(minValue, maxValue, rgbColourArray)
 				</div>
 				
 				<div class="description">
-					This is the library's core class.
+					Class that is used to define a path through RGB space.
 					<br /><i>Author: </i>Greg Ross.
 				</div>
 				
@@ -346,47 +321,23 @@ ul.inheritsList
 						<dt class="heading">Parameters:</dt>
 						
 							<dt>
-								 <b>tableModel</b>
+								 <b>minValue</b>
 								
 							</dt>
-								<dd>contains the data and meta data for rendering the table</dd>
+								<dd>the value that will return the first colour on the path in RGB space</dd>
 						
 							<dt>
-								 <b>x</b>
+								 <b>maxValue</b>
 								
 							</dt>
-								<dd>the x-axis position of the table</dd>
+								<dd>the value that will return the last colour on the path in RGB space</dd>
 						
 							<dt>
-								 <b>y</b>
+								 <b>rgbColourArray</b>
 								
 							</dt>
-								<dd>the y-axis position of the table</dd>
-						
-							<dt>
-								 <b>width</b>
-								
-							</dt>
-								<dd>the table's width</dd>
-						
-							<dt>
-								 <b>height</b>
-								
-							</dt>
-								<dd>the table's height</dd>
-						
-							<dt>
-								 <b>tableTitle</b>
-								
-							</dt>
-								<dd>the title that appears above the table</dd>
-						
-							<dt>
-								 <b>targetElement</b>
-								
-							</dt>
-								<dd>the element in which the table html will be nested. If this is ommitted the table's position
-will be absolute, otherwise it will be relative to the target element.</dd>
+								<dd>the set of colours that defines the dirctional path through RGB space.
+The length of the array must be greater than two.</dd>
 						
 						</dl>
 					
@@ -409,16 +360,17 @@ will be absolute, otherwise it will be relative to the target element.</dd>
 					Method Detail
 				</div>
 				
-					<a name="enableFisheye"> </a>
+					<a name="getColour"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>enableFisheye</b>(setFisheye)
+					<b>getColour</b>(value)
 					
 					</div>
 					<div class="description">
-						Setting this to true enables the fisheye lens feature. Setting it to false renders
-the data in a normal table view.
+						Return a colour from a position on the path in RGB space that is proportioal to
+the number specified in relation to the minimum and maximum values from which the
+bounds of the path are derived.
 						
 						
 					</div>
@@ -430,109 +382,10 @@ the data in a normal table view.
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>setFisheye</b>
+									<b>value</b>
 									
 								</dt>
-								<dd>(true/false)</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="redraw"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>redraw</b>()
-					
-					</div>
-					<div class="description">
-						Calling this method tells the table to redraw its self.
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="removeTable"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>removeTable</b>(id)
-					
-					</div>
-					<div class="description">
-						Call this to remove the table from the web page.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>id</b>
-									
-								</dt>
-								<dd>the ID of the fisheye table. The ID is allocated automatically by the
-allocateId() method.</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="setBarFill"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>setBarFill</b>(barfill)
-					
-					</div>
-					<div class="description">
-						Setting this to true fills in cells by an amount proportional to the value contained.
-This provides a bar chart view of the data.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>barfill</b>
-									
-								</dt>
-								<dd>(true/false)</dd>
+								<dd></dd>
 							
 							</dl>
 						

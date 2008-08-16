@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - FisheyeTable</title>
+		<title>JsDoc Reference - TableMath</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -224,7 +224,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class FisheyeTable
+				Class TableMath
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -240,7 +240,7 @@ ul.inheritsList
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class FisheyeTable.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class TableMath.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -253,9 +253,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/FisheyeTable.html#constructor">FisheyeTable</a></b>(tableModel, x, y, width, height, tableTitle, targetElement)
+								<b><a href="../symbols/TableMath.html#constructor">TableMath</a></b>()
 							</div>
-							<div class="description">This is the library's core class.</div>
+							<div class="description">Utlity class for math functions.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -269,7 +269,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class FisheyeTable.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class TableMath.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -280,38 +280,20 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#enableFisheye">enableFisheye</a></b>(setFisheye)
+								<div class="fixedFont">TableMath.<b><a href="../symbols/TableMath.html#.calculateBarWidth">calculateBarWidth</a></b>(tableModel, cellValue, maxWidth, column)
 								</div>
-								<div class="description">Setting this to true enables the fisheye lens feature.</div>
+								<div class="description">Return the amount by which a table cell must be filled to represent the numeric value it contains.</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#redraw">redraw</a></b>()
+								<div class="fixedFont">TableMath.<b><a href="../symbols/TableMath.html#.isNumber">isNumber</a></b>(value)
 								</div>
-								<div class="description">Calling this method tells the table to redraw its self.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#removeTable">removeTable</a></b>(id)
-								</div>
-								<div class="description">Call this to remove the table from the web page.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#setBarFill">setBarFill</a></b>(barfill)
-								</div>
-								<div class="description">Setting this to true fills in cells by an amount proportional to the value contained.</div>
+								<div class="description">Return true if the given value is a number.</div>
 							</td>
 						</tr>
 					
@@ -330,65 +312,17 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>FisheyeTable</b>(tableModel, x, y, width, height, tableTitle, targetElement)
+						<b>TableMath</b>()
 				</div>
 				
 				<div class="description">
-					This is the library's core class.
-					<br /><i>Author: </i>Greg Ross.
+					Utlity class for math functions.
+					
 				</div>
 				
 				
 				
 				
-					
-						<dl class="detailList">
-						<dt class="heading">Parameters:</dt>
-						
-							<dt>
-								 <b>tableModel</b>
-								
-							</dt>
-								<dd>contains the data and meta data for rendering the table</dd>
-						
-							<dt>
-								 <b>x</b>
-								
-							</dt>
-								<dd>the x-axis position of the table</dd>
-						
-							<dt>
-								 <b>y</b>
-								
-							</dt>
-								<dd>the y-axis position of the table</dd>
-						
-							<dt>
-								 <b>width</b>
-								
-							</dt>
-								<dd>the table's width</dd>
-						
-							<dt>
-								 <b>height</b>
-								
-							</dt>
-								<dd>the table's height</dd>
-						
-							<dt>
-								 <b>tableTitle</b>
-								
-							</dt>
-								<dd>the title that appears above the table</dd>
-						
-							<dt>
-								 <b>targetElement</b>
-								
-							</dt>
-								<dd>the element in which the table html will be nested. If this is ommitted the table's position
-will be absolute, otherwise it will be relative to the target element.</dd>
-						
-						</dl>
 					
 					
 					
@@ -409,16 +343,15 @@ will be absolute, otherwise it will be relative to the target element.</dd>
 					Method Detail
 				</div>
 				
-					<a name="enableFisheye"> </a>
-					<div class="fixedFont">
+					<a name=".calculateBarWidth"> </a>
+					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<b>enableFisheye</b>(setFisheye)
+					<span class="light">TableMath.</span><b>calculateBarWidth</b>(tableModel, cellValue, maxWidth, column)
 					
 					</div>
 					<div class="description">
-						Setting this to true enables the fisheye lens feature. Setting it to false renders
-the data in a normal table view.
+						Return the amount by which a table cell must be filled to represent the numeric value it contains.
 						
 						
 					</div>
@@ -430,10 +363,28 @@ the data in a normal table view.
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>setFisheye</b>
+									<b>tableModel</b>
 									
 								</dt>
-								<dd>(true/false)</dd>
+								<dd>the model containing the table data</dd>
+							
+								<dt>
+									<b>cellValue</b>
+									
+								</dt>
+								<dd>the value contained in the cell</dd>
+							
+								<dt>
+									<b>maxWidth</b>
+									
+								</dt>
+								<dd>the maximum allowable fill width. This is equal to the width of the cell</dd>
+							
+								<dt>
+									<b>column</b>
+									
+								</dt>
+								<dd>the cell's column index</dd>
 							
 							</dl>
 						
@@ -446,40 +397,15 @@ the data in a normal table view.
 
 					<hr />
 				
-					<a name="redraw"> </a>
-					<div class="fixedFont">
+					<a name=".isNumber"> </a>
+					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<b>redraw</b>()
-					
-					</div>
-					<div class="description">
-						Calling this method tells the table to redraw its self.
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="removeTable"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>removeTable</b>(id)
+					<span class="light">TableMath.</span><b>isNumber</b>(value)
 					
 					</div>
 					<div class="description">
-						Call this to remove the table from the web page.
+						Return true if the given value is a number.
 						
 						
 					</div>
@@ -491,48 +417,10 @@ the data in a normal table view.
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>id</b>
+									<b>value</b>
 									
 								</dt>
-								<dd>the ID of the fisheye table. The ID is allocated automatically by the
-allocateId() method.</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="setBarFill"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>setBarFill</b>(barfill)
-					
-					</div>
-					<div class="description">
-						Setting this to true fills in cells by an amount proportional to the value contained.
-This provides a bar chart view of the data.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>barfill</b>
-									
-								</dt>
-								<dd>(true/false)</dd>
+								<dd>expression to be evaluated</dd>
 							
 							</dl>
 						

@@ -18,6 +18,15 @@ You should have received a copy of the GNU General Public License
 along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * This class renders cells when the fisheye feature is switched off.
+ * @author Greg Ross
+ * @constructor
+ * @param tableModel
+ * @param cellAlignment defines the alignment of text in the cell.
+ * Must be CellAlignment.LEFT, CellAlignment.CENTRE or CellAlignment.RIGHT;
+ * @param colourRamp the colour ramp from which the cell's back colour will be derived.
+ */
 function DefaultCellRenderer(tableModel, cellAlignment, colourRamp)
 {
 	var colourGradient;
@@ -67,6 +76,21 @@ function DefaultCellRenderer(tableModel, cellAlignment, colourRamp)
 	
 	init();
 	
+	/**
+	 * The fisheye table calls this method to render the cell. Classes that extend a cell renderer
+	 * must implement this method.
+	 * @member DefaultCellRenderer
+	 * @param canvasContext the canvas context
+	 * @param row the row index
+	 * @param column the column index
+	 * @param x1 the top-left cell X-coordinate
+	 * @param y1 the top-left cell Y-coordinate
+	 * @param width the width of the cell
+	 * @param height the height of the cell
+	 * @param cellValue the value ot be rendered in the cell
+	 * @param fisheyeEnabled true if the fisheye feature is turned on
+	 * @param barFillEnabled true if the bar-fill feature is turned on
+	 */
 	this.drawCell = function(canvasContext, row, column, x1, y1, width, height, cellValue, fisheyeEnabled, barFillEnabled)
 	{
 		var colr = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
