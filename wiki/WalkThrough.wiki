@@ -25,6 +25,8 @@ Now, instantiate the table model...
 var tableModel = new TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
 }}}
 
+----
+
 ==Step 2: add data to the model==
 
 Use the {{{setContentAt()}}} method to define the values that will be rendered in the table.
@@ -52,6 +54,8 @@ It is also possible to set individual row heights and column widths:
 tableModel.setColumnWidth(0, 130);
 tableModel.setRowHeight(0, 110);
 }}}
+
+----
 
 ==Step 3: define the fisheye table==
 
