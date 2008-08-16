@@ -109,7 +109,7 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	}
 	
 	/**
-	 * Returns the height of the given row.
+	 * Return the height of the given row.
 	 * @member TableModel
 	 * @param row
 	 */
@@ -122,7 +122,7 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	}
 	
 	/**
-	 * Returns the width of the given column.
+	 * Return the width of the given column.
 	 * @member TableModel
 	 * @param column
 	 */
@@ -215,6 +215,13 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 		return this.matrix.get([row, column]);
 	}
 	
+	/**
+	 * Put a value in the table at the specified row and column.
+	 * @member TableModel
+	 * @param row
+	 * @param column
+	 * @param value
+	 */
 	this.setContentAt = function(row, column, value)
 	{
 		if (!isRowValid(row) || !isColumnValid(column)) return;
@@ -250,31 +257,59 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	}
 }
 
+/**
+ * Determine the smallest numeric value in the table.
+ * @member TableModel
+ */
 TableModel.prototype.getMinValue = function()
 {
 	return this.matrix.minValue;
 }
 
+/**
+ * Determine the largest numeric value in the table.
+ * @member TableModel
+ */
 TableModel.prototype.getMaxValue = function()
 {
 	return this.matrix.maxValue;
 }
 
+/**
+ * Return the smallest numeric value in the given row.
+ * @member TableModel
+ * @param row
+ */
 TableModel.prototype.getMinValueForRow = function(row)
 {
 	return this.minRowValues[row];
 }
 
+/**
+ * Return the largest numeric value in the given row.
+ * @member TableModel
+ * @param row
+ */
 TableModel.prototype.getMaxValueForRow = function(row)
 {
 	return this.maxRowValues[row];
 }
 
+/**
+ * Return the smallest numeric value in the given column.
+ * @member TableModel
+ * @param column
+ */
 TableModel.prototype.getMinValueForColumn = function(column)
 {
 	return this.minColumnValues[column];
 }
 
+/**
+ * Return the largest numeric value in the given column.
+ * @member TableModel
+ * @param column
+ */
 TableModel.prototype.getMaxValueForColumn = function(column)
 {
 	return this.maxColumnValues[column];

@@ -20,6 +20,11 @@ along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
 
 Matrix.prototype.space = null;
 
+/**
+ * This class represents an n-dimensional sparse matrix data structure.
+ * @author Greg Ross
+ * @constructor
+ */
 function Matrix()
 {
     this.space = new Hashtable();
@@ -41,11 +46,19 @@ function Matrix()
 		return isHash;
 	}
 	
+	/**
+	 * Return the maximum numeric value in the matrix.
+	 * @member Matrix
+	 */
 	this.getMaxValue = function()
 	{
 		return maxValue;
 	}
 	
+	/**
+	 * Return the minimum numeric value in the matrix.
+	 * @member Matrix
+	 */
 	this.getMinValue = function()
 	{
 		if (!isNan(minValue))
@@ -53,6 +66,12 @@ function Matrix()
 	}
 }
 
+/**
+ * Put a new value in the matrix.
+ * @member Matrix
+ * @param indices an array specifying the n-dimensional element indices, e.g. [1, 0, 0, 2]
+ * @param value
+ */
 Matrix.prototype.put = function(indices, value)
 {
 	if (TableMath.isNumber(value))
@@ -99,6 +118,11 @@ Matrix.prototype.put = function(indices, value)
 		hash.put(index, value);
 }
 
+/**
+ * Return a value from the matrix.
+ * @member Matrix
+ * @param indices an array specifying the n-dimensional element indices, e.g. [1, 0, 0, 2]
+ */
 Matrix.prototype.get = function(indices)
 {
 	var index = indices[0];

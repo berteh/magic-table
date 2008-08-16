@@ -18,6 +18,13 @@ You should have received a copy of the GNU General Public License
 along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * This class renders cells when the fisheye feature is switched on.
+ * @author Greg Ross
+ * @constructor
+ * @param tableModel
+ * @param colourRamp the colour ramp from which the cell's back colour will be derived.
+ */
 function FisheyeCellRenderer(tableModel, colourRamp)
 {
 	var colourGradient;
@@ -40,6 +47,17 @@ function FisheyeCellRenderer(tableModel, colourRamp)
 		canvasContext.drawTextCenter(font, fontsize, centerPoint.x, centerPoint.y, sValue);
 	}
 	
+	/**
+	 * The fisheye table calls this method to render the cell. Classes that extend a cell renderer
+	 * must implement this method.
+	 * @member FisheyeCellRenderer
+	 * @param canvasContext the canvas context
+	 * @param column the column index
+	 * @param cellCoordinates the coordinates defining the cell poylgon
+	 * @param cellValue the value ot be rendered in the cell
+	 * @param barFillEnabled true if the bar-fill feature is turned on
+	 * @param cellWidth the width of the cell
+	 */
 	this.drawCell = function(canvasContext, column, cellCoordinates, cellValue, barFillEnabled, cellWidth)
 	{
 		var colr = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);

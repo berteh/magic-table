@@ -18,6 +18,10 @@ You should have received a copy of the GNU General Public License
 along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * Fisheye lens model
+ * @constructor
+ */
 function Fisheye()
 {
 	var focusHeight = 9;
@@ -25,11 +29,22 @@ function Fisheye()
 	var lensY = 0;
 	var lensRadius = 30;
 
+	/**
+	 * Return the Euclidean distance of the given point from the lens focus
+	 * @member Fisheye
+	 * @param x
+	 * @param y
+	 */
 	function distanceFromFocus(x, y)
 	{
 		return distance(x - lensX, y - lensY);
 	}
 
+	/**
+	 * Return the height at a point on the lens' surface
+	 * @member Fisheye
+	 * @param distance
+	 */
 	function heightAtPoint(distance)
 	{
 		if (focusHeight == 0 || distance > lensRadius)
@@ -41,6 +56,11 @@ function Fisheye()
 		}
 	}
 
+	/**
+	 * The function that defines the lens shape.
+	 * @member Fisheye
+	 * @param t
+	 */
 	function lens(t)
 	{
 		return 1 - t;
@@ -52,16 +72,31 @@ function Fisheye()
 		return 10.0 / (10.0 - height);
 	}
 
+	/**
+	 * transform the given coordinate according to its position under the lens
+	 * @member Fisheye
+	 * @param point the x coordinate of a point
+	 */
 	function transformX(x, scale)
 	{
 		return (x - lensX) * scale + lensX;
 	}
 
+	/**
+	 * transform the given coordinate according to its position under the lens
+	 * @member Fisheye
+	 * @param point the y coordinate of a point
+	 */
 	function transformY(y, scale)
 	{
 		return (y - lensY) * scale + lensY;
 	}
 
+	/**
+	 * transform the given coordinate according to its position under the lens
+	 * @member Fisheye
+	 * @param point the x-y coordinate of a point
+	 */
 	this.transform = function(point)
 	{
 		var scaleFactor = getScaleFactor(point.x, point.y);
@@ -77,11 +112,22 @@ function Fisheye()
 		return point;
 	}
 	
+	/**
+	 * Sets the radius of the lens
+	 * @member Fisheye
+	 * @param focusRadius
+	 */
 	this.setLensRadius = function(focusRadius)
 	{
 		lensRadius = focusRadius;
 	}
 	
+	/**
+	 * Sets the position of the lens.
+	 * @member Fisheye
+	 * @param x
+	 * @param y
+	 */
 	this.setLensPosition = function(x, y)
 	{
 		setLensX(x);

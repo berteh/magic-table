@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - FisheyeTable</title>
+		<title>JsDoc Reference - FisheyeCellRenderer</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -224,7 +224,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class FisheyeTable
+				Class FisheyeCellRenderer
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -234,13 +234,13 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_gregross_magic-table_magic-table_javascript_fisheyeTable.js.html">fisheyeTable.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_gregross_magic-table_magic-table_javascript_FisheyeCellRenderer.js.html">FisheyeCellRenderer.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class FisheyeTable.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class FisheyeCellRenderer.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -253,9 +253,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/FisheyeTable.html#constructor">FisheyeTable</a></b>(tableModel, x, y, width, height, tableTitle, targetElement)
+								<b><a href="../symbols/FisheyeCellRenderer.html#constructor">FisheyeCellRenderer</a></b>(tableModel, colourRamp)
 							</div>
-							<div class="description">This is the library's core class.</div>
+							<div class="description">This class renders cells when the fisheye feature is switched on.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -269,7 +269,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class FisheyeTable.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class FisheyeCellRenderer.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -282,36 +282,9 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#enableFisheye">enableFisheye</a></b>(setFisheye)
+								<div class="fixedFont"><b><a href="../symbols/FisheyeCellRenderer.html#drawCell">drawCell</a></b>(canvasContext, column, cellCoordinates, cellValue, barFillEnabled, cellWidth)
 								</div>
-								<div class="description">Setting this to true enables the fisheye lens feature.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#redraw">redraw</a></b>()
-								</div>
-								<div class="description">Calling this method tells the table to redraw its self.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#removeTable">removeTable</a></b>(id)
-								</div>
-								<div class="description">Call this to remove the table from the web page.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#setBarFill">setBarFill</a></b>(barfill)
-								</div>
-								<div class="description">Setting this to true fills in cells by an amount proportional to the value contained.</div>
+								<div class="description">The fisheye table calls this method to render the cell.</div>
 							</td>
 						</tr>
 					
@@ -330,11 +303,11 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>FisheyeTable</b>(tableModel, x, y, width, height, tableTitle, targetElement)
+						<b>FisheyeCellRenderer</b>(tableModel, colourRamp)
 				</div>
 				
 				<div class="description">
-					This is the library's core class.
+					This class renders cells when the fisheye feature is switched on.
 					<br /><i>Author: </i>Greg Ross.
 				</div>
 				
@@ -349,44 +322,13 @@ ul.inheritsList
 								 <b>tableModel</b>
 								
 							</dt>
-								<dd>contains the data and meta data for rendering the table</dd>
+								<dd></dd>
 						
 							<dt>
-								 <b>x</b>
+								 <b>colourRamp</b>
 								
 							</dt>
-								<dd>the x-axis position of the table</dd>
-						
-							<dt>
-								 <b>y</b>
-								
-							</dt>
-								<dd>the y-axis position of the table</dd>
-						
-							<dt>
-								 <b>width</b>
-								
-							</dt>
-								<dd>the table's width</dd>
-						
-							<dt>
-								 <b>height</b>
-								
-							</dt>
-								<dd>the table's height</dd>
-						
-							<dt>
-								 <b>tableTitle</b>
-								
-							</dt>
-								<dd>the title that appears above the table</dd>
-						
-							<dt>
-								 <b>targetElement</b>
-								
-							</dt>
-								<dd>the element in which the table html will be nested. If this is ommitted the table's position
-will be absolute, otherwise it will be relative to the target element.</dd>
+								<dd>the colour ramp from which the cell's back colour will be derived.</dd>
 						
 						</dl>
 					
@@ -409,16 +351,16 @@ will be absolute, otherwise it will be relative to the target element.</dd>
 					Method Detail
 				</div>
 				
-					<a name="enableFisheye"> </a>
+					<a name="drawCell"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>enableFisheye</b>(setFisheye)
+					<b>drawCell</b>(canvasContext, column, cellCoordinates, cellValue, barFillEnabled, cellWidth)
 					
 					</div>
 					<div class="description">
-						Setting this to true enables the fisheye lens feature. Setting it to false renders
-the data in a normal table view.
+						The fisheye table calls this method to render the cell. Classes that extend a cell renderer
+must implement this method.
 						
 						
 					</div>
@@ -430,109 +372,40 @@ the data in a normal table view.
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>setFisheye</b>
+									<b>canvasContext</b>
 									
 								</dt>
-								<dd>(true/false)</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="redraw"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>redraw</b>()
-					
-					</div>
-					<div class="description">
-						Calling this method tells the table to redraw its self.
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="removeTable"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>removeTable</b>(id)
-					
-					</div>
-					<div class="description">
-						Call this to remove the table from the web page.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
+								<dd>the canvas context</dd>
 							
 								<dt>
-									<b>id</b>
+									<b>column</b>
 									
 								</dt>
-								<dd>the ID of the fisheye table. The ID is allocated automatically by the
-allocateId() method.</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="setBarFill"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>setBarFill</b>(barfill)
-					
-					</div>
-					<div class="description">
-						Setting this to true fills in cells by an amount proportional to the value contained.
-This provides a bar chart view of the data.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
+								<dd>the column index</dd>
 							
 								<dt>
-									<b>barfill</b>
+									<b>cellCoordinates</b>
 									
 								</dt>
-								<dd>(true/false)</dd>
+								<dd>the coordinates defining the cell poylgon</dd>
+							
+								<dt>
+									<b>cellValue</b>
+									
+								</dt>
+								<dd>the value ot be rendered in the cell</dd>
+							
+								<dt>
+									<b>barFillEnabled</b>
+									
+								</dt>
+								<dd>true if the bar-fill feature is turned on</dd>
+							
+								<dt>
+									<b>cellWidth</b>
+									
+								</dt>
+								<dd>the width of the cell</dd>
 							
 							</dl>
 						

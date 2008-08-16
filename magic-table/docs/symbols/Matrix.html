@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - FisheyeTable</title>
+		<title>JsDoc Reference - Matrix</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -224,7 +224,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class FisheyeTable
+				Class Matrix
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -234,13 +234,13 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_gregross_magic-table_magic-table_javascript_fisheyeTable.js.html">fisheyeTable.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_gregross_magic-table_magic-table_javascript_Matrix.js.html">Matrix.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class FisheyeTable.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Matrix.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -253,9 +253,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/FisheyeTable.html#constructor">FisheyeTable</a></b>(tableModel, x, y, width, height, tableTitle, targetElement)
+								<b><a href="../symbols/Matrix.html#constructor">Matrix</a></b>()
 							</div>
-							<div class="description">This is the library's core class.</div>
+							<div class="description">This class represents an n-dimensional sparse matrix data structure.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -269,7 +269,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class FisheyeTable.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Matrix.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -282,36 +282,36 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#enableFisheye">enableFisheye</a></b>(setFisheye)
+								<div class="fixedFont"><b><a href="../symbols/Matrix.html#get">get</a></b>(indices)
 								</div>
-								<div class="description">Setting this to true enables the fisheye lens feature.</div>
+								<div class="description">Return a value from the matrix.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#redraw">redraw</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/Matrix.html#getMaxValue">getMaxValue</a></b>()
 								</div>
-								<div class="description">Calling this method tells the table to redraw its self.</div>
+								<div class="description">Return the maximum numeric value in the matrix.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#removeTable">removeTable</a></b>(id)
+								<div class="fixedFont"><b><a href="../symbols/Matrix.html#getMinValue">getMinValue</a></b>()
 								</div>
-								<div class="description">Call this to remove the table from the web page.</div>
+								<div class="description">Return the minimum numeric value in the matrix.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#setBarFill">setBarFill</a></b>(barfill)
+								<div class="fixedFont"><b><a href="../symbols/Matrix.html#put">put</a></b>(indices, value)
 								</div>
-								<div class="description">Setting this to true fills in cells by an amount proportional to the value contained.</div>
+								<div class="description">Put a new value in the matrix.</div>
 							</td>
 						</tr>
 					
@@ -330,65 +330,17 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>FisheyeTable</b>(tableModel, x, y, width, height, tableTitle, targetElement)
+						<b>Matrix</b>()
 				</div>
 				
 				<div class="description">
-					This is the library's core class.
+					This class represents an n-dimensional sparse matrix data structure.
 					<br /><i>Author: </i>Greg Ross.
 				</div>
 				
 				
 				
 				
-					
-						<dl class="detailList">
-						<dt class="heading">Parameters:</dt>
-						
-							<dt>
-								 <b>tableModel</b>
-								
-							</dt>
-								<dd>contains the data and meta data for rendering the table</dd>
-						
-							<dt>
-								 <b>x</b>
-								
-							</dt>
-								<dd>the x-axis position of the table</dd>
-						
-							<dt>
-								 <b>y</b>
-								
-							</dt>
-								<dd>the y-axis position of the table</dd>
-						
-							<dt>
-								 <b>width</b>
-								
-							</dt>
-								<dd>the table's width</dd>
-						
-							<dt>
-								 <b>height</b>
-								
-							</dt>
-								<dd>the table's height</dd>
-						
-							<dt>
-								 <b>tableTitle</b>
-								
-							</dt>
-								<dd>the title that appears above the table</dd>
-						
-							<dt>
-								 <b>targetElement</b>
-								
-							</dt>
-								<dd>the element in which the table html will be nested. If this is ommitted the table's position
-will be absolute, otherwise it will be relative to the target element.</dd>
-						
-						</dl>
 					
 					
 					
@@ -409,16 +361,15 @@ will be absolute, otherwise it will be relative to the target element.</dd>
 					Method Detail
 				</div>
 				
-					<a name="enableFisheye"> </a>
+					<a name="get"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>enableFisheye</b>(setFisheye)
+					<b>get</b>(indices)
 					
 					</div>
 					<div class="description">
-						Setting this to true enables the fisheye lens feature. Setting it to false renders
-the data in a normal table view.
+						Return a value from the matrix.
 						
 						
 					</div>
@@ -430,10 +381,10 @@ the data in a normal table view.
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>setFisheye</b>
+									<b>indices</b>
 									
 								</dt>
-								<dd>(true/false)</dd>
+								<dd>an array specifying the n-dimensional element indices, e.g. [1, 0, 0, 2]</dd>
 							
 							</dl>
 						
@@ -446,15 +397,15 @@ the data in a normal table view.
 
 					<hr />
 				
-					<a name="redraw"> </a>
+					<a name="getMaxValue"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>redraw</b>()
+					<b>getMaxValue</b>()
 					
 					</div>
 					<div class="description">
-						Calling this method tells the table to redraw its self.
+						Return the maximum numeric value in the matrix.
 						
 						
 					</div>
@@ -471,33 +422,21 @@ the data in a normal table view.
 
 					<hr />
 				
-					<a name="removeTable"> </a>
+					<a name="getMinValue"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>removeTable</b>(id)
+					<b>getMinValue</b>()
 					
 					</div>
 					<div class="description">
-						Call this to remove the table from the web page.
+						Return the minimum numeric value in the matrix.
 						
 						
 					</div>
 					
 					
 					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>id</b>
-									
-								</dt>
-								<dd>the ID of the fisheye table. The ID is allocated automatically by the
-allocateId() method.</dd>
-							
-							</dl>
 						
 						
 						
@@ -508,16 +447,15 @@ allocateId() method.</dd>
 
 					<hr />
 				
-					<a name="setBarFill"> </a>
+					<a name="put"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>setBarFill</b>(barfill)
+					<b>put</b>(indices, value)
 					
 					</div>
 					<div class="description">
-						Setting this to true fills in cells by an amount proportional to the value contained.
-This provides a bar chart view of the data.
+						Put a new value in the matrix.
 						
 						
 					</div>
@@ -529,10 +467,16 @@ This provides a bar chart view of the data.
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>barfill</b>
+									<b>indices</b>
 									
 								</dt>
-								<dd>(true/false)</dd>
+								<dd>an array specifying the n-dimensional element indices, e.g. [1, 0, 0, 2]</dd>
+							
+								<dt>
+									<b>value</b>
+									
+								</dt>
+								<dd></dd>
 							
 							</dl>
 						

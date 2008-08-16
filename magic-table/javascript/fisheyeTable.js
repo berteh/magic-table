@@ -81,16 +81,47 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
 	var canvasContext = null;
 	var backgroundColour = 'rgb(0, 0, 0)';
 	
+	/**
+	 * Setting this to true fills in cells by an amount proportional to the value contained.
+	 * This provides a bar chart view of the data.
+	 * @member FisheyeTable
+	 * @param barfill (true/false)
+	 */
 	this.setBarFill = function(barfill)
 	{
 		this.barFillEnabled = barfill;
 		this.redraw();
 	}
 	
+	/**
+	 * Setting this to true enables the fisheye lens feature. Setting it to false renders
+	 * the data in a normal table view.
+	 * @member FisheyeTable
+	 * @param setFisheye (true/false)
+	 */
 	this.enableFisheye = function(setFisheye)
 	{
 		this.fisheyeEnabled = setFisheye;
 		this.redraw();
+	}
+	
+	/**
+	 * Calling this method tells the table to redraw its self.
+	 * @member FisheyeTable
+	 */
+	this.redraw = function()
+	{
+		fisheyeLeftMargin = DEFAULT_FISHEYE_MARGIN;
+		fisheyeTopMargin = DEFAULT_FISHEYE_MARGIN;
+			
+		if (!me.fisheyeEnabled)
+		{
+			fisheyeLeftMargin = 0;
+			fisheyeTopMargin = 0;
+		}
+			
+		this.removeTable(id);
+		init();
 	}
 	
 	function allocateId()
@@ -163,21 +194,6 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
 			sum += tableModel.getColumnWidth(i);
 			
 		return sum;
-	}
-	
-	this.redraw = function()
-	{
-		fisheyeLeftMargin = DEFAULT_FISHEYE_MARGIN;
-		fisheyeTopMargin = DEFAULT_FISHEYE_MARGIN;
-			
-		if (!me.fisheyeEnabled)
-		{
-			fisheyeLeftMargin = 0;
-			fisheyeTopMargin = 0;
-		}
-			
-		this.removeTable(id);
-		init();
 	}
 	
 	function adjustTableMarginForCellDimensions()
@@ -720,6 +736,12 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
     init();
 }
 
+/**
+ * Call this to remove the table from the web page.
+ * @member FisheyeTable
+ * @param id the ID of the fisheye table. The ID is allocated automatically by the
+ * allocateId() method.
+ */
 FisheyeTable.prototype.removeTable = function(id)
 {
 	try
@@ -738,14 +760,41 @@ function TableCell(x1, y1, x2, y2)
 	this.y2 = y2;
 }
 
-
+/**
+ * Utility class for geometric functions.
+ * @constructor
+ */
 var TableGeometry = {};
 
+/**
+ * Return the area of the polygon defined by the given coordinates.
+ * @member TableGeometry
+ * @param tlX top-left X-coordinate
+ * @param tlY top-left Y-coordinate
+ * @param trX top-right X-coordinate
+ * @param trY top-right Y-coordinate
+ * @param brX bottom-right X-coordinate
+ * @param brY bottom-right Y-coordinate
+ * @param blX bottom-left X-coordinate
+ * @param blY bottom-left Y-coordinate
+ */
 TableGeometry.getArea = function(tlX, tlY, trX, trY, brX, brY, blX, blY)
 {
 	return 0.5 * (tlX*trY - trX*tlY + trX*brY - brX*trY + brX*blY - blX*brY + blX*tlY - tlX*blY);
 }
 
+/**
+ * Return the center of the polygon specified by the given coordinates.
+ * @member TableGeometry
+ * @param tlX top-left X-coordinate
+ * @param tlY top-left Y-coordinate
+ * @param trX top-right X-coordinate
+ * @param trY top-right Y-coordinate
+ * @param brX bottom-right X-coordinate
+ * @param brY bottom-right Y-coordinate
+ * @param blX bottom-left X-coordinate
+ * @param blY bottom-left Y-coordinate
+ */
 TableGeometry.getCentre = function(tlX, tlY, trX, trY, brX, brY, blX, blY)
 {
 	var second_factor;
@@ -774,14 +823,29 @@ TableGeometry.getCentre = function(tlX, tlY, trX, trY, brX, brY, blX, blY)
     return {x:X, y:Y};
 }
 
-
+/**
+ * Utlity class for math functions.
+ * @constructor
+ */
 var TableMath = {};
 
+/**
+ * Return true if the given value is a number.
+ * @member TableMath
+ * @param value expression to be evaluated
+ */
 TableMath.isNumber = function(value)
 {
 	return !isNaN(value) && value != null;
 }
 
+/**
+ * Return the amount by which a table cell must be filled to represent the numeric value it contains.
+ * @param tableModel the model containing the table data
+ * @param cellValue the value contained in the cell
+ * @param maxWidth the maximum allowable fill width. This is equal to the width of the cell
+ * @param column the cell's column index
+ */
 TableMath.calculateBarWidth = function(tableModel, cellValue, maxWidth, column)
 {
 	if (TableMath.isNumber(cellValue)) 
@@ -812,14 +876,32 @@ TableMath.calculateBarWidthFraction = function(tableModel, cellValue, maxWidth, 
 	return 0;
 }
 
-
+/**
+ * Provide the colour ramp for rendering numeric table cells.
+ * @constructor
+ */
 var TableGradientColourProvider = {};
 
+/**
+ * Creates and returns a colour ramp.
+ * @member TableGradientColourProvider
+ * @param tableModel
+ * @param rgbArray an array of colours, of arbitrary length, that specifies
+ * the path taken by the ramp through RGB space.
+ */
 TableGradientColourProvider.createGradient = function(tableModel, rgbArray)
 {
 	return new ColourGradient(tableModel.getMinValue(), tableModel.getMaxValue(), rgbArray);
 }
 
+/**
+ * Return a colour from the ramp according to the specified numeric value.
+ * @member TableGradientColourProvider
+ * @param colourGradient the colour gradient from which the colour will be derived.
+ * @param cellValue the value contained in the cell.
+ * @param defaultColour the colour to use if the cell value is not a number or the minimum
+ * and maximum values are equal.
+ */
 TableGradientColourProvider.getColourFromValue = function(colourGradient, cellValue, defaultColour)
 {
 	var colr;

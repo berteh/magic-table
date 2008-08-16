@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - FisheyeTable</title>
+		<title>JsDoc Reference - Fisheye</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -224,7 +224,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class FisheyeTable
+				Class Fisheye
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -234,13 +234,13 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_gregross_magic-table_magic-table_javascript_fisheyeTable.js.html">fisheyeTable.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_gregross_magic-table_magic-table_javascript_Fisheye.js.html">Fisheye.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class FisheyeTable.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Fisheye.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -253,9 +253,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/FisheyeTable.html#constructor">FisheyeTable</a></b>(tableModel, x, y, width, height, tableTitle, targetElement)
+								<b><a href="../symbols/Fisheye.html#constructor">Fisheye</a></b>()
 							</div>
-							<div class="description">This is the library's core class.</div>
+							<div class="description">Fisheye lens model</div>
 						</td>
 					</tr>
 				</tbody>
@@ -269,7 +269,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class FisheyeTable.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Fisheye.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -280,38 +280,74 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#enableFisheye">enableFisheye</a></b>(setFisheye)
+								<div class="fixedFont"><b><a href="../symbols/Fisheye.html#-distanceFromFocus">distanceFromFocus</a></b>(x, y)
 								</div>
-								<div class="description">Setting this to true enables the fisheye lens feature.</div>
+								<div class="description">Return the Euclidean distance of the given point from the lens focus</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Fisheye.html#-heightAtPoint">heightAtPoint</a></b>(distance)
+								</div>
+								<div class="description">Return the height at a point on the lens' surface</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Fisheye.html#-lens">lens</a></b>(t)
+								</div>
+								<div class="description">The function that defines the lens shape.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#redraw">redraw</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/Fisheye.html#setLensPosition">setLensPosition</a></b>(x, y)
 								</div>
-								<div class="description">Calling this method tells the table to redraw its self.</div>
+								<div class="description">Sets the position of the lens.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#removeTable">removeTable</a></b>(id)
+								<div class="fixedFont"><b><a href="../symbols/Fisheye.html#setLensRadius">setLensRadius</a></b>(focusRadius)
 								</div>
-								<div class="description">Call this to remove the table from the web page.</div>
+								<div class="description">Sets the radius of the lens</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/FisheyeTable.html#setBarFill">setBarFill</a></b>(barfill)
+								<div class="fixedFont"><b><a href="../symbols/Fisheye.html#transform">transform</a></b>(point)
 								</div>
-								<div class="description">Setting this to true fills in cells by an amount proportional to the value contained.</div>
+								<div class="description">transform the given coordinate according to its position under the lens</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Fisheye.html#-transformX">transformX</a></b>(point, scale)
+								</div>
+								<div class="description">transform the given coordinate according to its position under the lens</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Fisheye.html#-transformY">transformY</a></b>(point, scale)
+								</div>
+								<div class="description">transform the given coordinate according to its position under the lens</div>
 							</td>
 						</tr>
 					
@@ -330,65 +366,17 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>FisheyeTable</b>(tableModel, x, y, width, height, tableTitle, targetElement)
+						<b>Fisheye</b>()
 				</div>
 				
 				<div class="description">
-					This is the library's core class.
-					<br /><i>Author: </i>Greg Ross.
+					Fisheye lens model
+					
 				</div>
 				
 				
 				
 				
-					
-						<dl class="detailList">
-						<dt class="heading">Parameters:</dt>
-						
-							<dt>
-								 <b>tableModel</b>
-								
-							</dt>
-								<dd>contains the data and meta data for rendering the table</dd>
-						
-							<dt>
-								 <b>x</b>
-								
-							</dt>
-								<dd>the x-axis position of the table</dd>
-						
-							<dt>
-								 <b>y</b>
-								
-							</dt>
-								<dd>the y-axis position of the table</dd>
-						
-							<dt>
-								 <b>width</b>
-								
-							</dt>
-								<dd>the table's width</dd>
-						
-							<dt>
-								 <b>height</b>
-								
-							</dt>
-								<dd>the table's height</dd>
-						
-							<dt>
-								 <b>tableTitle</b>
-								
-							</dt>
-								<dd>the title that appears above the table</dd>
-						
-							<dt>
-								 <b>targetElement</b>
-								
-							</dt>
-								<dd>the element in which the table html will be nested. If this is ommitted the table's position
-will be absolute, otherwise it will be relative to the target element.</dd>
-						
-						</dl>
 					
 					
 					
@@ -409,16 +397,15 @@ will be absolute, otherwise it will be relative to the target element.</dd>
 					Method Detail
 				</div>
 				
-					<a name="enableFisheye"> </a>
-					<div class="fixedFont">
+					<a name="-distanceFromFocus"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
 					
 					
-					<b>enableFisheye</b>(setFisheye)
+					<b>distanceFromFocus</b>(x, y)
 					
 					</div>
 					<div class="description">
-						Setting this to true enables the fisheye lens feature. Setting it to false renders
-the data in a normal table view.
+						Return the Euclidean distance of the given point from the lens focus
 						
 						
 					</div>
@@ -430,10 +417,16 @@ the data in a normal table view.
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>setFisheye</b>
+									<b>x</b>
 									
 								</dt>
-								<dd>(true/false)</dd>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
 							
 							</dl>
 						
@@ -446,40 +439,15 @@ the data in a normal table view.
 
 					<hr />
 				
-					<a name="redraw"> </a>
-					<div class="fixedFont">
+					<a name="-heightAtPoint"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
 					
 					
-					<b>redraw</b>()
-					
-					</div>
-					<div class="description">
-						Calling this method tells the table to redraw its self.
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="removeTable"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>removeTable</b>(id)
+					<b>heightAtPoint</b>(distance)
 					
 					</div>
 					<div class="description">
-						Call this to remove the table from the web page.
+						Return the height at a point on the lens' surface
 						
 						
 					</div>
@@ -491,11 +459,10 @@ the data in a normal table view.
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>id</b>
+									<b>distance</b>
 									
 								</dt>
-								<dd>the ID of the fisheye table. The ID is allocated automatically by the
-allocateId() method.</dd>
+								<dd></dd>
 							
 							</dl>
 						
@@ -508,16 +475,15 @@ allocateId() method.</dd>
 
 					<hr />
 				
-					<a name="setBarFill"> </a>
-					<div class="fixedFont">
+					<a name="-lens"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
 					
 					
-					<b>setBarFill</b>(barfill)
+					<b>lens</b>(t)
 					
 					</div>
 					<div class="description">
-						Setting this to true fills in cells by an amount proportional to the value contained.
-This provides a bar chart view of the data.
+						The function that defines the lens shape.
 						
 						
 					</div>
@@ -529,10 +495,208 @@ This provides a bar chart view of the data.
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>barfill</b>
+									<b>t</b>
 									
 								</dt>
-								<dd>(true/false)</dd>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setLensPosition"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setLensPosition</b>(x, y)
+					
+					</div>
+					<div class="description">
+						Sets the position of the lens.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setLensRadius"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setLensRadius</b>(focusRadius)
+					
+					</div>
+					<div class="description">
+						Sets the radius of the lens
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>focusRadius</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="transform"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>transform</b>(point)
+					
+					</div>
+					<div class="description">
+						transform the given coordinate according to its position under the lens
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>point</b>
+									
+								</dt>
+								<dd>the x-y coordinate of a point</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="-transformX"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					
+					<b>transformX</b>(point, scale)
+					
+					</div>
+					<div class="description">
+						transform the given coordinate according to its position under the lens
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>point</b>
+									
+								</dt>
+								<dd>the x coordinate of a point</dd>
+							
+								<dt>
+									<b>scale</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="-transformY"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					
+					<b>transformY</b>(point, scale)
+					
+					</div>
+					<div class="description">
+						transform the given coordinate according to its position under the lens
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>point</b>
+									
+								</dt>
+								<dd>the y coordinate of a point</dd>
+							
+								<dt>
+									<b>scale</b>
+									
+								</dt>
+								<dd></dd>
 							
 							</dl>
 						
