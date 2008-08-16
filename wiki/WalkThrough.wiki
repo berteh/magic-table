@@ -40,7 +40,9 @@ tableModel.setContentAt(3, 0, "03-Jan-08");
 
 If there are one or more column or row headers defined on the table model, then the row and column indices from zero to the n-1 headers will be rendered by scale renderers.
 
-===Important:=== After adding all the data to the model, call the {{{tableModel.recalculateMinMaxValues()}}}. This ensures that the values used to determine colours and bar-fills properly reflect the data. It was decided not to call this as part of the the {{{setContentAt()}}} method because it would increase the time required to create the model by an order of magnitude. Instead, by calling it once after the addition of the data, the time required is linear with respect to the number of data items.
+===Important:===
+
+After adding all the data to the model, call the {{{tableModel.recalculateMinMaxValues()}}}. This ensures that the values used to determine colours and bar-fills properly reflect the data. It was decided not to call this as part of the the {{{setContentAt()}}} method because it would increase the time required to create the model by an order of magnitude. Instead, by calling it once after the addition of the data, the time required is linear with respect to the number of data items.
 
 It is also possible to set individual row heights and column widths:
 
