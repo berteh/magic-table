@@ -1,6 +1,10 @@
 #labels Featured
 =A walk-through example=
 
+Create a magic table in 3 simple steps...
+
+----
+
 ==Step 1: define the table model==
 
 Decide on how many rows, columns, headers etc. and specify table dimesions.
