@@ -1,2 +1,0 @@
-#labels Featured
-=API and other stuff is in progress...=
