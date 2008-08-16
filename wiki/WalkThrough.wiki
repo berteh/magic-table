@@ -16,15 +16,13 @@ var rowHeaderCount = 1;
 var columnHeaderCount = 1;
 var rows = 23 + columnHeaderCount;
 var columns = 13 + rowHeaderCount;
-var count = 0;
-var tableModel
 }}}
 
 Now, instantiate the table model...
 
 
 {{{
-tableModel = new TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
+var tableModel = new TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
 }}}
 
 ==Step 2: add data to the model==
