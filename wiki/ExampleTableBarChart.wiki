@@ -7,6 +7,8 @@ The barchart effect is obtained by calling the table's "setBarFill" method. It c
 
 || http://magic-table.googlecode.com/svn/trunk/images/barchart.png || [http://code.google.com/p/magic-table/source/browse/trunk/magic-table/examples/table%20barchart.html Click here to see the code] ||
 
+To see this example in action, download the library, go to the "examples" directory and open 'table barchart.html'.
+
 {{{
 function drawTable()
 {
