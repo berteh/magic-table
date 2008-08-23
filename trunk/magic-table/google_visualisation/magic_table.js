@@ -36,7 +36,7 @@ MagicTable.prototype.draw = function(data, options)
 	tableModel.recalculateMinMaxValues();
 	
 	var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
-		tableWidth, tableHeight, "Bar-fill", this.containerElement);
+		tableWidth, tableHeight, options.tableTitle, this.containerElement);
 	
 	fisheyeTable.setBarFill(options.enableBarFill);
 	fisheyeTable.enableFisheye(options.enableFisheye);
