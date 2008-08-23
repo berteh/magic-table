@@ -51,7 +51,7 @@ MagicTable.prototype.escapeHtml = function(text)
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-MagicTable.prototype.load = function()
+MagicTable.load = function()
 {
 	var sources = [];
 	sources[0] = "http://magic-table.googlecode.com/svn/trunk/magic-table/javascript/Hashtable.js";
