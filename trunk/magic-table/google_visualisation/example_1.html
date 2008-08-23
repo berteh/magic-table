@@ -1,73 +1,64 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-  <head>
-  	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title>Magic Table Google Visualisation</title>
-    
-	<script src='../javascript/Hashtable.js' type='text/javascript'></script>
-	<script src='../javascript/Fisheye.js' type='text/javascript'></script>
-	<script src='../javascript/Matrix.js' type='text/javascript'></script>
-	<script src='../javascript/TableModel.js' type='text/javascript'></script>
-	<script src='../javascript/fisheyeTable.js' type='text/javascript'></script>
-	<script src='../javascript/FisheyeCellRenderer.js' type='text/javascript'></script>
-	<script src='../javascript/DefaultCellRenderer.js' type='text/javascript'></script>
-	<script src='../javascript/ScaleCellRenderer.js' type='text/javascript'></script>
-	<script src='../javascript/CanvasTextFunctions.js' type='text/javascript'></script>
-	<script src='../javascript/ColourGradient.js' type='text/javascript'></script>
-	
-	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript" src="magic_table.js"></script>
-    
-	<script type="text/javascript">
-      google.load("visualization", "1");
-      google.setOnLoadCallback(drawVisualization);
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Magic Table Google Visualisation</title>
+		
+		<script type="text/javascript" src='http://magic-table.googlecode.com/svn/trunk/magic-table/javascript/magic_table.js'></script>
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	    
+		<script type="text/javascript">
+		MagicTable.load();
+		google.load("visualization", "1");
+		google.setOnLoadCallback(drawVisualization);
 
-      function drawVisualization()
-	  {
-		var rows = 16;
-		var columns = 5;
-	    var data = new google.visualization.DataTable();
-	    data.addColumn('number', 'column 1');
-	    data.addColumn('number', 'column 2');
-	    data.addColumn('number', 'column 3');
-	    data.addColumn('number', 'column 4');
-	    data.addColumn('number', 'column 5');
-	    data.addRows(rows);
-		
-		var i = rows - 1;
-		var j;
-		
-		do
+		function drawVisualization()
 		{
-			j = columns - 1;
+			var rows = 16;
+			var columns = 5;
+			var data = new google.visualization.DataTable();
+			data.addColumn('number', 'column 1');
+			data.addColumn('number', 'column 2');
+			data.addColumn('number', 'column 3');
+			data.addColumn('number', 'column 4');
+			data.addColumn('number', 'column 5');
+			data.addRows(rows);
+			
+			var i = rows - 1;
+			var j;
+			
 			do
 			{
-				data.setCell(i, j, Math.round(Math.random()*10));
+				j = columns - 1;
+				do
+				{
+					data.setCell(i, j, Math.round(Math.random()*10));
+				}
+				while (j-- > 0) 
 			}
-			while (j-- > 0) 
+			while (i-- > 0)
+			
+			var vis = new MagicTable(document.getElementById('tableDiv'));
+			
+			options = {};
+			options.tableTitle = "Bar-fill";
+			options.enableFisheye = true;
+			options.enableBarFill = true;
+			options.defaultRowHeight = 25;
+			options.defaultColumnWidth = 60;
+			options.rowHeaderCount = 0;
+			options.columnHeaderCount = 0;
+			options.tablePositionX = 150;
+			options.tablePositionY = 60;
+			options.tableHeight = 403;
+			options.tableWidth = 315;
+			
+			vis.draw(data, options);
 		}
-		while (i-- > 0)
-	
-	    var vis = new MagicTable(document.getElementById('tableDiv'));
+		</script>
 		
-		options = {};
-		options.tableTitle = "Bar-fill";
-		options.enableFisheye = true;
-		options.enableBarFill = true;
-		options.defaultRowHeight = 25;
-		options.defaultColumnWidth = 60;
-		options.rowHeaderCount = 0;
-		options.columnHeaderCount = 0;
-		options.tablePositionX = 150;
-		options.tablePositionY = 60;
-		options.tableHeight = 403;
-		options.tableWidth = 315;
-		
-	    vis.draw(data, options);
-       }
-   </script>
-   
-  </head>
-  <body>
-    <div id="tableDiv"></div">
-  </body>
+	</head>
+	<body>
+		<div id="tableDiv"></div">
+	</body>
 </html>
