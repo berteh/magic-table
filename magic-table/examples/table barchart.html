@@ -3,16 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		
-		<script src='../javascript/Hashtable.js' type='text/javascript'></script>
-		<script src='../javascript/Fisheye.js' type='text/javascript'></script>
-		<script src='../javascript/Matrix.js' type='text/javascript'></script>
-		<script src='../javascript/TableModel.js' type='text/javascript'></script>
-		<script src='../javascript/fisheyeTable.js' type='text/javascript'></script>
-		<script src='../javascript/FisheyeCellRenderer.js' type='text/javascript'></script>
-		<script src='../javascript/DefaultCellRenderer.js' type='text/javascript'></script>
-		<script src='../javascript/ScaleCellRenderer.js' type='text/javascript'></script>
-		<script src='../javascript/CanvasTextFunctions.js' type='text/javascript'></script>
-		<script src='../javascript/ColourGradient.js' type='text/javascript'></script>
+		<script type="text/javascript" src='../javascript/magic_table.js'></script>
 		
 		<title>Fisheye tabe example - volatilities</title>
 		
@@ -89,7 +80,7 @@
 			</style>
 			
 	</head>
-	<body>
+	<body onload='drawTable();'>
 		
 		<div id='header'>
 			<br />
@@ -140,11 +131,11 @@
 				
 			function drawTable()
 			{
-				tableModel = new TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
+				tableModel = new greg.ross.visualisation.TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
 
 				setData();
 				
-				var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+				var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
 					tableWidth, tableHeight, "Bar-fill", targetElement);
 				fisheyeTable.setBarFill(true);
 				fisheyeTable.enableFisheye(false);
@@ -168,8 +159,6 @@
 				
 				tableModel.recalculateMinMaxValues();
 			}
-			
-			drawTable();
 			
 		</script>
 		

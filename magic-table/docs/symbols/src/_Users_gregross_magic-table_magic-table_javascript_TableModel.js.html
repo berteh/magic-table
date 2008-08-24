@@ -37,9 +37,9 @@
 <span class='line'> 30</span>  * @param columnHeaderCount the number of column headers
 <span class='line'> 31</span>  * @param clrRamp the colour ramp applied to the table to encode numbers
 <span class='line'> 32</span>  */</span><span class="WHIT">
-<span class='line'> 33</span> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">TableModel</span><span class="PUNC">(</span><span class="NAME">rowCount</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">columnCount</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">defaultRowHeight</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">defaultColumnWidth</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">rowHeaderCount</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">columnHeaderCount</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">clrRamp</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="NAME">greg.ross.visualisation.TableModel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">rowCount</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">columnCount</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">defaultRowHeight</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">defaultColumnWidth</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">rowHeaderCount</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">columnHeaderCount</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">clrRamp</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'> 34</span> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 35</span> </span><span class="WHIT">	</span><span class="NAME">this.matrix</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Matrix</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">	</span><span class="NAME">this.matrix</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">greg.ross.visualisation.Matrix</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 36</span> </span><span class="WHIT">	</span><span class="NAME">this.rowCount</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">rowCount</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 37</span> </span><span class="WHIT">	</span><span class="NAME">this.columnCount</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">columnCount</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 38</span> </span><span class="WHIT">	</span><span class="NAME">this.rowHeaderCount</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">rowHeaderCount</span><span class="PUNC">;</span><span class="WHIT">
@@ -63,9 +63,9 @@
 <span class='line'> 56</span> </span><span class="WHIT">	</span><span class="NAME">this.fisheyeColumnWidth</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">15</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 57</span> </span><span class="WHIT">	</span><span class="NAME">this.fisheyeRowHeight</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">15</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 58</span> </span><span class="WHIT">	</span><span class="WHIT">
-<span class='line'> 59</span> </span><span class="WHIT">	</span><span class="NAME">this.fisheyeCellRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">FisheyeCellRenderer</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">colourRamp</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 60</span> </span><span class="WHIT">	</span><span class="NAME">this.defaultCellRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">DefaultCellRenderer</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">CellAlignment.CENTRE</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">colourRamp</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 61</span> </span><span class="WHIT">	</span><span class="NAME">this.scaleCellRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">ScaleCellRenderer</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">CellAlignment.CENTRE</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">	</span><span class="NAME">this.fisheyeCellRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">greg.ross.visualisation.FisheyeCellRenderer</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">colourRamp</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">	</span><span class="NAME">this.defaultCellRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">greg.ross.visualisation.DefaultCellRenderer</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">greg.ross.visualisation.CellAlignment.CENTRE</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">colourRamp</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">	</span><span class="NAME">this.scaleCellRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">greg.ross.visualisation.ScaleCellRenderer</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">greg.ross.visualisation.CellAlignment.CENTRE</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 62</span> </span><span class="WHIT">	</span><span class="NAME">init</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 63</span> </span><span class="WHIT">	</span><span class="WHIT">
 <span class='line'> 64</span> </span><span class="WHIT">	</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">init</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
@@ -88,7 +88,7 @@
 <span class='line'> 81</span> </span><span class="WHIT">	</span><span class="WHIT">
 <span class='line'> 82</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'> 83</span> 	 * Return the cell render for the cell specified by the given row and column indices.
-<span class='line'> 84</span> 	 * @member TableModel
+<span class='line'> 84</span> 	 * @member greg.ross.visualisation.TableModel
 <span class='line'> 85</span> 	 * @param row the row of the cell that is to be rendered
 <span class='line'> 86</span> 	 * @param column the column of the cell that is to be rendered
 <span class='line'> 87</span> 	 * @param isFisheyeCell true if the fisheye feature is turned on
@@ -99,13 +99,13 @@
 <span class='line'> 92</span> </span><span class="WHIT">			</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.fisheyeCellRenderer</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 93</span> </span><span class="WHIT">		</span><span class="KEYW">else</span><span class="WHIT"> </span><span class="WHIT">
 <span class='line'> 94</span> </span><span class="WHIT">		</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 95</span> </span><span class="WHIT">			</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">this.rowHeaderCount</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">			</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">greg.ross.visualisation.TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">this.rowHeaderCount</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'> 96</span> </span><span class="WHIT">			</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 97</span> </span><span class="WHIT">				</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">column</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">this.rowHeaderCount</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'> 98</span> </span><span class="WHIT">					</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.scaleCellRenderer</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 99</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>100</span> </span><span class="WHIT">			</span><span class="WHIT">
-<span class='line'>101</span> </span><span class="WHIT">			</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">this.columnHeaderCount</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">			</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">greg.ross.visualisation.TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">this.columnHeaderCount</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>102</span> </span><span class="WHIT">			</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>103</span> </span><span class="WHIT">				</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">row</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">this.columnHeaderCount</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>104</span> </span><span class="WHIT">					</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.scaleCellRenderer</span><span class="PUNC">;</span><span class="WHIT">
@@ -117,12 +117,12 @@
 <span class='line'>110</span> </span><span class="WHIT">	</span><span class="WHIT">
 <span class='line'>111</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'>112</span> 	 * Return the height of the given row.
-<span class='line'>113</span> 	 * @member TableModel
+<span class='line'>113</span> 	 * @member greg.ross.visualisation.TableModel
 <span class='line'>114</span> 	 * @param row
 <span class='line'>115</span> 	 */</span><span class="WHIT">
 <span class='line'>116</span> </span><span class="WHIT">	</span><span class="NAME">this.getRowHeight</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">row</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>117</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>118</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">row</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">defaultRowHeight</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">greg.ross.visualisation.TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">row</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">defaultRowHeight</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>119</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.rowHeights</span><span class="PUNC">[</span><span class="NAME">row</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">defaultRowHeight</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>120</span> </span><span class="WHIT">		</span><span class="WHIT">
 <span class='line'>121</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.rowHeights</span><span class="PUNC">[</span><span class="NAME">row</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
@@ -130,12 +130,12 @@
 <span class='line'>123</span> </span><span class="WHIT">	</span><span class="WHIT">
 <span class='line'>124</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'>125</span> 	 * Return the width of the given column.
-<span class='line'>126</span> 	 * @member TableModel
+<span class='line'>126</span> 	 * @member greg.ross.visualisation.TableModel
 <span class='line'>127</span> 	 * @param column
 <span class='line'>128</span> 	 */</span><span class="WHIT">
 <span class='line'>129</span> </span><span class="WHIT">	</span><span class="NAME">this.getColumnWidth</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">column</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>130</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>131</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">column</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">defaultColumnWidth</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>131</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">greg.ross.visualisation.TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">column</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">defaultColumnWidth</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>132</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.columnWidths</span><span class="PUNC">[</span><span class="NAME">column</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">defaultColumnWidth</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>133</span> </span><span class="WHIT">		</span><span class="WHIT">
 <span class='line'>134</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.columnWidths</span><span class="PUNC">[</span><span class="NAME">column</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
@@ -143,7 +143,7 @@
 <span class='line'>136</span> </span><span class="WHIT">	</span><span class="WHIT">
 <span class='line'>137</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'>138</span> 	 * Use this method to set the height of the given row.
-<span class='line'>139</span> 	 * @member TableModel
+<span class='line'>139</span> 	 * @member greg.ross.visualisation.TableModel
 <span class='line'>140</span> 	 * @param row
 <span class='line'>141</span> 	 * @param height
 <span class='line'>142</span> 	 */</span><span class="WHIT">
@@ -154,7 +154,7 @@
 <span class='line'>147</span> </span><span class="WHIT">	</span><span class="WHIT">
 <span class='line'>148</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'>149</span> 	 * Use this method to set the width of the given column.
-<span class='line'>150</span> 	 * @member TableModel
+<span class='line'>150</span> 	 * @member greg.ross.visualisation.TableModel
 <span class='line'>151</span> 	 * @param column
 <span class='line'>152</span> 	 * @param width
 <span class='line'>153</span> 	 */</span><span class="WHIT">
@@ -166,7 +166,7 @@
 <span class='line'>159</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'>160</span> 	 * Call this method after adding numerical data to the table. This allows the table to
 <span class='line'>161</span> 	 * track the maximum and minimum values across rows and columns.
-<span class='line'>162</span> 	 * @member TableModel
+<span class='line'>162</span> 	 * @member greg.ross.visualisation.TableModel
 <span class='line'>163</span> 	 */</span><span class="WHIT">
 <span class='line'>164</span> </span><span class="WHIT">	</span><span class="NAME">this.recalculateMinMaxValues</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>165</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
@@ -187,7 +187,7 @@
 <span class='line'>180</span> </span><span class="WHIT">				</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">column</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.columnCount</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">j</span><span class="WHIT">
 <span class='line'>181</span> </span><span class="WHIT">				</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getContentAt</span><span class="PUNC">(</span><span class="NAME">row</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">column</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>182</span> </span><span class="WHIT">				</span><span class="WHIT">
-<span class='line'>183</span> </span><span class="WHIT">				</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">				</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">greg.ross.visualisation.TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="WHIT">
 <span class='line'>184</span> </span><span class="WHIT">				</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>185</span> </span><span class="WHIT">					</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.minRowValues</span><span class="PUNC">[</span><span class="NAME">row</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.minRowValues</span><span class="PUNC">[</span><span class="NAME">row</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>186</span> </span><span class="WHIT">					</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.maxRowValues</span><span class="PUNC">[</span><span class="NAME">row</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.maxRowValues</span><span class="PUNC">[</span><span class="NAME">row</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">;</span><span class="WHIT">
@@ -211,7 +211,7 @@
 <span class='line'>204</span> </span><span class="WHIT">	</span><span class="WHIT">
 <span class='line'>205</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'>206</span> 	 * Return the value at the cell specified by the row and column parameters.
-<span class='line'>207</span> 	 * @member TableModel
+<span class='line'>207</span> 	 * @member greg.ross.visualisation.TableModel
 <span class='line'>208</span> 	 * @param row
 <span class='line'>209</span> 	 * @param column
 <span class='line'>210</span> 	 */</span><span class="WHIT">
@@ -224,7 +224,7 @@
 <span class='line'>217</span> </span><span class="WHIT">	</span><span class="WHIT">
 <span class='line'>218</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'>219</span> 	 * Put a value in the table at the specified row and column.
-<span class='line'>220</span> 	 * @member TableModel
+<span class='line'>220</span> 	 * @member greg.ross.visualisation.TableModel
 <span class='line'>221</span> 	 * @param row
 <span class='line'>222</span> 	 * @param column
 <span class='line'>223</span> 	 * @param value
@@ -234,10 +234,10 @@
 <span class='line'>227</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">isRowValid</span><span class="PUNC">(</span><span class="NAME">row</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">isColumnValid</span><span class="PUNC">(</span><span class="NAME">column</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>228</span> </span><span class="WHIT">		</span><span class="WHIT">
 <span class='line'>229</span> </span><span class="WHIT">		</span><span class="NAME">this.matrix.put</span><span class="PUNC">(</span><span class="PUNC">[</span><span class="NAME">row</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">column</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>230</span> </span><span class="WHIT">		</span><span class="NAME">this.fisheyeCellRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">FisheyeCellRenderer</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">colourRamp</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>231</span> </span><span class="WHIT">		</span><span class="NAME">this.defaultCellRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">DefaultCellRenderer</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">CellAlignment.CENTRE</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">colourRamp</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>230</span> </span><span class="WHIT">		</span><span class="NAME">this.fisheyeCellRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">greg.ross.visualisation.FisheyeCellRenderer</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">colourRamp</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>231</span> </span><span class="WHIT">		</span><span class="NAME">this.defaultCellRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">greg.ross.visualisation.DefaultCellRenderer</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">greg.ross.visualisation.CellAlignment.CENTRE</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">colourRamp</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>232</span> </span><span class="WHIT">		</span><span class="WHIT">
-<span class='line'>233</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>233</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">greg.ross.visualisation.TableMath.isNumber</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>234</span> </span><span class="WHIT">		</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>235</span> </span><span class="WHIT">			</span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parseFloat</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>236</span> </span><span class="WHIT">			</span><span class="WHIT">
@@ -266,64 +266,64 @@
 <span class='line'>259</span> 
 <span class='line'>260</span> </span><span class="COMM">/**
 <span class='line'>261</span>  * Determine the smallest numeric value in the table.
-<span class='line'>262</span>  * @member TableModel
+<span class='line'>262</span>  * @member greg.ross.visualisation.TableModel
 <span class='line'>263</span>  */</span><span class="WHIT">
-<span class='line'>264</span> </span><span class="NAME">TableModel.prototype.getMinValue</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>264</span> </span><span class="NAME">greg.ross.visualisation.TableModel.prototype.getMinValue</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>265</span> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>266</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.matrix.minValue</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>267</span> </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>268</span> 
 <span class='line'>269</span> </span><span class="COMM">/**
 <span class='line'>270</span>  * Determine the largest numeric value in the table.
-<span class='line'>271</span>  * @member TableModel
+<span class='line'>271</span>  * @member greg.ross.visualisation.TableModel
 <span class='line'>272</span>  */</span><span class="WHIT">
-<span class='line'>273</span> </span><span class="NAME">TableModel.prototype.getMaxValue</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>273</span> </span><span class="NAME">greg.ross.visualisation.TableModel.prototype.getMaxValue</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>274</span> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>275</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.matrix.maxValue</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>276</span> </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>277</span> 
 <span class='line'>278</span> </span><span class="COMM">/**
 <span class='line'>279</span>  * Return the smallest numeric value in the given row.
-<span class='line'>280</span>  * @member TableModel
+<span class='line'>280</span>  * @member greg.ross.visualisation.TableModel
 <span class='line'>281</span>  * @param row
 <span class='line'>282</span>  */</span><span class="WHIT">
-<span class='line'>283</span> </span><span class="NAME">TableModel.prototype.getMinValueForRow</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">row</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>283</span> </span><span class="NAME">greg.ross.visualisation.TableModel.prototype.getMinValueForRow</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">row</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>284</span> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>285</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.minRowValues</span><span class="PUNC">[</span><span class="NAME">row</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>286</span> </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>287</span> 
 <span class='line'>288</span> </span><span class="COMM">/**
 <span class='line'>289</span>  * Return the largest numeric value in the given row.
-<span class='line'>290</span>  * @member TableModel
+<span class='line'>290</span>  * @member greg.ross.visualisation.TableModel
 <span class='line'>291</span>  * @param row
 <span class='line'>292</span>  */</span><span class="WHIT">
-<span class='line'>293</span> </span><span class="NAME">TableModel.prototype.getMaxValueForRow</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">row</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>293</span> </span><span class="NAME">greg.ross.visualisation.TableModel.prototype.getMaxValueForRow</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">row</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>294</span> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>295</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.maxRowValues</span><span class="PUNC">[</span><span class="NAME">row</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>296</span> </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>297</span> 
 <span class='line'>298</span> </span><span class="COMM">/**
 <span class='line'>299</span>  * Return the smallest numeric value in the given column.
-<span class='line'>300</span>  * @member TableModel
+<span class='line'>300</span>  * @member greg.ross.visualisation.TableModel
 <span class='line'>301</span>  * @param column
 <span class='line'>302</span>  */</span><span class="WHIT">
-<span class='line'>303</span> </span><span class="NAME">TableModel.prototype.getMinValueForColumn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">column</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>303</span> </span><span class="NAME">greg.ross.visualisation.TableModel.prototype.getMinValueForColumn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">column</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>304</span> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>305</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.minColumnValues</span><span class="PUNC">[</span><span class="NAME">column</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>306</span> </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>307</span> 
 <span class='line'>308</span> </span><span class="COMM">/**
 <span class='line'>309</span>  * Return the largest numeric value in the given column.
-<span class='line'>310</span>  * @member TableModel
+<span class='line'>310</span>  * @member greg.ross.visualisation.TableModel
 <span class='line'>311</span>  * @param column
 <span class='line'>312</span>  */</span><span class="WHIT">
-<span class='line'>313</span> </span><span class="NAME">TableModel.prototype.getMaxValueForColumn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">column</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>313</span> </span><span class="NAME">greg.ross.visualisation.TableModel.prototype.getMaxValueForColumn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">column</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'>314</span> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>315</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.maxColumnValues</span><span class="PUNC">[</span><span class="NAME">column</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>316</span> </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>317</span> 
 <span class='line'>318</span> 
-<span class='line'>319</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">CellAlignment</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>320</span> </span><span class="NAME">CellAlignment.LEFT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>321</span> </span><span class="NAME">CellAlignment.CENTRE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>322</span> </span><span class="NAME">CellAlignment.RIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span></pre></body></html>
+<span class='line'>319</span> </span><span class="NAME">greg.ross.visualisation.CellAlignment</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>320</span> </span><span class="NAME">greg.ross.visualisation.CellAlignment.LEFT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>321</span> </span><span class="NAME">greg.ross.visualisation.CellAlignment.CENTRE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>322</span> </span><span class="NAME">greg.ross.visualisation.CellAlignment.RIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span></pre></body></html>

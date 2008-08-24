@@ -22,7 +22,7 @@ along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
  * Fisheye lens model
  * @constructor
  */
-function Fisheye()
+greg.ross.visualisation.Fisheye = function()
 {
 	var focusHeight = 9;
 	var lensX = 0;
@@ -31,7 +31,7 @@ function Fisheye()
 
 	/**
 	 * Return the Euclidean distance of the given point from the lens focus
-	 * @member Fisheye
+	 * @member greg.ross.visualisation.Fisheye
 	 * @param x
 	 * @param y
 	 */
@@ -42,7 +42,7 @@ function Fisheye()
 
 	/**
 	 * Return the height at a point on the lens' surface
-	 * @member Fisheye
+	 * @member greg.ross.visualisation.Fisheye
 	 * @param distance
 	 */
 	function heightAtPoint(distance)
@@ -58,7 +58,7 @@ function Fisheye()
 
 	/**
 	 * The function that defines the lens shape.
-	 * @member Fisheye
+	 * @member greg.ross.visualisation.Fisheye
 	 * @param t
 	 */
 	function lens(t)
@@ -74,7 +74,7 @@ function Fisheye()
 
 	/**
 	 * transform the given coordinate according to its position under the lens
-	 * @member Fisheye
+	 * @member greg.ross.visualisation.Fisheye
 	 * @param point the x coordinate of a point
 	 */
 	function transformX(x, scale)
@@ -84,7 +84,7 @@ function Fisheye()
 
 	/**
 	 * transform the given coordinate according to its position under the lens
-	 * @member Fisheye
+	 * @member greg.ross.visualisation.Fisheye
 	 * @param point the y coordinate of a point
 	 */
 	function transformY(y, scale)
@@ -94,7 +94,7 @@ function Fisheye()
 
 	/**
 	 * transform the given coordinate according to its position under the lens
-	 * @member Fisheye
+	 * @member greg.ross.visualisation.Fisheye
 	 * @param point the x-y coordinate of a point
 	 */
 	this.transform = function(point)
@@ -114,7 +114,7 @@ function Fisheye()
 	
 	/**
 	 * Sets the radius of the lens
-	 * @member Fisheye
+	 * @member greg.ross.visualisation.Fisheye
 	 * @param focusRadius
 	 */
 	this.setLensRadius = function(focusRadius)
@@ -124,7 +124,7 @@ function Fisheye()
 	
 	/**
 	 * Sets the position of the lens.
-	 * @member Fisheye
+	 * @member greg.ross.visualisation.Fisheye
 	 * @param x
 	 * @param y
 	 */

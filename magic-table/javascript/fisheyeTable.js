@@ -18,13 +18,13 @@ You should have received a copy of the GNU General Public License
 along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-function fisheyeCheckBoxClickEventHandler(checkbox)
+greg.ross.visualisation.fisheyeCheckBoxClickEventHandler = function(checkbox)
 {
 	checkbox.fisheyeTable.fisheyeEnabled = checkbox.checked;
 	checkbox.fisheyeTable.redraw();
 }
 
-function barfillCheckBoxClickEventHandler(checkbox)
+greg.ross.visualisation.barfillCheckBoxClickEventHandler = function(checkbox)
 {
 	checkbox.fisheyeTable.barFillEnabled = checkbox.checked;
 	checkbox.fisheyeTable.redraw();
@@ -44,7 +44,7 @@ function barfillCheckBoxClickEventHandler(checkbox)
  * @param targetElement the element in which the table html will be nested. If this is ommitted the table's position
  * will be absolute, otherwise it will be relative to the target element.
  */
-function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement)
+greg.ross.visualisation.FisheyeTable = function(tableModel, x, y, width, height, tableTitle, targetElement)
 {
 	var me = this;
 	var id = allocateId();
@@ -84,7 +84,7 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
 	/**
 	 * Setting this to true fills in cells by an amount proportional to the value contained.
 	 * This provides a bar chart view of the data.
-	 * @member FisheyeTable
+	 * @member greg.ross.visualisation.FisheyeTable
 	 * @param barfill (true/false)
 	 */
 	this.setBarFill = function(barfill)
@@ -96,7 +96,7 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
 	/**
 	 * Setting this to true enables the fisheye lens feature. Setting it to false renders
 	 * the data in a normal table view.
-	 * @member FisheyeTable
+	 * @member greg.ross.visualisation.FisheyeTable
 	 * @param setFisheye (true/false)
 	 */
 	this.enableFisheye = function(setFisheye)
@@ -107,7 +107,7 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
 	
 	/**
 	 * Calling this method tells the table to redraw its self.
-	 * @member FisheyeTable
+	 * @member greg.ross.visualisation.FisheyeTable
 	 */
 	this.redraw = function()
 	{
@@ -215,7 +215,7 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
 		
 		createTargetDiv();
 		
-        fisheye = new Fisheye();
+        fisheye = new greg.ross.visualisation.Fisheye();
 		fisheye.setLensRadius(lensRadius);
         var IE = document.all ? true : false
         
@@ -233,11 +233,11 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
             return;
         
         canvasContext = canvas.getContext("2d");
-		CanvasTextFunctions.enable(canvasContext);
+		greg.ross.visualisation.CanvasTextFunctions.enable(canvasContext);
 		
 		createBackBuffer(tableWidth, tableHeight);
 		bufferContext = buffer.getContext("2d");
-		CanvasTextFunctions.enable(bufferContext);
+		greg.ross.visualisation.CanvasTextFunctions.enable(bufferContext);
 		bufferContext.drawImage(canvas, 0, 0, tableWidth, tableHeight);
 		
 		bufferContext.clearRect(0, 0, canvas.width, canvas.height);
@@ -324,8 +324,8 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
 		var form = document.createElement("form");
 		form.id = "fisheyeTableForm";
 
-		createCheckBox(form, "Fisheye", "fisheyeCheckBoxClickEventHandler(this)", me.fisheyeEnabled);
-		createCheckBox(form, "Bar fill", "barfillCheckBoxClickEventHandler(this)", me.barFillEnabled);
+		createCheckBox(form, "Fisheye", "greg.ross.visualisation.fisheyeCheckBoxClickEventHandler(this)", me.fisheyeEnabled);
+		createCheckBox(form, "Bar fill", "greg.ross.visualisation.barfillCheckBoxClickEventHandler(this)", me.barFillEnabled);
 		
 		controlPanel.appendChild(form);
 	}
@@ -508,7 +508,7 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
 				
 				newX = rightX - pixelOffset;
                 
-                cells[count] = new TableCell(leftX, topY, rightX, bottomY);
+                cells[count] = new greg.ross.visualisation.TableCell(leftX, topY, rightX, bottomY);
                 count++;
             }
         }
@@ -623,7 +623,7 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
 					{
 						tableModel.getCellRendererAt(baseRow, baseCol, true).drawCell(canvasContext, baseCol+tableModel.rowHeaderCount, cellCoordinates, cellValue, me.barFillEnabled, getColumnWidth());
 						
-						var cellArea = TableGeometry.getArea(cellCoordinates.x1, cellCoordinates.y1, cellCoordinates.x2, cellCoordinates.y2, cellCoordinates.x3, cellCoordinates.y3, cellCoordinates.x4, cellCoordinates.y4);
+						var cellArea = greg.ross.visualisation.TableGeometry.getArea(cellCoordinates.x1, cellCoordinates.y1, cellCoordinates.x2, cellCoordinates.y2, cellCoordinates.x3, cellCoordinates.y3, cellCoordinates.x4, cellCoordinates.y4);
 						if (cellArea > maxCellArea) 
 						{
 							maxCellArea = cellArea;
@@ -738,11 +738,11 @@ function FisheyeTable(tableModel, x, y, width, height, tableTitle, targetElement
 
 /**
  * Call this to remove the table from the web page.
- * @member FisheyeTable
+ * @member greg.ross.visualisation.FisheyeTable
  * @param id the ID of the fisheye table. The ID is allocated automatically by the
  * allocateId() method.
  */
-FisheyeTable.prototype.removeTable = function(id)
+greg.ross.visualisation.FisheyeTable.prototype.removeTable = function(id)
 {
 	try
 	{
@@ -752,7 +752,7 @@ FisheyeTable.prototype.removeTable = function(id)
 }
 
 
-function TableCell(x1, y1, x2, y2)
+greg.ross.visualisation.TableCell = function(x1, y1, x2, y2)
 {
     this.x1 = x1;
 	this.y1 = y1;
@@ -764,11 +764,11 @@ function TableCell(x1, y1, x2, y2)
  * Utility class for geometric functions.
  * @constructor
  */
-var TableGeometry = {};
+greg.ross.visualisation.TableGeometry = {};
 
 /**
  * Return the area of the polygon defined by the given coordinates.
- * @member TableGeometry
+ * @member greg.ross.visualisation.TableGeometry
  * @param tlX top-left X-coordinate
  * @param tlY top-left Y-coordinate
  * @param trX top-right X-coordinate
@@ -778,14 +778,14 @@ var TableGeometry = {};
  * @param blX bottom-left X-coordinate
  * @param blY bottom-left Y-coordinate
  */
-TableGeometry.getArea = function(tlX, tlY, trX, trY, brX, brY, blX, blY)
+greg.ross.visualisation.TableGeometry.getArea = function(tlX, tlY, trX, trY, brX, brY, blX, blY)
 {
 	return 0.5 * (tlX*trY - trX*tlY + trX*brY - brX*trY + brX*blY - blX*brY + blX*tlY - tlX*blY);
 }
 
 /**
  * Return the center of the polygon specified by the given coordinates.
- * @member TableGeometry
+ * @member greg.ross.visualisation.TableGeometry
  * @param tlX top-left X-coordinate
  * @param tlY top-left Y-coordinate
  * @param trX top-right X-coordinate
@@ -795,10 +795,10 @@ TableGeometry.getArea = function(tlX, tlY, trX, trY, brX, brY, blX, blY)
  * @param blX bottom-left X-coordinate
  * @param blY bottom-left Y-coordinate
  */
-TableGeometry.getCentre = function(tlX, tlY, trX, trY, brX, brY, blX, blY)
+greg.ross.visualisation.TableGeometry.getCentre = function(tlX, tlY, trX, trY, brX, brY, blX, blY)
 {
 	var second_factor;
-	var polygon_area = TableGeometry.getArea(tlX, tlY, trX, trY, brX, brY, blX, blY);
+	var polygon_area = greg.ross.visualisation.TableGeometry.getArea(tlX, tlY, trX, trY, brX, brY, blX, blY);
 	
     var X = 0;
     var Y = 0;
@@ -827,14 +827,14 @@ TableGeometry.getCentre = function(tlX, tlY, trX, trY, brX, brY, blX, blY)
  * Utlity class for math functions.
  * @constructor
  */
-var TableMath = {};
+greg.ross.visualisation.TableMath = {};
 
 /**
  * Return true if the given value is a number.
- * @member TableMath
+ * @member greg.ross.visualisation.TableMath
  * @param value expression to be evaluated
  */
-TableMath.isNumber = function(value)
+greg.ross.visualisation.TableMath.isNumber = function(value)
 {
 	return !isNaN(value) && value != null;
 }
@@ -846,9 +846,9 @@ TableMath.isNumber = function(value)
  * @param maxWidth the maximum allowable fill width. This is equal to the width of the cell
  * @param column the cell's column index
  */
-TableMath.calculateBarWidth = function(tableModel, cellValue, maxWidth, column)
+greg.ross.visualisation.TableMath.calculateBarWidth = function(tableModel, cellValue, maxWidth, column)
 {
-	if (TableMath.isNumber(cellValue)) 
+	if (greg.ross.visualisation.TableMath.isNumber(cellValue)) 
 	{
 		var minValue = tableModel.getMinValueForColumn(column);
 		var maxValue = tableModel.getMaxValueForColumn(column);
@@ -861,9 +861,9 @@ TableMath.calculateBarWidth = function(tableModel, cellValue, maxWidth, column)
 	return 0.5;
 }
 
-TableMath.calculateBarWidthFraction = function(tableModel, cellValue, maxWidth, column)
+greg.ross.visualisation.TableMath.calculateBarWidthFraction = function(tableModel, cellValue, maxWidth, column)
 {
-	if (TableMath.isNumber(cellValue)) 
+	if (greg.ross.visualisation.TableMath.isNumber(cellValue)) 
 	{
 		var minValue = tableModel.getMinValueForColumn(column);
 		var maxValue = tableModel.getMaxValueForColumn(column);
@@ -880,33 +880,33 @@ TableMath.calculateBarWidthFraction = function(tableModel, cellValue, maxWidth, 
  * Provide the colour ramp for rendering numeric table cells.
  * @constructor
  */
-var TableGradientColourProvider = {};
+greg.ross.visualisation.TableGradientColourProvider = {};
 
 /**
  * Creates and returns a colour ramp.
- * @member TableGradientColourProvider
+ * @member greg.ross.visualisation.TableGradientColourProvider
  * @param tableModel
  * @param rgbArray an array of colours, of arbitrary length, that specifies
  * the path taken by the ramp through RGB space.
  */
-TableGradientColourProvider.createGradient = function(tableModel, rgbArray)
+greg.ross.visualisation.TableGradientColourProvider.createGradient = function(tableModel, rgbArray)
 {
-	return new ColourGradient(tableModel.getMinValue(), tableModel.getMaxValue(), rgbArray);
+	return new greg.ross.visualisation.ColourGradient(tableModel.getMinValue(), tableModel.getMaxValue(), rgbArray);
 }
 
 /**
  * Return a colour from the ramp according to the specified numeric value.
- * @member TableGradientColourProvider
+ * @member greg.ross.visualisation.TableGradientColourProvider
  * @param colourGradient the colour gradient from which the colour will be derived.
  * @param cellValue the value contained in the cell.
  * @param defaultColour the colour to use if the cell value is not a number or the minimum
  * and maximum values are equal.
  */
-TableGradientColourProvider.getColourFromValue = function(colourGradient, cellValue, defaultColour)
+greg.ross.visualisation.TableGradientColourProvider.getColourFromValue = function(colourGradient, cellValue, defaultColour)
 {
 	var colr;
 				
-	if (TableMath.isNumber(cellValue)) 
+	if (greg.ross.visualisation.TableMath.isNumber(cellValue)) 
 	{
 		var rgbColour = colourGradient.getColour(cellValue);
 		colr = 'rgb(' + rgbColour.red + ',' + rgbColour.green + ',' + rgbColour.blue + ')';

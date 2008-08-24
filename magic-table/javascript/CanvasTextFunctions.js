@@ -2,9 +2,9 @@
 // This code is released to the public domain by Jim Studt, 2007.
 // He may keep some sort of up to date copy at http://www.federated.com/~jim/canvastext/
 //
-var CanvasTextFunctions = { };
+greg.ross.visualisation.CanvasTextFunctions = { };
 
-CanvasTextFunctions.letters = {
+greg.ross.visualisation.CanvasTextFunctions.letters = {
     ' ': { width: 16, points: [] },
     '!': { width: 10, points: [[5,21],[5,7],[-1,-1],[5,2],[4,1],[5,0],[6,1],[5,2]] },
     '"': { width: 16, points: [[4,21],[4,14],[-1,-1],[12,21],[12,14]] },
@@ -102,34 +102,34 @@ CanvasTextFunctions.letters = {
     '~': { width: 24, points: [[3,6],[3,8],[4,11],[6,12],[8,12],[10,11],[14,8],[16,7],[18,7],[20,8],[21,10],[-1,-1],[3,8],[4,10],[6,11],[8,11],[10,10],[14,7],[16,6],[18,6],[20,7],[21,10],[21,12]] }
 };
 
-CanvasTextFunctions.letter = function (ch)
+greg.ross.visualisation.CanvasTextFunctions.letter = function (ch)
 {
-    return CanvasTextFunctions.letters[ch];
+    return greg.ross.visualisation.CanvasTextFunctions.letters[ch];
 }
 
-CanvasTextFunctions.ascent = function( font, size)
+greg.ross.visualisation.CanvasTextFunctions.ascent = function( font, size)
 {
     return size;
 }
 
-CanvasTextFunctions.descent = function( font, size)
+greg.ross.visualisation.CanvasTextFunctions.descent = function( font, size)
 {
     return 7.0*size/25.0;
 }
 
-CanvasTextFunctions.measure = function( font, size, str)
+greg.ross.visualisation.CanvasTextFunctions.measure = function( font, size, str)
 {
     var total = 0;
     var len = str.length;
 
     for ( i = 0; i < len; i++) {
-	var c = CanvasTextFunctions.letter( str.charAt(i));
+	var c = greg.ross.visualisation.CanvasTextFunctions.letter( str.charAt(i));
 	if ( c) total += c.width * size / 25.0;
     }
     return total;
 }
 
-CanvasTextFunctions.draw = function(ctx,font,size,x,y,str, textWidth, angle)
+greg.ross.visualisation.CanvasTextFunctions.draw = function(ctx,font,size,x,y,str, textWidth, angle)
 {
     var total = 0;
     var len = str.length;
@@ -154,7 +154,7 @@ CanvasTextFunctions.draw = function(ctx,font,size,x,y,str, textWidth, angle)
 	
     for ( i = 0; i < len; i++)
 	{
-		var c = CanvasTextFunctions.letter( str.charAt(i));
+		var c = greg.ross.visualisation.CanvasTextFunctions.letter( str.charAt(i));
 		if ( !c) continue;
 		
 		
@@ -192,25 +192,25 @@ CanvasTextFunctions.draw = function(ctx,font,size,x,y,str, textWidth, angle)
     return total;
 }
 
-CanvasTextFunctions.enable = function( ctx)
+greg.ross.visualisation.CanvasTextFunctions.enable = function( ctx)
 {
-    ctx.drawText = function(font,size,x,y,text) { return CanvasTextFunctions.draw( ctx, font,size,x,y,text); };
-    ctx.measureText = function(font,size,text) { return CanvasTextFunctions.measure( font,size,text); };
-    ctx.fontAscent = function(font,size) { return CanvasTextFunctions.ascent(font,size); }
-    ctx.fontDescent = function(font,size) { return CanvasTextFunctions.descent(font,size); }
+    ctx.drawText = function(font,size,x,y,text) { return greg.ross.visualisation.CanvasTextFunctions.draw( ctx, font,size,x,y,text); };
+    ctx.measureText = function(font,size,text) { return greg.ross.visualisation.CanvasTextFunctions.measure( font,size,text); };
+    ctx.fontAscent = function(font,size) { return greg.ross.visualisation.CanvasTextFunctions.ascent(font,size); }
+    ctx.fontDescent = function(font,size) { return greg.ross.visualisation.CanvasTextFunctions.descent(font,size); }
 
     ctx.drawTextRight = function(font,size,x,y,text)
 	{ 
-		var w = CanvasTextFunctions.measure(font,size,text);
-		return CanvasTextFunctions.draw( ctx, font,size,x-w,y,text); 
+		var w = greg.ross.visualisation.CanvasTextFunctions.measure(font,size,text);
+		return greg.ross.visualisation.CanvasTextFunctions.draw( ctx, font,size,x-w,y,text); 
     };
 	
     ctx.drawTextCenter = function(font,size,x,y,text, angle)
 	{ 
-		var w = CanvasTextFunctions.measure(font,size,text);
+		var w = greg.ross.visualisation.CanvasTextFunctions.measure(font,size,text);
 		
 		if (!angle) x -= w/2;
 		
-		return CanvasTextFunctions.draw( ctx, font,size, x, y, text, w, angle); 
+		return greg.ross.visualisation.CanvasTextFunctions.draw( ctx, font,size, x, y, text, w, angle); 
     };
 }

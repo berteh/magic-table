@@ -27,7 +27,7 @@ along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
  * Must be CellAlignment.LEFT, CellAlignment.CENTRE or CellAlignment.RIGHT;
  * @param colourRamp the colour ramp from which the cell's back colour will be derived.
  */
-function DefaultCellRenderer(tableModel, cellAlignment, colourRamp)
+greg.ross.visualisation.DefaultCellRenderer = function(tableModel, cellAlignment, colourRamp)
 {
 	var colourGradient;
 	var defaultCellBackgroundColour = 'rgb(255, 255, 255)';
@@ -35,7 +35,7 @@ function DefaultCellRenderer(tableModel, cellAlignment, colourRamp)
 	
 	function init()
 	{
-		colourGradient = TableGradientColourProvider.createGradient(tableModel, colourRamp);
+		colourGradient = greg.ross.visualisation.TableGradientColourProvider.createGradient(tableModel, colourRamp);
 	}
 	
 	function renderCellText(canvasContext, cellValue, x1, y1, width, height, fisheyeEnabled)
@@ -46,25 +46,25 @@ function DefaultCellRenderer(tableModel, cellAlignment, colourRamp)
 		var font = "sans";
 	  	var fontsize = 10;
 		
-		if (CanvasTextFunctions.measure(font, fontsize, sValue) < width && !fisheyeEnabled) 
+		if (greg.ross.visualisation.CanvasTextFunctions.measure(font, fontsize, sValue) < width && !fisheyeEnabled) 
 		{
-			var h = CanvasTextFunctions.descent(font, fontsize) + fontsize;
+			var h = greg.ross.visualisation.CanvasTextFunctions.descent(font, fontsize) + fontsize;
 			var x = (x1 + width) - width / 2;
 			var y = (y1 + height) - height / 2;
 			
 			switch (cellAlignment)
 			{
-				case CellAlignment.LEFT:
+				case greg.ross.visualisation.CellAlignment.LEFT:
 				{
 					canvasContext.drawText(font, fontsize, x1+3, y + h/2, sValue);
 					break;
 				}
-				case CellAlignment.CENTRE:
+				case greg.ross.visualisation.CellAlignment.CENTRE:
 				{
 					canvasContext.drawTextCenter(font, fontsize, x, y + h/2, sValue);
 					break;
 				}
-				case CellAlignment.RIGHT:
+				case greg.ross.visualisation.CellAlignment.RIGHT:
 				{
 					x = x1 + width - 3;
 					canvasContext.drawTextRight(font, fontsize, x, y + h/2, sValue);
@@ -79,7 +79,7 @@ function DefaultCellRenderer(tableModel, cellAlignment, colourRamp)
 	/**
 	 * The fisheye table calls this method to render the cell. Classes that extend a cell renderer
 	 * must implement this method.
-	 * @member DefaultCellRenderer
+	 * @member greg.ross.visualisation.DefaultCellRenderer
 	 * @param canvasContext the canvas context
 	 * @param row the row index
 	 * @param column the column index
@@ -93,7 +93,7 @@ function DefaultCellRenderer(tableModel, cellAlignment, colourRamp)
 	 */
 	this.drawCell = function(canvasContext, row, column, x1, y1, width, height, cellValue, fisheyeEnabled, barFillEnabled)
 	{
-		var colr = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
+		var colr = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
 		
 		if (!barFillEnabled) 
 		{
@@ -105,7 +105,7 @@ function DefaultCellRenderer(tableModel, cellAlignment, colourRamp)
 			canvasContext.fillStyle = defaultCellBackgroundColour;
 			canvasContext.fillRect(x1+0.5, y1+0.5, width-0.5, height-0.5);
 			
-			var barWidth = TableMath.calculateBarWidth(tableModel, cellValue, width, column);
+			var barWidth = greg.ross.visualisation.TableMath.calculateBarWidth(tableModel, cellValue, width, column);
 			canvasContext.fillStyle = colr;
 			canvasContext.fillRect(x1+0.5, y1+0.5, barWidth, height-0.5);
 		}

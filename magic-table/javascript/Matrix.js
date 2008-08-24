@@ -18,16 +18,14 @@ You should have received a copy of the GNU General Public License
 along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-Matrix.prototype.space = null;
-
 /**
  * This class represents an n-dimensional sparse matrix data structure.
  * @author Greg Ross
  * @constructor
  */
-function Matrix()
+greg.ross.visualisation.Matrix = function()
 {
-    this.space = new Hashtable();
+    this.space = new greg.ross.visualisation.Hashtable();
 	this.minValue = Number.MAX_VALUE;
 	this.maxValue = Number.MIN_VALUE;
 	
@@ -37,7 +35,7 @@ function Matrix()
 		
 		if (typeof(value) == 'object')
 		{
-			var criterion = value.constructor.toString().match(/hashtable/i); 
+			var criterion = value.constructor.toString().match(/this.hash/i); 
 			
 			if (criterion != null)
 				return true;
@@ -48,7 +46,7 @@ function Matrix()
 	
 	/**
 	 * Return the maximum numeric value in the matrix.
-	 * @member Matrix
+	 * @member greg.ross.visualisation.Matrix
 	 */
 	this.getMaxValue = function()
 	{
@@ -57,7 +55,7 @@ function Matrix()
 	
 	/**
 	 * Return the minimum numeric value in the matrix.
-	 * @member Matrix
+	 * @member greg.ross.visualisation.Matrix
 	 */
 	this.getMinValue = function()
 	{
@@ -68,13 +66,13 @@ function Matrix()
 
 /**
  * Put a new value in the matrix.
- * @member Matrix
+ * @member greg.ross.visualisation.Matrix
  * @param indices an array specifying the n-dimensional element indices, e.g. [1, 0, 0, 2]
  * @param value
  */
-Matrix.prototype.put = function(indices, value)
+greg.ross.visualisation.Matrix.prototype.put = function(indices, value)
 {
-	if (TableMath.isNumber(value))
+	if (greg.ross.visualisation.TableMath.isNumber(value))
 	{
 		value = parseFloat(value);
 		
@@ -93,14 +91,14 @@ Matrix.prototype.put = function(indices, value)
 		
 		if (tempHash == null)
 		{
-			var newHash = new Hashtable();
+			var newHash = new greg.ross.visualisation.Hashtable();
 			hash.put(previousIndex, newHash);
 			hash = newHash;	
 		}
 		else if (!this.isHashtable(tempHash))
 		{
 			var oldValue = tempHash;
-			var newHash = new Hashtable();
+			var newHash = new greg.ross.visualisation.Hashtable();
 			hash.put(previousIndex, newHash);
 			hash = newHash;
 			hash.put(0, oldValue);
@@ -120,10 +118,10 @@ Matrix.prototype.put = function(indices, value)
 
 /**
  * Return a value from the matrix.
- * @member Matrix
+ * @member greg.ross.visualisation.Matrix
  * @param indices an array specifying the n-dimensional element indices, e.g. [1, 0, 0, 2]
  */
-Matrix.prototype.get = function(indices)
+greg.ross.visualisation.Matrix.prototype.get = function(indices)
 {
 	var index = indices[0];
 	var hash = this.space;
@@ -150,3 +148,5 @@ Matrix.prototype.get = function(indices)
 		
 	return hash.get(index);
 }
+
+greg.ross.visualisation.Matrix.prototype.space = null;
