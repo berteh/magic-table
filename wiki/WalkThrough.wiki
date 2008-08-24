@@ -26,7 +26,7 @@ Now, instantiate the table model...
 
 
 {{{
-var tableModel = new TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
+var tableModel = new greg.ross.visualisation.TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
 }}}
 
 ----
@@ -66,7 +66,7 @@ tableModel.setRowHeight(0, 110);
 Having defined the table model and the data, it's now time to create the fisheye table.
 
 {{{
-var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
 					tableWidth, tableHeight, "Volatilities", targetElement);
 }}}
 
