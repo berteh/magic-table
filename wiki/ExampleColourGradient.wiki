@@ -32,7 +32,7 @@ function drawTable()
 		var ramp = [colour1, colour2, colour3, colour4];
 				
 		// ...and pass it into the table model
-		var tableModel = new TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+		var tableModel = new greg.ross.visualisation.TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
 				
 		for (var i = 0; i < rows; i++) 
 			for (var j = 0; j < columns; j++)
@@ -42,7 +42,7 @@ function drawTable()
 				
 		tableModel.recalculateMinMaxValues();
 				
-		var fisheyeTable = new FisheyeTable(tableModel, tablePositionX,
+		var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX,
                       tablePositionY, tableWidth, tableHeight, "Blue to yellow", targetElement);
 	}
 }
