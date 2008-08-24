@@ -12,12 +12,12 @@ To see this example in action, download the library, go to the "examples" direct
 {{{
 function drawTable()
 {
-	tableModel = new TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, 
+	tableModel = new greg.ross.visualisation.TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, 
                 rowHeaderCount, columnHeaderCount);
 
 	setData();
 				
-	var fisheyeTable = new FisheyeTable(tableModel, tablePositionX, tablePositionY,
+	var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
 		tableWidth, tableHeight, "Bar-fill", targetElement);
 		fisheyeTable.setBarFill(true);
 		fisheyeTable.enableFisheye(false);
