@@ -30,9 +30,9 @@ along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
  * @param columnHeaderCount the number of column headers
  * @param clrRamp the colour ramp applied to the table to encode numbers
  */
-function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount, clrRamp)
+greg.ross.visualisation.TableModel = function(rowCount, columnCount, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount, clrRamp)
 {
-	this.matrix = new Matrix();
+	this.matrix = new greg.ross.visualisation.Matrix();
 	this.rowCount = rowCount;
 	this.columnCount = columnCount;
 	this.rowHeaderCount = rowHeaderCount;
@@ -56,9 +56,9 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	this.fisheyeColumnWidth = 15;
 	this.fisheyeRowHeight = 15;
 	
-	this.fisheyeCellRenderer = new FisheyeCellRenderer(this, colourRamp);
-	this.defaultCellRenderer = new DefaultCellRenderer(this, CellAlignment.CENTRE, colourRamp);
-	this.scaleCellRenderer = new ScaleCellRenderer(this, CellAlignment.CENTRE);
+	this.fisheyeCellRenderer = new greg.ross.visualisation.FisheyeCellRenderer(this, colourRamp);
+	this.defaultCellRenderer = new greg.ross.visualisation.DefaultCellRenderer(this, greg.ross.visualisation.CellAlignment.CENTRE, colourRamp);
+	this.scaleCellRenderer = new greg.ross.visualisation.ScaleCellRenderer(this, greg.ross.visualisation.CellAlignment.CENTRE);
 	init();
 	
 	function init()
@@ -81,7 +81,7 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	
 	/**
 	 * Return the cell render for the cell specified by the given row and column indices.
-	 * @member TableModel
+	 * @member greg.ross.visualisation.TableModel
 	 * @param row the row of the cell that is to be rendered
 	 * @param column the column of the cell that is to be rendered
 	 * @param isFisheyeCell true if the fisheye feature is turned on
@@ -92,13 +92,13 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 			return this.fisheyeCellRenderer;
 		else 
 		{
-			if (TableMath.isNumber(this.rowHeaderCount))
+			if (greg.ross.visualisation.TableMath.isNumber(this.rowHeaderCount))
 			{
 				if (column < this.rowHeaderCount)
 					return this.scaleCellRenderer;
 			}
 			
-			if (TableMath.isNumber(this.columnHeaderCount))
+			if (greg.ross.visualisation.TableMath.isNumber(this.columnHeaderCount))
 			{
 				if (row < this.columnHeaderCount)
 					return this.scaleCellRenderer;
@@ -110,12 +110,12 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	
 	/**
 	 * Return the height of the given row.
-	 * @member TableModel
+	 * @member greg.ross.visualisation.TableModel
 	 * @param row
 	 */
 	this.getRowHeight = function(row)
 	{
-		if (!TableMath.isNumber(row)) return defaultRowHeight;
+		if (!greg.ross.visualisation.TableMath.isNumber(row)) return defaultRowHeight;
 		if (!this.rowHeights[row]) return defaultRowHeight;
 		
 		return this.rowHeights[row];
@@ -123,12 +123,12 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	
 	/**
 	 * Return the width of the given column.
-	 * @member TableModel
+	 * @member greg.ross.visualisation.TableModel
 	 * @param column
 	 */
 	this.getColumnWidth = function(column)
 	{
-		if (!TableMath.isNumber(column)) return defaultColumnWidth;
+		if (!greg.ross.visualisation.TableMath.isNumber(column)) return defaultColumnWidth;
 		if (!this.columnWidths[column]) return defaultColumnWidth;
 		
 		return this.columnWidths[column];
@@ -136,7 +136,7 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	
 	/**
 	 * Use this method to set the height of the given row.
-	 * @member TableModel
+	 * @member greg.ross.visualisation.TableModel
 	 * @param row
 	 * @param height
 	 */
@@ -147,7 +147,7 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	
 	/**
 	 * Use this method to set the width of the given column.
-	 * @member TableModel
+	 * @member greg.ross.visualisation.TableModel
 	 * @param column
 	 * @param width
 	 */
@@ -159,7 +159,7 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	/**
 	 * Call this method after adding numerical data to the table. This allows the table to
 	 * track the maximum and minimum values across rows and columns.
-	 * @member TableModel
+	 * @member greg.ross.visualisation.TableModel
 	 */
 	this.recalculateMinMaxValues = function()
 	{
@@ -180,7 +180,7 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 				var column = this.columnCount - j
 				var value = this.getContentAt(row, column);
 				
-				if (TableMath.isNumber(value)) 
+				if (greg.ross.visualisation.TableMath.isNumber(value)) 
 				{
 					if (this.minRowValues[row] == undefined) this.minRowValues[row] = value;
 					if (this.maxRowValues[row] == undefined) this.maxRowValues[row] = value;
@@ -204,7 +204,7 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	
 	/**
 	 * Return the value at the cell specified by the row and column parameters.
-	 * @member TableModel
+	 * @member greg.ross.visualisation.TableModel
 	 * @param row
 	 * @param column
 	 */
@@ -217,7 +217,7 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 	
 	/**
 	 * Put a value in the table at the specified row and column.
-	 * @member TableModel
+	 * @member greg.ross.visualisation.TableModel
 	 * @param row
 	 * @param column
 	 * @param value
@@ -227,10 +227,10 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 		if (!isRowValid(row) || !isColumnValid(column)) return;
 		
 		this.matrix.put([row, column], value);
-		this.fisheyeCellRenderer = new FisheyeCellRenderer(this, colourRamp);
-		this.defaultCellRenderer = new DefaultCellRenderer(this, CellAlignment.CENTRE, colourRamp);
+		this.fisheyeCellRenderer = new greg.ross.visualisation.FisheyeCellRenderer(this, colourRamp);
+		this.defaultCellRenderer = new greg.ross.visualisation.DefaultCellRenderer(this, greg.ross.visualisation.CellAlignment.CENTRE, colourRamp);
 		
-		if (TableMath.isNumber(value))
+		if (greg.ross.visualisation.TableMath.isNumber(value))
 		{
 			value = parseFloat(value);
 			
@@ -259,64 +259,64 @@ function TableModel(rowCount, columnCount, defaultRowHeight, defaultColumnWidth,
 
 /**
  * Determine the smallest numeric value in the table.
- * @member TableModel
+ * @member greg.ross.visualisation.TableModel
  */
-TableModel.prototype.getMinValue = function()
+greg.ross.visualisation.TableModel.prototype.getMinValue = function()
 {
 	return this.matrix.minValue;
 }
 
 /**
  * Determine the largest numeric value in the table.
- * @member TableModel
+ * @member greg.ross.visualisation.TableModel
  */
-TableModel.prototype.getMaxValue = function()
+greg.ross.visualisation.TableModel.prototype.getMaxValue = function()
 {
 	return this.matrix.maxValue;
 }
 
 /**
  * Return the smallest numeric value in the given row.
- * @member TableModel
+ * @member greg.ross.visualisation.TableModel
  * @param row
  */
-TableModel.prototype.getMinValueForRow = function(row)
+greg.ross.visualisation.TableModel.prototype.getMinValueForRow = function(row)
 {
 	return this.minRowValues[row];
 }
 
 /**
  * Return the largest numeric value in the given row.
- * @member TableModel
+ * @member greg.ross.visualisation.TableModel
  * @param row
  */
-TableModel.prototype.getMaxValueForRow = function(row)
+greg.ross.visualisation.TableModel.prototype.getMaxValueForRow = function(row)
 {
 	return this.maxRowValues[row];
 }
 
 /**
  * Return the smallest numeric value in the given column.
- * @member TableModel
+ * @member greg.ross.visualisation.TableModel
  * @param column
  */
-TableModel.prototype.getMinValueForColumn = function(column)
+greg.ross.visualisation.TableModel.prototype.getMinValueForColumn = function(column)
 {
 	return this.minColumnValues[column];
 }
 
 /**
  * Return the largest numeric value in the given column.
- * @member TableModel
+ * @member greg.ross.visualisation.TableModel
  * @param column
  */
-TableModel.prototype.getMaxValueForColumn = function(column)
+greg.ross.visualisation.TableModel.prototype.getMaxValueForColumn = function(column)
 {
 	return this.maxColumnValues[column];
 }
 
 
-var CellAlignment = {};
-CellAlignment.LEFT = 0;
-CellAlignment.CENTRE = 1;
-CellAlignment.RIGHT = 2;
+greg.ross.visualisation.CellAlignment = {};
+greg.ross.visualisation.CellAlignment.LEFT = 0;
+greg.ross.visualisation.CellAlignment.CENTRE = 1;
+greg.ross.visualisation.CellAlignment.RIGHT = 2;

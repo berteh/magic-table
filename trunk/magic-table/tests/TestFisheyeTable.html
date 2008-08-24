@@ -4,17 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		
 		<script src='../../../jsunit/app/jsUnitCore.js' type='text/javascript'></script>
-		<script src='../javascript/Hashtable.js' type='text/javascript'></script>
-		<script src='../javascript/Fisheye.js' type='text/javascript'></script>
-		<script src='../javascript/Matrix.js' type='text/javascript'></script>
-		<script src='../javascript/TableModel.js' type='text/javascript'></script>
-		<script src='../javascript/fisheyeTable.js' type='text/javascript'></script>
-		<script src='../javascript/FisheyeCellRenderer.js' type='text/javascript'></script>
-		<script src='../javascript/DefaultCellRenderer.js' type='text/javascript'></script>
-		<script src='../javascript/ScaleCellRenderer.js' type='text/javascript'></script>
-		<script src='../javascript/CanvasTextFunctions.js' type='text/javascript'></script>
-		<script src='../javascript/ColourGradient.js' type='text/javascript'></script>
-		<script src='../javascript/reflection/reflection.js' type='text/javascript'></script>
+		<script type="text/javascript" src='../javascript/magic_table.js'></script>
 		
 		<script type='text/javascript'>
 			
@@ -73,7 +63,7 @@
 				var columnHeaderCount = 1;
 				var count = 0;
 				
-				var tableModel = new TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount);
+				var tableModel = new greg.ross.visualisation.TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount);
 				
 				for (var i = 0; i < rows; i++)
 					for (var j = 0; j < columns; j++)
@@ -81,7 +71,7 @@
 						
 				tableModel.setContentAt(10, 10, "mouse");
 						
-				fisheyeTable = new FisheyeTable(tableModel, 50, 50, tableWidth, tableHeight, "Magic table");
+				fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, 50, 50, tableWidth, tableHeight, "Magic table");
 			}
 			
 			function tearDown()
@@ -128,7 +118,7 @@
 			
 			function testGetArea()
 			{
-				var area = TableGeometry.getArea(0, 0, 10, 0, 10, 10, 0, 10);
+				var area = greg.ross.visualisation.TableGeometry.getArea(0, 0, 10, 0, 10, 10, 0, 10);
 				var expectedArea = 100;
 				
 				assertEquals(expectedArea, area);
@@ -136,7 +126,7 @@
 			
 			function testGetCentre()
 			{
-				var centre = TableGeometry.getCentre(0, 0, 10, 0, 10, 10, 0, 10);
+				var centre = greg.ross.visualisation.TableGeometry.getCentre(0, 0, 10, 0, 10, 10, 0, 10);
 				var expectedX = 5;
 				var expectedY = 5;
 				
@@ -153,18 +143,18 @@
 				var floatNumber = 2.3;
 				var blah;
 				
-				assertFalse(TableMath.isNumber(blah));
-				assertFalse(TableMath.isNumber(notNumber));
-				assertTrue(TableMath.isNumber(isStringInteger));
-				assertTrue(TableMath.isNumber(isStringFloat));
-				assertTrue(TableMath.isNumber(integer));
-				assertTrue(TableMath.isNumber(floatNumber));
-				assertFalse(TableMath.isNumber("0dfgdfgfd"));
+				assertFalse(greg.ross.visualisation.TableMath.isNumber(blah));
+				assertFalse(greg.ross.visualisation.TableMath.isNumber(notNumber));
+				assertTrue(greg.ross.visualisation.TableMath.isNumber(isStringInteger));
+				assertTrue(greg.ross.visualisation.TableMath.isNumber(isStringFloat));
+				assertTrue(greg.ross.visualisation.TableMath.isNumber(integer));
+				assertTrue(greg.ross.visualisation.TableMath.isNumber(floatNumber));
+				assertFalse(greg.ross.visualisation.TableMath.isNumber("0dfgdfgfd"));
 			}
 			
 			function getColourGradient()
 			{
-				var tableModel = new TableModel(1, 2, 5, 5, 0, 0);
+				var tableModel = new greg.ross.visualisation.TableModel(1, 2, 5, 5, 0, 0);
 				tableModel.setContentAt(0, 0, minValue);
 				tableModel.setContentAt(0, 1, maxValue);
 						
@@ -176,7 +166,7 @@
 				var colour3 = {red:253, green:253, blue:72};
 				var rgbArray = [colour1, colour2, colour3];
 				
-				var colourGradient = TableGradientColourProvider.createGradient(tableModel, rgbArray);
+				var colourGradient = greg.ross.visualisation.TableGradientColourProvider.createGradient(tableModel, rgbArray);
 				return colourGradient;
 			}
 			
@@ -186,7 +176,7 @@
 				
 				// Maximum value colour.
 				cellValue = maxValue;
-				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				var colour = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
 				
 				assertEquals('rgb(253,253,72)', colour);
 			}
@@ -196,7 +186,7 @@
 				var defaultColour = 'rgb(255, 255, 255)';
 				var minValue = 10;
 				var maxValue = 50;
-				var tableModel = new TableModel(1, 1, 5, 5, 0, 0);
+				var tableModel = new greg.ross.visualisation.TableModel(1, 1, 5, 5, 0, 0);
 				tableModel.setContentAt(0, 0, minValue);
 				tableModel.setContentAt(0, 1, maxValue);
 						
@@ -208,8 +198,8 @@
 				// Test colour after adding a value that is greater than the max value.
 				cellValue = maxValue*2;
 				tableModel.setContentAt(0, 0, cellValue);
-				var colourGradient = TableGradientColourProvider.createGradient(tableModel, rgbArray);
-				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				var colourGradient = greg.ross.visualisation.TableGradientColourProvider.createGradient(tableModel, rgbArray);
+				var colour = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
 				
 				assertEquals('rgb(253,253,72)', colour);
 			}
@@ -219,7 +209,7 @@
 				var defaultColour = 'rgb(255, 255, 255)';
 				var minValue = 10;
 				var maxValue = 50;
-				var tableModel = new TableModel(1, 1, 5, 5, 0, 0);
+				var tableModel = new greg.ross.visualisation.TableModel(1, 1, 5, 5, 0, 0);
 				tableModel.setContentAt(0, 0, minValue);
 				tableModel.setContentAt(0, 1, maxValue);
 						
@@ -231,8 +221,8 @@
 				// Test colour after adding a value that is less than the min value.
 				cellValue = 1;
 				tableModel.setContentAt(0, 0, cellValue);
-				colourGradient = TableGradientColourProvider.createGradient(tableModel, rgbArray);
-				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				colourGradient = greg.ross.visualisation.TableGradientColourProvider.createGradient(tableModel, rgbArray);
+				var colour = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
 				
 				assertEquals('rgb(253,72,72)', colour);
 			}
@@ -243,7 +233,7 @@
 				
 				// Minimum value colour
 				var cellValue = minValue;
-				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				var colour = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
 				
 				assertEquals('rgb(253,72,72)', colour);
 			}
@@ -254,7 +244,7 @@
 				
 				// Midway value colour.
 				cellValue = minValue + (maxValue - minValue)/2;
-				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				var colour = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
 				
 				assertEquals('rgb(72,253,72)', colour);
 			}
@@ -265,7 +255,7 @@
 				
 				// String value colour.
 				cellValue = "eh?";
-				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				var colour = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
 				
 				assertEquals(defaultColour, colour);
 			}
@@ -280,12 +270,12 @@
 				var rgbArray = [colour1, colour2, colour3];
 				
 				// Min and Max values are equal.
-				var tableModel = new TableModel(1, 1, 5, 5, 0, 0);
+				var tableModel = new greg.ross.visualisation.TableModel(1, 1, 5, 5, 0, 0);
 				tableModel.setContentAt(0, 0, 1);
 				tableModel.setContentAt(0, 1, 1);
-				colourGradient = TableGradientColourProvider.createGradient(tableModel, rgbArray);
+				colourGradient = greg.ross.visualisation.TableGradientColourProvider.createGradient(tableModel, rgbArray);
 				cellValue = 1;
-				var colour = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				var colour = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
 				
 				assertEquals('rgb(253,72,72)', colour);
 			}
@@ -295,41 +285,41 @@
 				var rows = 3;
 				var columns = 2;
 				var maxBarWidth = 12;
-				var tableModel = new TableModel(rows, columns, 12, maxBarWidth, 0, 0);
+				var tableModel = new greg.ross.visualisation.TableModel(rows, columns, 12, maxBarWidth, 0, 0);
 				tableModel.setContentAt(0, 0, 0);
 				tableModel.setContentAt(1, 0, 1);
 				tableModel.setContentAt(2, 0, 2);
 				
 				var column = 0;
 				var cellValue = 2;
-				assertEquals(maxBarWidth, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+				assertEquals(maxBarWidth, greg.ross.visualisation.TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
 				
 				cellValue = 0;
-				assertEquals(0, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+				assertEquals(0, greg.ross.visualisation.TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
 				
 				cellValue = 1;
-				assertEquals(maxBarWidth/2, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+				assertEquals(maxBarWidth/2, greg.ross.visualisation.TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
 				
-				tableModel = new TableModel(rows, columns, 12, maxBarWidth, 0, 0);
+				tableModel = new greg.ross.visualisation.TableModel(rows, columns, 12, maxBarWidth, 0, 0);
 				tableModel.setContentAt(0, 0, 1);
 				tableModel.setContentAt(1, 0, -10);
 				tableModel.setContentAt(0, 1, 10);
 				tableModel.setContentAt(1, 1, 11);
 				
 				cellValue = 1;
-				assertEquals(maxBarWidth, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+				assertEquals(maxBarWidth, greg.ross.visualisation.TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
 				cellValue = -10;
-				assertEquals(0, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+				assertEquals(0, greg.ross.visualisation.TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
 			}
 			
 			function testCalculateBarWidthWithNoNumbersInTable()
 			{
-				var tableModel = new TableModel(2, 1, 12, 12, 0, 0);
+				var tableModel = new greg.ross.visualisation.TableModel(2, 1, 12, 12, 0, 0);
 				tableModel.setContentAt(0, 0, "w");
 				tableModel.setContentAt(1, 0, "qw");
 				tableModel.setContentAt(2, 0, "qw");
 				
-				assertEquals(12, TableMath.calculateBarWidth(tableModel, 0, 12, 0));
+				assertEquals(12, greg.ross.visualisation.TableMath.calculateBarWidth(tableModel, 0, 12, 0));
 			}
 			
 			function testBarWidthWhenMinAndMaxValuesAreEqual()
@@ -337,14 +327,14 @@
 				var rows = 3;
 				var columns = 2;
 				var maxBarWidth = 12;
-				var tableModel = new TableModel(rows, columns, 12, maxBarWidth, 0, 0);
+				var tableModel = new greg.ross.visualisation.TableModel(rows, columns, 12, maxBarWidth, 0, 0);
 				tableModel.setContentAt(0, 0, 0);
 				tableModel.setContentAt(1, 0, 0);
 				tableModel.setContentAt(2, 0, 0);
 				
 				var column = 0;
 				var cellValue = 2;
-				assertEquals(maxBarWidth, TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
+				assertEquals(maxBarWidth, greg.ross.visualisation.TableMath.calculateBarWidth(tableModel, cellValue, maxBarWidth, column));
 			}
 			
 		</script>

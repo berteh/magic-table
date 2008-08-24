@@ -8,7 +8,6 @@
 		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	    
 		<script type="text/javascript">
-			MagicTable.load();
 			google.load("visualization", "1");
 			google.setOnLoadCallback(drawVisualization);
 	
@@ -38,7 +37,7 @@
 				}
 				while (i-- > 0)
 				
-				var vis = new MagicTable(document.getElementById('tableDiv'));
+				var vis = new greg.ross.visualisation.MagicTable(document.getElementById('tableDiv'));
 				
 				options = {};
 				options.tableTitle = "Bar-fill";

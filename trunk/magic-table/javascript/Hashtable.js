@@ -1,12 +1,10 @@
-Hashtable.prototype.hash = null;
-Hashtable.prototype.keys = null;
-
 /**
  * A JavaScript implementation of a hash table.
  * Original Author: Uzi Refaeli
  * @constructor
  */
-function Hashtable()
+
+greg.ross.visualisation.Hashtable = function()
 {
     this.hash = new Array();
     this.keys = new Array();
@@ -14,11 +12,11 @@ function Hashtable()
 
 /**
  * Asociate an object with a key in the hash table
- * @member Hashtable
+ * @member greg.ross.visualisation.Hashtable
  * @param {Object} key
  * @param {Object} value
  */
-Hashtable.prototype.put = function(key, value)
+greg.ross.visualisation.Hashtable.prototype.put = function(key, value)
 {
     if (value == null) 
         return;
@@ -31,20 +29,20 @@ Hashtable.prototype.put = function(key, value)
 
 /**
  * Get an item corresponding to the given key.
- * @member Hashtable
+ * @member greg.ross.visualisation.Hashtable
  * @param key
  * @return the object corresponding to the given key
  */
-Hashtable.prototype.get = function(key)
+greg.ross.visualisation.Hashtable.prototype.get = function(key)
 {
     return this.hash[key];
 }
 
 /**
  * Returns the number of items in the hash table.
- * @member Hashtable
+ * @member greg.ross.visualisation.Hashtable
  */
-Hashtable.prototype.size = function()
+greg.ross.visualisation.Hashtable.prototype.size = function()
 {
     return this.hash.length;
 }
@@ -55,9 +53,9 @@ Hashtable.prototype.size = function()
  * enclosed in braces and separated by the ASCII characters ", " (comma and space).
  * Each entry is rendered as the key, an equals sign =, and the associated element,
  * where the toString method is used to convert the key and element to strings.
- * @member Hashtable
+ * @member greg.ross.visualisation.Hashtable
  */
-Hashtable.prototype.toString = function()
+greg.ross.visualisation.Hashtable.prototype.toString = function()
 {
     try 
     {

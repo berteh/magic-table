@@ -29,7 +29,7 @@
 <span class='line'> 22</span>  * Fisheye lens model
 <span class='line'> 23</span>  * @constructor
 <span class='line'> 24</span>  */</span><span class="WHIT">
-<span class='line'> 25</span> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">Fisheye</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="NAME">greg.ross.visualisation.Fisheye</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'> 26</span> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 27</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">focusHeight</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">9</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 28</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">lensX</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
@@ -38,7 +38,7 @@
 <span class='line'> 31</span> 
 <span class='line'> 32</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'> 33</span> 	 * Return the Euclidean distance of the given point from the lens focus
-<span class='line'> 34</span> 	 * @member Fisheye
+<span class='line'> 34</span> 	 * @member greg.ross.visualisation.Fisheye
 <span class='line'> 35</span> 	 * @param x
 <span class='line'> 36</span> 	 * @param y
 <span class='line'> 37</span> 	 */</span><span class="WHIT">
@@ -49,7 +49,7 @@
 <span class='line'> 42</span> 
 <span class='line'> 43</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'> 44</span> 	 * Return the height at a point on the lens' surface
-<span class='line'> 45</span> 	 * @member Fisheye
+<span class='line'> 45</span> 	 * @member greg.ross.visualisation.Fisheye
 <span class='line'> 46</span> 	 * @param distance
 <span class='line'> 47</span> 	 */</span><span class="WHIT">
 <span class='line'> 48</span> </span><span class="WHIT">	</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">heightAtPoint</span><span class="PUNC">(</span><span class="NAME">distance</span><span class="PUNC">)</span><span class="WHIT">
@@ -65,7 +65,7 @@
 <span class='line'> 58</span> 
 <span class='line'> 59</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'> 60</span> 	 * The function that defines the lens shape.
-<span class='line'> 61</span> 	 * @member Fisheye
+<span class='line'> 61</span> 	 * @member greg.ross.visualisation.Fisheye
 <span class='line'> 62</span> 	 * @param t
 <span class='line'> 63</span> 	 */</span><span class="WHIT">
 <span class='line'> 64</span> </span><span class="WHIT">	</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">lens</span><span class="PUNC">(</span><span class="NAME">t</span><span class="PUNC">)</span><span class="WHIT">
@@ -81,7 +81,7 @@
 <span class='line'> 74</span> 
 <span class='line'> 75</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'> 76</span> 	 * transform the given coordinate according to its position under the lens
-<span class='line'> 77</span> 	 * @member Fisheye
+<span class='line'> 77</span> 	 * @member greg.ross.visualisation.Fisheye
 <span class='line'> 78</span> 	 * @param point the x coordinate of a point
 <span class='line'> 79</span> 	 */</span><span class="WHIT">
 <span class='line'> 80</span> </span><span class="WHIT">	</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">transformX</span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">scale</span><span class="PUNC">)</span><span class="WHIT">
@@ -91,7 +91,7 @@
 <span class='line'> 84</span> 
 <span class='line'> 85</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'> 86</span> 	 * transform the given coordinate according to its position under the lens
-<span class='line'> 87</span> 	 * @member Fisheye
+<span class='line'> 87</span> 	 * @member greg.ross.visualisation.Fisheye
 <span class='line'> 88</span> 	 * @param point the y coordinate of a point
 <span class='line'> 89</span> 	 */</span><span class="WHIT">
 <span class='line'> 90</span> </span><span class="WHIT">	</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">transformY</span><span class="PUNC">(</span><span class="NAME">y</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">scale</span><span class="PUNC">)</span><span class="WHIT">
@@ -101,7 +101,7 @@
 <span class='line'> 94</span> 
 <span class='line'> 95</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'> 96</span> 	 * transform the given coordinate according to its position under the lens
-<span class='line'> 97</span> 	 * @member Fisheye
+<span class='line'> 97</span> 	 * @member greg.ross.visualisation.Fisheye
 <span class='line'> 98</span> 	 * @param point the x-y coordinate of a point
 <span class='line'> 99</span> 	 */</span><span class="WHIT">
 <span class='line'>100</span> </span><span class="WHIT">	</span><span class="NAME">this.transform</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">point</span><span class="PUNC">)</span><span class="WHIT">
@@ -121,7 +121,7 @@
 <span class='line'>114</span> </span><span class="WHIT">	</span><span class="WHIT">
 <span class='line'>115</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'>116</span> 	 * Sets the radius of the lens
-<span class='line'>117</span> 	 * @member Fisheye
+<span class='line'>117</span> 	 * @member greg.ross.visualisation.Fisheye
 <span class='line'>118</span> 	 * @param focusRadius
 <span class='line'>119</span> 	 */</span><span class="WHIT">
 <span class='line'>120</span> </span><span class="WHIT">	</span><span class="NAME">this.setLensRadius</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">focusRadius</span><span class="PUNC">)</span><span class="WHIT">
@@ -131,7 +131,7 @@
 <span class='line'>124</span> </span><span class="WHIT">	</span><span class="WHIT">
 <span class='line'>125</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'>126</span> 	 * Sets the position of the lens.
-<span class='line'>127</span> 	 * @member Fisheye
+<span class='line'>127</span> 	 * @member greg.ross.visualisation.Fisheye
 <span class='line'>128</span> 	 * @param x
 <span class='line'>129</span> 	 * @param y
 <span class='line'>130</span> 	 */</span><span class="WHIT">

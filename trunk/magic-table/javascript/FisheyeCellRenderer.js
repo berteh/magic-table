@@ -25,7 +25,7 @@ along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
  * @param tableModel
  * @param colourRamp the colour ramp from which the cell's back colour will be derived.
  */
-function FisheyeCellRenderer(tableModel, colourRamp)
+greg.ross.visualisation.FisheyeCellRenderer = function(tableModel, colourRamp)
 {
 	var colourGradient;
 	var defaultCellBackgroundColour = 'rgb(255, 255, 255)';
@@ -33,7 +33,7 @@ function FisheyeCellRenderer(tableModel, colourRamp)
 	
 	function init()
 	{
-		colourGradient = TableGradientColourProvider.createGradient(tableModel, colourRamp);
+		colourGradient = greg.ross.visualisation.TableGradientColourProvider.createGradient(tableModel, colourRamp);
 	}
 	
 	function renderCellText(canvasContext, cellValue, tlX, tlY, trX, trY, brX, brY, blX, blY)
@@ -43,14 +43,14 @@ function FisheyeCellRenderer(tableModel, colourRamp)
 		var sValue = cellValue + "";
 		var font = "sans";
 	  	var fontsize = 10;
-		var centerPoint = TableGeometry.getCentre(tlX, tlY, trX, trY, brX, brY, blX, blY);
+		var centerPoint = greg.ross.visualisation.TableGeometry.getCentre(tlX, tlY, trX, trY, brX, brY, blX, blY);
 		canvasContext.drawTextCenter(font, fontsize, centerPoint.x, centerPoint.y, sValue);
 	}
 	
 	/**
 	 * The fisheye table calls this method to render the cell. Classes that extend a cell renderer
 	 * must implement this method.
-	 * @member FisheyeCellRenderer
+	 * @member greg.ross.visualisation.FisheyeCellRenderer
 	 * @param canvasContext the canvas context
 	 * @param column the column index
 	 * @param cellCoordinates the coordinates defining the cell poylgon
@@ -60,7 +60,7 @@ function FisheyeCellRenderer(tableModel, colourRamp)
 	 */
 	this.drawCell = function(canvasContext, column, cellCoordinates, cellValue, barFillEnabled, cellWidth)
 	{
-		var colr = TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
+		var colr = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
 		
 		if (!barFillEnabled) 
 		{
@@ -94,7 +94,7 @@ function FisheyeCellRenderer(tableModel, colourRamp)
 			canvasContext.stroke();
 			
 			// Calculate and fill polygon according to cell value.
-			var widthFraction = TableMath.calculateBarWidthFraction(tableModel, cellValue, cellWidth, column);
+			var widthFraction = greg.ross.visualisation.TableMath.calculateBarWidthFraction(tableModel, cellValue, cellWidth, column);
 			
 			canvasContext.fillStyle = colr;
 			canvasContext.beginPath();
@@ -131,7 +131,7 @@ function FisheyeCellRenderer(tableModel, colourRamp)
 			canvasContext.stroke();
 		}
 		
-		var cellArea = TableGeometry.getArea(cellCoordinates.x1, cellCoordinates.y1, cellCoordinates.x2, cellCoordinates.y2, cellCoordinates.x3, cellCoordinates.y3, cellCoordinates.x4, cellCoordinates.y4);
+		var cellArea = greg.ross.visualisation.TableGeometry.getArea(cellCoordinates.x1, cellCoordinates.y1, cellCoordinates.x2, cellCoordinates.y2, cellCoordinates.x3, cellCoordinates.y3, cellCoordinates.x4, cellCoordinates.y4);
 		
 		if (cellArea > 1500) 
 			renderCellText(canvasContext, cellValue, cellCoordinates.x1, cellCoordinates.y1, cellCoordinates.x2, cellCoordinates.y2, cellCoordinates.x3, cellCoordinates.y3, cellCoordinates.x4, cellCoordinates.y4);

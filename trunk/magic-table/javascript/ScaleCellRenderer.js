@@ -26,7 +26,7 @@ along with Magic Table.  If not, see <http://www.gnu.org/licenses/>.
  * @param cellAlignment defines the alignment of text in the cell.
  * Must be CellAlignment.LEFT, CellAlignment.CENTRE or CellAlignment.RIGHT;
  */
-function ScaleCellRenderer(tableModel, cellAlignment)
+greg.ross.visualisation.ScaleCellRenderer = function(tableModel, cellAlignment)
 {
 	var defaultCellBackgroundColour = 'rgb(170, 170, 170)';
 	var headerOfHeaderBackColour = 'rgb(0, 0, 0)';
@@ -38,23 +38,23 @@ function ScaleCellRenderer(tableModel, cellAlignment)
 		
 		var sValue = cellValue + "";
 		var font = "sans";
-		var h = CanvasTextFunctions.descent(font, fontsize) + fontsize;
+		var h = greg.ross.visualisation.CanvasTextFunctions.descent(font, fontsize) + fontsize;
 		var x = (x1 + width) - width/2;
 		var y = (y1 + height) - height/2;
 		
 		switch (cellAlignment)
 		{
-			case CellAlignment.LEFT:
+			case greg.ross.visualisation.CellAlignment.LEFT:
 			{
 				canvasContext.drawText(font, fontsize, x1+5, y + h/2, sValue);
 				break;
 			}
-			case CellAlignment.CENTRE:
+			case greg.ross.visualisation.CellAlignment.CENTRE:
 			{
 				canvasContext.drawTextCenter(font, fontsize, x, y + h/2, sValue);
 				break;
 			}
-			case CellAlignment.RIGHT:
+			case greg.ross.visualisation.CellAlignment.RIGHT:
 			{
 				x = x1 + width - 3;
 				canvasContext.drawTextRight(font, fontsize, x, y + h/2, sValue);
@@ -71,7 +71,7 @@ function ScaleCellRenderer(tableModel, cellAlignment)
 	/**
 	 * The fisheye table calls this method to render the cell. Classes that extend a cell renderer
 	 * must implement this method.
-	 * @member ScaleCellRenderer
+	 * @member greg.ross.visualisation.ScaleCellRenderer
 	 * @param canvasContext the canvas context
 	 * @param row the row index
 	 * @param column the column index
