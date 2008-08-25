@@ -13,4 +13,4 @@ Here's a view of the same data but with the fisheye lens feature turned off.
 
 || http://magic-table.googlecode.com/svn/trunk/images/vols_bar.png || We now obtain a classic table view of the data and as such we'd need to scroll around to see all the values. ||
 
-To see this example in action, download the library, go to the "examples" directory and open volatilities.html.
+To see this example in action, click [http://magic-table.googlecode.com/svn/trunk/magic-table/examples/volatilities.html here] or download the library, go to the "examples" directory and open volatilities.html.
