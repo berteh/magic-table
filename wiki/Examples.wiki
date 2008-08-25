@@ -1,7 +1,7 @@
-|| [http://code.google.com/p/magic-table/wiki/ExampleColourGradient http://magic-table.googlecode.com/svn/trunk/images/gradients_thumb.png] || *[http://code.google.com/p/magic-table/wiki/ExampleColourGradient Colour gradients]* ||
+|| [http://magic-table.googlecode.com/svn/trunk/magic-table/examples/colour%20ramps.html http://magic-table.googlecode.com/svn/trunk/images/gradients_thumb.png] || *[http://magic-table.googlecode.com/svn/trunk/magic-table/examples/colour%20ramps.html Colour gradients]* ||
 
-|| [http://code.google.com/p/magic-table/wiki/ExampleScatterplot http://magic-table.googlecode.com/svn/trunk/images/scatterplot_thumb.png] || *[http://code.google.com/p/magic-table/wiki/ExampleScatterplot Table as a scatterplot]* ||
+|| [http://magic-table.googlecode.com/svn/trunk/magic-table/examples/table%20scatterplot.html http://magic-table.googlecode.com/svn/trunk/images/scatterplot_thumb.png] || *[http://magic-table.googlecode.com/svn/trunk/magic-table/examples/table%20scatterplot.html Table as a scatterplot]* ||
 
-|| [http://code.google.com/p/magic-table/wiki/ExampleTableBarChart http://magic-table.googlecode.com/svn/trunk/images/barchart_thumb.png] || *[http://code.google.com/p/magic-table/wiki/ExampleTableBarChart barcharts]* ||
+|| [http://magic-table.googlecode.com/svn/trunk/magic-table/examples/table%20barchart.html http://magic-table.googlecode.com/svn/trunk/images/barchart_thumb.png] || *[http://magic-table.googlecode.com/svn/trunk/magic-table/examples/table%20barchart.html barcharts]* ||
 
-|| [http://code.google.com/p/magic-table/wiki/ExampleVolatilities http://magic-table.googlecode.com/svn/trunk/images/volatilities_thumb.png] || *[http://code.google.com/p/magic-table/wiki/ExampleVolatilities Financial data]* ||
+|| [http://magic-table.googlecode.com/svn/trunk/magic-table/examples/volatilities.html http://magic-table.googlecode.com/svn/trunk/images/volatilities_thumb.png] || *[http://magic-table.googlecode.com/svn/trunk/magic-table/examples/volatilities.html Financial data]* ||
