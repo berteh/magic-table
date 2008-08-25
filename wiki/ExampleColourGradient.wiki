@@ -3,9 +3,9 @@
 
 This example demonstrates how to use colour ramps with the table. The colours are only applied to cells that hold numbers, and the range of numbers across the whole table determines which colour is taken from the ramp, from minimum to maximum.
 
-|| http://magic-table.googlecode.com/svn/trunk/images/gradients.png|| [http://code.google.com/p/magic-table/source/browse/trunk/magic-table/examples/colour%20ramps.html Click here to see the code]        Click here to view the example||
+|| http://magic-table.googlecode.com/svn/trunk/images/gradients.png|| [http://code.google.com/p/magic-table/source/browse/trunk/magic-table/examples/colour%20ramps.html Click here to see the code]||
 
-To see this example in action, download the library, go to the "examples" directory and open 'colour ramps.html'.
+To see this example in action, click [http://magic-table.googlecode.com/svn/trunk/magic-table/examples/colour%20ramps.html here] or download the library, go to the "examples" directory and open 'colour ramps.html'.
 
 {{{
 function drawTable()
