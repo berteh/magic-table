@@ -278,8 +278,12 @@ greg.ross.visualisation.FisheyeTable = function(tableModel, x, y, width, height,
 		if (!targetElement) 
 			document.body.appendChild(this.targetDiv);
 		else 
+		{
+			this.targetDiv.style.position = 'relative';
 			targetElement.appendChild(this.targetDiv);
-			
+			var containerPosition = getElementPosition(targetElement);
+		}
+		
 		this.targetDiv.style.left = x + "px";
 		this.targetDiv.style.top = y + "px";
 	}
