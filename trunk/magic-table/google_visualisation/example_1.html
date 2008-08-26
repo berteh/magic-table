@@ -2,8 +2,9 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title>Magic Table Google Visualisation</title>
+		<title>A Magic Table</title>
 		
+		<link href="http://magic-table.googlecode.com/svn/trunk/magic-table/google_visualisation/example.css" type="text/css" rel="stylesheet"></link>
 		<script type="text/javascript" src='http://magic-table.googlecode.com/svn/trunk/magic-table/javascript/magic_table.js'></script>
 		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	    
@@ -37,7 +38,7 @@
 				}
 				while (i-- > 0)
 				
-				var vis = new greg.ross.visualisation.MagicTable(document.getElementById('tableDiv'));
+				var vis = new greg.ross.visualisation.MagicTable(document.getElementById('chart_div'));
 				
 				options = {};
 				options.tableTitle = "Bar-fill";
@@ -47,8 +48,8 @@
 				options.defaultColumnWidth = 60;
 				options.rowHeaderCount = 0;
 				options.columnHeaderCount = 0;
-				options.tablePositionX = 150;
-				options.tablePositionY = 60;
+				options.tablePositionX = 0;
+				options.tablePositionY = 0;
 				options.tableHeight = 403;
 				options.tableWidth = 315;
 				
@@ -58,6 +59,266 @@
 		
 	</head>
 	<body>
+		<a name="gc-pagecontent-anchor"></a>   
+      	<div class="g-unit" id="gc-pagecontent">
+        <h1 class="page_title">Visualization: A Magic Table</h1>
+
+	<div class="toc">
+  		<ol>
+
+  			<li><a href="#Overview">Overview</a>
+  			<li><a href="#Example">Example</a>
+  			<li><a href="#Loading">Loading</a>
+  			<li><a href="#Data_Format">Data Format</a>
+  			<li><a href="#Configuration_Options">Configuration Options</a>
+  			<li><a href="#Methods">Methods</a>
+
+  			<li><a href="#Events">Events</a>
+ 	 		<li><a href="#Data_Policy">Data Policy</a>
+  		</ol>
+	</div>
+
+	<h1><a name="Overview" id="Overview"></a>Overview</h1>
+	<p>
+	The Magic Table is a JavaScript library that allows you to see more in your data by applying some simple visual techniques to transform a table.
+ The table is displayed in the browser by the canvas element. Internet Explorer is not supported.
+	</p>
+	<p>
+	By: Greg Ross
+
+	</p>
+
+	<h1><a name="Example" id="Example"></a>Example</h1>
+
+	<p><div id="chart_div""></div></p>
+
+	<pre class="prettyprint">
+&lt;html&gt;
+  &lt;head&gt;
+  &lt;title&gt;A Magic Table&lt;/title&gt;
+		
+  &lt;script type=&quot;text/javascript&quot; 
+    src='http://magic-table.googlecode.com/svn/trunk/magic-table/javascript/magic_table.js'&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;http://www.google.com/jsapi&quot;&gt;&lt;/script&gt;
+	    
+  &lt;script type=&quot;text/javascript&quot;&gt;
+    google.load(&quot;visualization&quot;, &quot;1&quot;);
+    google.setOnLoadCallback(drawVisualization);
+	
+    function drawVisualization()
+    {
+      var rows = 16;
+      var columns = 5;
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'column 1');
+      data.addColumn('number', 'column 2');
+      data.addColumn('number', 'column 3');
+      data.addColumn('number', 'column 4');
+      data.addColumn('number', 'column 5');
+      data.addRows(rows);
+
+      var i = rows - 1;
+      var j;
+		
+      do
+      {
+         j = columns - 1;
+         do
+         {
+            data.setCell(i, j, Math.round(Math.random()*10));
+         }
+         while (j-- &gt; 0) 
+      }
+      while (i-- &gt; 0)
+
+      var vis = new greg.ross.visualisation.MagicTable(document.getElementById('chart_div'));
+
+      options = {};
+      options.tableTitle = &quot;Bar-fill&quot;;
+      options.enableFisheye = true;
+      options.enableBarFill = true;
+      options.defaultRowHeight = 25;
+      options.defaultColumnWidth = 60;
+      options.rowHeaderCount = 0;
+      options.columnHeaderCount = 0;
+      options.tablePositionX = 0;
+      options.tablePositionY = 0;
+      options.tableHeight = 403;
+      options.tableWidth = 315;
+
+      vis.draw(data, options);
+  }
+  &lt;/script&gt;
+		
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;chart_div&quot;&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+	</pre>
+
+	<h1><a name="Loading" id="Loading"></a>Loading</h1>
+
+	<p>
+	A <code>google.load</code> package name is not required.
+	</p>
+
+	<pre class="prettyprint">
+	  	google.load("visualization", "1");
+	</pre>
+	
+	<p>
+		The visualization's class name is <code>greg.ross.visualisation.MagicTable</code>
+	</p>
+	
+	<pre class="prettyprint">
+	  	var vis = new greg.ross.visualisation.MagicTable(document.getElementById('chart_div'));
+	</pre>
+	
+	<h1><a name="Data_Format" id="Data_Format"></a>Data Format</h1>
+	
+	<p>
+	The table can contain strings as well as numbers, although the default background colour for strings is white.
+	
+	<ol>
+	  <li>
+	    Any number of rows and columns columns.
+	  </li>
+	  <li>
+	    Any number of row and header scale cells. These are displayed when the 'fisheye' function is switched off.
+	  </li>
+	
+	</ol>
+	</p>
+	
+	<h1><a name="Configuration_Options" id="Configuration_Options"></a>Configuration Options</h1>
+	
+	<p>
+	<table>
+	  <tr>
+	    <th>Name</th>
+	    <th>Type</th>
+	    <th>Default</th>
+	
+	    <th>Description</th>
+	  </tr>
+	  <tr>
+	  <tr>
+	    <td>tableTitle</td>
+	    <td>String</td>
+	    <td>none</td>
+	
+	    <td>The title that appears above the table.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>enableFisheye</td>
+	    <td>boolean</td>
+	    <td>true</td>
+	    <td>This switches the fisheye function on or off.
+	    </td>
+	
+	  </tr>
+	  <tr>
+	    <td>enableBarFill</td>
+	    <td>boolean</td>
+	    <td>false</td>
+	    <td>This switches the bar-fill function on or off.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>defaultRowHeight</td>
+	    <td>number</td>
+	    <td>none</td>
+	    <td>The default height of rows when the fisheye function is switched off.</td>
+	  </tr>
+	  <tr>
+	    <td>defaultColumnWidth</td>
+	    <td>number</td>
+	    <td>none</td>
+	    <td>The default width of columns when the fisheye function is switched off.</td>
+	  </tr>
+	  <tr>
+	    <td>rowHeaderCount</td>
+	    <td>number</td>
+	    <td>0</td>
+	    <td>This specifies the number of vertical scales, i.e. the row headers.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>columnHeaderCount</td>
+	    <td>number</td>
+	    <td>0</td>
+	    <td>This specifies the number of horizontal scales, i.e. the column headers.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>tablePositionX</td>
+	    <td>number</td>
+	    <td>0</td>
+	    <td>The x-position of the table, relative to the containing element.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>tablePositionY</td>
+	    <td>number</td>
+	    <td>0</td>
+	    <td>The y-position of the table, relative to the containing element.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>tableHeight</td>
+	    <td>number</td>
+	    <td>none</td>
+	    <td>The height of the table.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>tableWidth</td>
+	    <td>number</td>
+	    <td>none</td>
+	    <td>The width of the table.
+	    </td>
+	  </tr>
+	</table>
+	</p>
+	
+	<h1><a name="Methods" id="Methods"></a>Methods</h1>
+	
+	<p>
+	<table>
+	  <tr>
+	    <th>Method</th>
+	    <th>Return Type</th>
+	    <th>Description</th>
+	  </tr>
+	
+	  <tr>
+	    <td><code>draw(data, options)</code></td>
+	    <td>none</td>
+	    <td>Draws the table.</td>
+	  </tr>
+	</table>  
+	</p>
+	
+	<h1><a name="Events" id="Events"></a>Events</h1>
+	
+	<p>No triggered events. 
+	</p>
+	
+	<h1><a name="Data_Policy" id="Data_Policy"></a>Data Policy</h1>
+	
+	<p>
+	All code and data are processed and rendered in the browser. No data is sent to any server.
+	</p>
+
+
+        <!-e end body text -->
+   
+      </div><!-- end gc-pagecontent -->
+   </div><!-- end gooey wrapper -->
+
+    </div> <!-- end codesite content -->
 		<div id="tableDiv"></div">
 	</body>
 </html>
