@@ -1,12 +1,3 @@
-
-
-9 x 9
-<html>
-<head>
-</head>
-<body class="gc-documentation">
-</body>
-</html>
 .g-doc {
 text-align:left;
 width:100%;
@@ -1495,7 +1486,7 @@ border:medium none;
 float:left;
 margin:0pt;
 padding:0pt 0pt 0pt 20px !important;
-width:8.35in;
+width:6.75in;
 }
 #gc-footer {
 left:10px;
@@ -1571,6 +1562,3 @@ background-image:url(/images/minus.gif);
 img.collapsible-control.collapsible-minus.collapsible-hover {
 background-image:url(/images/minus_hover.gif);
 }
-CODESITE_docEarlyProcessing is not defined
-[Break on this error] <script type="text/javascript">CODESITE_docEarlyProcessing();</script>
-example_1.html (line 1632)
