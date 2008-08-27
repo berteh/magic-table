@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - TableGeometry</title>
+		<title>JsDoc Reference - greg.ross.Matrix</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -191,29 +191,31 @@ ul.inheritsList
 	
 	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
 	
-	<li><a href="../symbols/ColourGradient.html">ColourGradient</a></li>
+	<li><a href="../symbols/greg.ross.ColourGradient.html">greg.ross.ColourGradient</a></li>
 	
-	<li><a href="../symbols/DefaultCellRenderer.html">DefaultCellRenderer</a></li>
+	<li><a href="../symbols/greg.ross.DefaultCellRenderer.html">greg.ross.DefaultCellRenderer</a></li>
 	
-	<li><a href="../symbols/Fisheye.html">Fisheye</a></li>
+	<li><a href="../symbols/greg.ross.Fisheye.html">greg.ross.Fisheye</a></li>
 	
-	<li><a href="../symbols/FisheyeCellRenderer.html">FisheyeCellRenderer</a></li>
+	<li><a href="../symbols/greg.ross.FisheyeCellRenderer.html">greg.ross.FisheyeCellRenderer</a></li>
 	
-	<li><a href="../symbols/FisheyeTable.html">FisheyeTable</a></li>
+	<li><a href="../symbols/greg.ross.FisheyeTable.html">greg.ross.FisheyeTable</a></li>
 	
-	<li><a href="../symbols/Hashtable.html">Hashtable</a></li>
+	<li><a href="../symbols/greg.ross.Hashtable.html">greg.ross.Hashtable</a></li>
 	
-	<li><a href="../symbols/Matrix.html">Matrix</a></li>
+	<li><a href="../symbols/greg.ross.MagicTable.html">greg.ross.MagicTable</a></li>
 	
-	<li><a href="../symbols/ScaleCellRenderer.html">ScaleCellRenderer</a></li>
+	<li><a href="../symbols/greg.ross.Matrix.html">greg.ross.Matrix</a></li>
 	
-	<li><a href="../symbols/TableGeometry.html">TableGeometry</a></li>
+	<li><a href="../symbols/greg.ross.ScaleCellRenderer.html">greg.ross.ScaleCellRenderer</a></li>
 	
-	<li><a href="../symbols/TableGradientColourProvider.html">TableGradientColourProvider</a></li>
+	<li><a href="../symbols/greg.ross.TableGeometry.html">greg.ross.TableGeometry</a></li>
 	
-	<li><a href="../symbols/TableMath.html">TableMath</a></li>
+	<li><a href="../symbols/greg.ross.TableGradientColourProvider.html">greg.ross.TableGradientColourProvider</a></li>
 	
-	<li><a href="../symbols/TableModel.html">TableModel</a></li>
+	<li><a href="../symbols/greg.ross.TableMath.html">greg.ross.TableMath</a></li>
+	
+	<li><a href="../symbols/greg.ross.TableModel.html">greg.ross.TableModel</a></li>
 	
 </ul>
 <hr />
@@ -224,7 +226,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class TableGeometry
+				Class greg.ross.Matrix
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -234,13 +236,13 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_gregross_magic-table_magic-table_javascript_fisheyeTable.js.html">fisheyeTable.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_gregross_magic-table_magic-table_javascript_Matrix.js.html">Matrix.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class TableGeometry.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class greg.ross.Matrix.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -253,9 +255,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/TableGeometry.html#constructor">TableGeometry</a></b>()
+								<b><a href="../symbols/greg.ross.Matrix.html#constructor">greg.ross.Matrix</a></b>()
 							</div>
-							<div class="description">Utility class for geometric functions.</div>
+							<div class="description">This class represents an n-dimensional sparse matrix data structure.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -269,7 +271,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class TableGeometry.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class greg.ross.Matrix.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -280,20 +282,38 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">TableGeometry.<b><a href="../symbols/TableGeometry.html#.getArea">getArea</a></b>(tlX, tlY, trX, trY, brX, brY, blX, blY)
+								<div class="fixedFont"><b><a href="../symbols/greg.ross.Matrix.html#get">get</a></b>(indices)
 								</div>
-								<div class="description">Return the area of the polygon defined by the given coordinates.</div>
+								<div class="description">Return a value from the matrix.</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">TableGeometry.<b><a href="../symbols/TableGeometry.html#.getCentre">getCentre</a></b>(tlX, tlY, trX, trY, brX, brY, blX, blY)
+								<div class="fixedFont"><b><a href="../symbols/greg.ross.Matrix.html#getMaxValue">getMaxValue</a></b>()
 								</div>
-								<div class="description">Return the center of the polygon specified by the given coordinates.</div>
+								<div class="description">Return the maximum numeric value in the matrix.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/greg.ross.Matrix.html#getMinValue">getMinValue</a></b>()
+								</div>
+								<div class="description">Return the minimum numeric value in the matrix.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/greg.ross.Matrix.html#put">put</a></b>(indices, value)
+								</div>
+								<div class="description">Put a new value in the matrix.</div>
 							</td>
 						</tr>
 					
@@ -312,12 +332,12 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>TableGeometry</b>()
+						<b>greg.ross.Matrix</b>()
 				</div>
 				
 				<div class="description">
-					Utility class for geometric functions.
-					
+					This class represents an n-dimensional sparse matrix data structure.
+					<br /><i>Author: </i>Greg Ross.
 				</div>
 				
 				
@@ -343,15 +363,15 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name=".getArea"> </a>
-					<div class="fixedFont">&lt;static&gt; 
+					<a name="get"> </a>
+					<div class="fixedFont">
 					
 					
-					<span class="light">TableGeometry.</span><b>getArea</b>(tlX, tlY, trX, trY, brX, brY, blX, blY)
+					<b>get</b>(indices)
 					
 					</div>
 					<div class="description">
-						Return the area of the polygon defined by the given coordinates.
+						Return a value from the matrix.
 						
 						
 					</div>
@@ -363,52 +383,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>tlX</b>
+									<b>indices</b>
 									
 								</dt>
-								<dd>top-left X-coordinate</dd>
-							
-								<dt>
-									<b>tlY</b>
-									
-								</dt>
-								<dd>top-left Y-coordinate</dd>
-							
-								<dt>
-									<b>trX</b>
-									
-								</dt>
-								<dd>top-right X-coordinate</dd>
-							
-								<dt>
-									<b>trY</b>
-									
-								</dt>
-								<dd>top-right Y-coordinate</dd>
-							
-								<dt>
-									<b>brX</b>
-									
-								</dt>
-								<dd>bottom-right X-coordinate</dd>
-							
-								<dt>
-									<b>brY</b>
-									
-								</dt>
-								<dd>bottom-right Y-coordinate</dd>
-							
-								<dt>
-									<b>blX</b>
-									
-								</dt>
-								<dd>bottom-left X-coordinate</dd>
-							
-								<dt>
-									<b>blY</b>
-									
-								</dt>
-								<dd>bottom-left Y-coordinate</dd>
+								<dd>an array specifying the n-dimensional element indices, e.g. [1, 0, 0, 2]</dd>
 							
 							</dl>
 						
@@ -421,15 +399,65 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name=".getCentre"> </a>
-					<div class="fixedFont">&lt;static&gt; 
+					<a name="getMaxValue"> </a>
+					<div class="fixedFont">
 					
 					
-					<span class="light">TableGeometry.</span><b>getCentre</b>(tlX, tlY, trX, trY, brX, brY, blX, blY)
+					<b>getMaxValue</b>()
 					
 					</div>
 					<div class="description">
-						Return the center of the polygon specified by the given coordinates.
+						Return the maximum numeric value in the matrix.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getMinValue"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getMinValue</b>()
+					
+					</div>
+					<div class="description">
+						Return the minimum numeric value in the matrix.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="put"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>put</b>(indices, value)
+					
+					</div>
+					<div class="description">
+						Put a new value in the matrix.
 						
 						
 					</div>
@@ -441,52 +469,16 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>tlX</b>
+									<b>indices</b>
 									
 								</dt>
-								<dd>top-left X-coordinate</dd>
+								<dd>an array specifying the n-dimensional element indices, e.g. [1, 0, 0, 2]</dd>
 							
 								<dt>
-									<b>tlY</b>
+									<b>value</b>
 									
 								</dt>
-								<dd>top-left Y-coordinate</dd>
-							
-								<dt>
-									<b>trX</b>
-									
-								</dt>
-								<dd>top-right X-coordinate</dd>
-							
-								<dt>
-									<b>trY</b>
-									
-								</dt>
-								<dd>top-right Y-coordinate</dd>
-							
-								<dt>
-									<b>brX</b>
-									
-								</dt>
-								<dd>bottom-right X-coordinate</dd>
-							
-								<dt>
-									<b>brY</b>
-									
-								</dt>
-								<dd>bottom-right Y-coordinate</dd>
-							
-								<dt>
-									<b>blX</b>
-									
-								</dt>
-								<dd>bottom-left X-coordinate</dd>
-							
-								<dt>
-									<b>blY</b>
-									
-								</dt>
-								<dd>bottom-left Y-coordinate</dd>
+								<dd></dd>
 							
 							</dl>
 						
@@ -507,7 +499,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://www.jsdoctoolkit.org/" target="_blank">JsDoc Toolkit</a> 2.0.2 on Sat Aug 16 2008 15:18:55 GMT+0100 (BST)
+			Documentation generated by <a href="http://www.jsdoctoolkit.org/" target="_blank">JsDoc Toolkit</a> 2.0.2 on Sun Aug 24 2008 18:56:50 GMT+0100 (BST)
 		</div>
 	</body>
 </html>

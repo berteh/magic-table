@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - TableMath</title>
+		<title>JsDoc Reference - greg.ross.FisheyeTable</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -191,29 +191,31 @@ ul.inheritsList
 	
 	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
 	
-	<li><a href="../symbols/ColourGradient.html">ColourGradient</a></li>
+	<li><a href="../symbols/greg.ross.ColourGradient.html">greg.ross.ColourGradient</a></li>
 	
-	<li><a href="../symbols/DefaultCellRenderer.html">DefaultCellRenderer</a></li>
+	<li><a href="../symbols/greg.ross.DefaultCellRenderer.html">greg.ross.DefaultCellRenderer</a></li>
 	
-	<li><a href="../symbols/Fisheye.html">Fisheye</a></li>
+	<li><a href="../symbols/greg.ross.Fisheye.html">greg.ross.Fisheye</a></li>
 	
-	<li><a href="../symbols/FisheyeCellRenderer.html">FisheyeCellRenderer</a></li>
+	<li><a href="../symbols/greg.ross.FisheyeCellRenderer.html">greg.ross.FisheyeCellRenderer</a></li>
 	
-	<li><a href="../symbols/FisheyeTable.html">FisheyeTable</a></li>
+	<li><a href="../symbols/greg.ross.FisheyeTable.html">greg.ross.FisheyeTable</a></li>
 	
-	<li><a href="../symbols/Hashtable.html">Hashtable</a></li>
+	<li><a href="../symbols/greg.ross.Hashtable.html">greg.ross.Hashtable</a></li>
 	
-	<li><a href="../symbols/Matrix.html">Matrix</a></li>
+	<li><a href="../symbols/greg.ross.MagicTable.html">greg.ross.MagicTable</a></li>
 	
-	<li><a href="../symbols/ScaleCellRenderer.html">ScaleCellRenderer</a></li>
+	<li><a href="../symbols/greg.ross.Matrix.html">greg.ross.Matrix</a></li>
 	
-	<li><a href="../symbols/TableGeometry.html">TableGeometry</a></li>
+	<li><a href="../symbols/greg.ross.ScaleCellRenderer.html">greg.ross.ScaleCellRenderer</a></li>
 	
-	<li><a href="../symbols/TableGradientColourProvider.html">TableGradientColourProvider</a></li>
+	<li><a href="../symbols/greg.ross.TableGeometry.html">greg.ross.TableGeometry</a></li>
 	
-	<li><a href="../symbols/TableMath.html">TableMath</a></li>
+	<li><a href="../symbols/greg.ross.TableGradientColourProvider.html">greg.ross.TableGradientColourProvider</a></li>
 	
-	<li><a href="../symbols/TableModel.html">TableModel</a></li>
+	<li><a href="../symbols/greg.ross.TableMath.html">greg.ross.TableMath</a></li>
+	
+	<li><a href="../symbols/greg.ross.TableModel.html">greg.ross.TableModel</a></li>
 	
 </ul>
 <hr />
@@ -224,7 +226,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class TableMath
+				Class greg.ross.FisheyeTable
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -240,7 +242,7 @@ ul.inheritsList
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class TableMath.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class greg.ross.FisheyeTable.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -253,9 +255,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/TableMath.html#constructor">TableMath</a></b>()
+								<b><a href="../symbols/greg.ross.FisheyeTable.html#constructor">greg.ross.FisheyeTable</a></b>(tableModel, x, y, width, height, tableTitle, targetElement)
 							</div>
-							<div class="description">Utlity class for math functions.</div>
+							<div class="description">This is the library's core class.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -269,7 +271,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class TableMath.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class greg.ross.FisheyeTable.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -280,20 +282,38 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">TableMath.<b><a href="../symbols/TableMath.html#.calculateBarWidth">calculateBarWidth</a></b>(tableModel, cellValue, maxWidth, column)
+								<div class="fixedFont"><b><a href="../symbols/greg.ross.FisheyeTable.html#enableFisheye">enableFisheye</a></b>(setFisheye)
 								</div>
-								<div class="description">Return the amount by which a table cell must be filled to represent the numeric value it contains.</div>
+								<div class="description">Setting this to true enables the fisheye lens feature.</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">TableMath.<b><a href="../symbols/TableMath.html#.isNumber">isNumber</a></b>(value)
+								<div class="fixedFont"><b><a href="../symbols/greg.ross.FisheyeTable.html#redraw">redraw</a></b>()
 								</div>
-								<div class="description">Return true if the given value is a number.</div>
+								<div class="description">Calling this method tells the table to redraw its self.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/greg.ross.FisheyeTable.html#removeTable">removeTable</a></b>(id)
+								</div>
+								<div class="description">Call this to remove the table from the web page.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/greg.ross.FisheyeTable.html#setBarFill">setBarFill</a></b>(barfill)
+								</div>
+								<div class="description">Setting this to true fills in cells by an amount proportional to the value contained.</div>
 							</td>
 						</tr>
 					
@@ -312,17 +332,65 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>TableMath</b>()
+						<b>greg.ross.FisheyeTable</b>(tableModel, x, y, width, height, tableTitle, targetElement)
 				</div>
 				
 				<div class="description">
-					Utlity class for math functions.
-					
+					This is the library's core class.
+					<br /><i>Author: </i>Greg Ross.
 				</div>
 				
 				
 				
 				
+					
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
+						
+							<dt>
+								 <b>tableModel</b>
+								
+							</dt>
+								<dd>contains the data and meta data for rendering the table</dd>
+						
+							<dt>
+								 <b>x</b>
+								
+							</dt>
+								<dd>the x-axis position of the table</dd>
+						
+							<dt>
+								 <b>y</b>
+								
+							</dt>
+								<dd>the y-axis position of the table</dd>
+						
+							<dt>
+								 <b>width</b>
+								
+							</dt>
+								<dd>the table's width</dd>
+						
+							<dt>
+								 <b>height</b>
+								
+							</dt>
+								<dd>the table's height</dd>
+						
+							<dt>
+								 <b>tableTitle</b>
+								
+							</dt>
+								<dd>the title that appears above the table</dd>
+						
+							<dt>
+								 <b>targetElement</b>
+								
+							</dt>
+								<dd>the element in which the table html will be nested. If this is ommitted the table's position
+will be absolute, otherwise it will be relative to the target element.</dd>
+						
+						</dl>
 					
 					
 					
@@ -343,15 +411,16 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name=".calculateBarWidth"> </a>
-					<div class="fixedFont">&lt;static&gt; 
+					<a name="enableFisheye"> </a>
+					<div class="fixedFont">
 					
 					
-					<span class="light">TableMath.</span><b>calculateBarWidth</b>(tableModel, cellValue, maxWidth, column)
+					<b>enableFisheye</b>(setFisheye)
 					
 					</div>
 					<div class="description">
-						Return the amount by which a table cell must be filled to represent the numeric value it contains.
+						Setting this to true enables the fisheye lens feature. Setting it to false renders
+the data in a normal table view.
 						
 						
 					</div>
@@ -363,28 +432,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>tableModel</b>
+									<b>setFisheye</b>
 									
 								</dt>
-								<dd>the model containing the table data</dd>
-							
-								<dt>
-									<b>cellValue</b>
-									
-								</dt>
-								<dd>the value contained in the cell</dd>
-							
-								<dt>
-									<b>maxWidth</b>
-									
-								</dt>
-								<dd>the maximum allowable fill width. This is equal to the width of the cell</dd>
-							
-								<dt>
-									<b>column</b>
-									
-								</dt>
-								<dd>the cell's column index</dd>
+								<dd>(true/false)</dd>
 							
 							</dl>
 						
@@ -397,15 +448,40 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name=".isNumber"> </a>
-					<div class="fixedFont">&lt;static&gt; 
+					<a name="redraw"> </a>
+					<div class="fixedFont">
 					
 					
-					<span class="light">TableMath.</span><b>isNumber</b>(value)
+					<b>redraw</b>()
 					
 					</div>
 					<div class="description">
-						Return true if the given value is a number.
+						Calling this method tells the table to redraw its self.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeTable"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeTable</b>(id)
+					
+					</div>
+					<div class="description">
+						Call this to remove the table from the web page.
 						
 						
 					</div>
@@ -417,10 +493,48 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>value</b>
+									<b>id</b>
 									
 								</dt>
-								<dd>expression to be evaluated</dd>
+								<dd>the ID of the fisheye table. The ID is allocated automatically by the
+allocateId() method.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setBarFill"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setBarFill</b>(barfill)
+					
+					</div>
+					<div class="description">
+						Setting this to true fills in cells by an amount proportional to the value contained.
+This provides a bar chart view of the data.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>barfill</b>
+									
+								</dt>
+								<dd>(true/false)</dd>
 							
 							</dl>
 						
@@ -441,7 +555,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://www.jsdoctoolkit.org/" target="_blank">JsDoc Toolkit</a> 2.0.2 on Sat Aug 16 2008 15:18:55 GMT+0100 (BST)
+			Documentation generated by <a href="http://www.jsdoctoolkit.org/" target="_blank">JsDoc Toolkit</a> 2.0.2 on Sun Aug 24 2008 18:56:50 GMT+0100 (BST)
 		</div>
 	</body>
 </html>
