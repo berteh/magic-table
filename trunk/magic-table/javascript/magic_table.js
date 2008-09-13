@@ -55,6 +55,7 @@ greg.ross.visualisation.MagicTable.prototype.draw = function(data, options)
 {
     var defaultRowHeight = options.defaultRowHeight;
     var defaultColumnWidth = options.defaultColumnWidth;
+	var columnWidths = options.columnWidths;
     var tablePositionX = options.tablePositionX;
     var tablePositionY = options.tablePositionY;
     var tableHeight = options.tableHeight;
@@ -80,6 +81,13 @@ greg.ross.visualisation.MagicTable.prototype.draw = function(data, options)
         while (j-- > 0)
     }
     while (i-- > 0)
+	
+	i = columnWidths.length - 1;
+	do
+	{
+		tableModel.setColumnWidth(columnWidths[i].column, columnWidths[i].width);
+	}
+	while (i-- > 0)
     
     tableModel.recalculateMinMaxValues();
     
