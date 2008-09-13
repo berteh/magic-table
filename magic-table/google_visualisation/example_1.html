@@ -39,7 +39,7 @@
 				var vis = new greg.ross.visualisation.MagicTable(document.getElementById('chart_div'));
 				
 				options = {};
-				options.tableTitle = "Bar-fill";
+				options.tableTitle = "Volatilties";
 				options.enableFisheye = true;
 				options.enableBarFill = true;
 				options.defaultRowHeight = 25;
@@ -57,7 +57,6 @@
 			
 			function setRowHeaders(data)
 			{
-				//tableModel.setColumnWidth(0, 130);
 				data.setCell(0, 0, "expiry/maturity");
 				data.setCell(1, 0, "01-Jan-08");
 				data.setCell(2, 0, "02-Jan-08");
