@@ -14,29 +14,27 @@
 	
 			function drawVisualization()
 			{
-				var rows = 16;
-				var columns = 5;
+				var rowHeaderCount = 1;
+				var columnHeaderCount = 1;
+				var rows = 23 + columnHeaderCount;
+				var columns = 13 + rowHeaderCount;
 				var data = new google.visualization.DataTable();
-				data.addColumn('number', 'column 1');
-				data.addColumn('number', 'column 2');
-				data.addColumn('number', 'column 3');
-				data.addColumn('number', 'column 4');
-				data.addColumn('number', 'column 5');
-				data.addRows(rows);
 				
-				var i = rows - 1;
-				var j;
+				var i = columns - 1;
+				
+				data.addColumn('string');
 				
 				do
 				{
-					j = columns - 1;
-					do
-					{
-						data.setCell(i, j, Math.round(Math.random()*10));
-					}
-					while (j-- > 0) 
+					data.addColumn('string');
 				}
-				while (i-- > 0)
+				while (i-- > 1)
+				
+				data.addRows(rows);
+				
+				setRowHeaders(data);
+				setColumnHeaders(data);
+				setData(data);
 				
 				var vis = new greg.ross.visualisation.MagicTable(document.getElementById('chart_div'));
 				
@@ -45,15 +43,388 @@
 				options.enableFisheye = true;
 				options.enableBarFill = true;
 				options.defaultRowHeight = 25;
-				options.defaultColumnWidth = 60;
-				options.rowHeaderCount = 0;
-				options.columnHeaderCount = 0;
+				options.defaultColumnWidth = 70;
+				options.columnWidths = [{column : 0, width : 130}];
+				options.rowHeaderCount = rowHeaderCount;
+				options.columnHeaderCount = columnHeaderCount;
 				options.tablePositionX = 0;
 				options.tablePositionY = 0;
-				options.tableHeight = 403;
-				options.tableWidth = 315;
+				options.tableHeight = 400;
+				options.tableWidth = 600;
 				
 				vis.draw(data, options);
+			}
+			
+			function setRowHeaders(data)
+			{
+				//tableModel.setColumnWidth(0, 130);
+				data.setCell(0, 0, "expiry/maturity");
+				data.setCell(1, 0, "01-Jan-08");
+				data.setCell(2, 0, "02-Jan-08");
+				data.setCell(3, 0, "03-Jan-08");
+				data.setCell(4, 0, "04-Jan-08");
+				data.setCell(5, 0, "07-Jan-08");
+				data.setCell(6, 0, "08-Jan-08");
+				data.setCell(7, 0, "09-Jan-08");
+				data.setCell(8, 0, "10-Jan-08");
+				data.setCell(9, 0, "11-Jan-08");
+				data.setCell(10, 0, "14-Jan-08");
+				data.setCell(11, 0, "15-Jan-08");
+				data.setCell(12, 0, "16-Jan-08");
+				data.setCell(13, 0, "17-Jan-08");
+				data.setCell(14, 0, "18-Jan-08");
+				data.setCell(15, 0, "21-Jan-08");
+				data.setCell(16, 0, "22-Jan-08");
+				data.setCell(17, 0, "23-Jan-08");
+				data.setCell(18, 0, "24-Jan-08");
+				data.setCell(19, 0, "25-Jan-08");
+				data.setCell(20, 0, "28-Jan-08");
+				data.setCell(21, 0, "29-Jan-08");
+				data.setCell(22, 0, "30-Jan-08");
+				data.setCell(23, 0, "31-Jan-08");
+			}
+			
+			function setColumnHeaders(data)
+			{
+				data.setCell(0, 1, "Spot rate");
+				data.setCell(0, 2, "1 week");
+				data.setCell(0, 3, "1 month");
+				data.setCell(0, 4, "3 months");
+				data.setCell(0, 5, "6 months");
+				data.setCell(0, 6, "1 year");
+				data.setCell(0, 7, "2 years");
+				data.setCell(0, 8, "3 years");
+				data.setCell(0, 9, "5 years");
+				data.setCell(0, 10, "6 years");
+				data.setCell(0, 11, "7 years");
+				data.setCell(0, 12, "9 years");
+				data.setCell(0, 13, "10 years");
+			}
+			
+			function setData(data)
+			{
+				data.setCell(1, 1, 1.9795 + "");
+				data.setCell(1, 2, 9.93 + "");
+				data.setCell(1, 3, 9.8 + "");
+				data.setCell(1, 4, 9.8 + "");
+				data.setCell(1, 5, 9.42 + "");
+				data.setCell(1, 6, 9.25 + "");
+				data.setCell(1, 7, 9.05 + "");
+				data.setCell(1, 8, -0.82 + "");
+				data.setCell(1, 9, -0.79 + "");
+				data.setCell(1, 10, -0.38 + "");
+				data.setCell(1, 11, 0.23 + "");
+				data.setCell(1, 12, 0.32 + "");
+				data.setCell(1, 13, 0.39 + "");
+				
+				data.setCell(2, 1, 1.9732 + "");
+				data.setCell(2, 2, 9.98 + "");
+				data.setCell(2, 3, 9.73 + "");
+				data.setCell(2, 4, 9.73 + "");
+				data.setCell(2, 5, 9.48 + "");
+				data.setCell(2, 6, 9.25 + "");
+				data.setCell(2, 7, 9.11 + "");
+				data.setCell(2, 8, -0.61 + "");
+				data.setCell(2, 9, -0.59 + "");
+				data.setCell(2, 10, -0.62 + "");
+				data.setCell(2, 11, 0.26 + "");
+				data.setCell(2, 12, 0.33 + "");
+				data.setCell(2, 13, 0.39 + "");
+				
+				data.setCell(3, 1, 1.9754 + "");
+				data.setCell(3, 2, 9.25 + "");
+				data.setCell(3, 3, 9.45 + "");
+				data.setCell(3, 4, 9.45 + "");
+				data.setCell(3, 5, 9.38 + "");
+				data.setCell(3, 6, 9.2 + "");
+				data.setCell(3, 7, 9.1 + "");
+				data.setCell(3, 8, -1.2 + "");
+				data.setCell(3, 9, -1.22 + "");
+				data.setCell(3, 10, -1.3 + "");
+				data.setCell(3, 11, 0.29 + "");
+				data.setCell(3, 12, 0.33 + "");
+				data.setCell(3, 13, 0.39 + "");
+				
+				data.setCell(4, 1, 1.9725 + "");
+				data.setCell(4, 2, 9.25 + "");
+				data.setCell(4, 3, 9.55 + "");
+				data.setCell(4, 4, 9.55 + "");
+				data.setCell(4, 5, 9.23 + "");
+				data.setCell(4, 6, 9.18 + "");
+				data.setCell(4, 7, 9.03 + "");
+				data.setCell(4, 8, -1.14 + "");
+				data.setCell(4, 9, -1.18 + "");
+				data.setCell(4, 10, -0.83 + "");
+				data.setCell(4, 11, 0.27 + "");
+				data.setCell(4, 12, 0.32 + "");
+				data.setCell(4, 13, 0.39 + "");
+				
+				data.setCell(5, 1, 1.9724 + "");
+				data.setCell(5, 2, 8.83 + "");
+				data.setCell(5, 3, 9.32 + "");
+				data.setCell(5, 4, 9.32 + "");
+				data.setCell(5, 5, 9.13 + "");
+				data.setCell(5, 6, 9.07 + "");
+				data.setCell(5, 7, 8.92 + "");
+				data.setCell(5, 8, -0.72 + "");
+				data.setCell(5, 9, -0.73 + "");
+				data.setCell(5, 10, -0.42 + "");
+				data.setCell(5, 11, 0.22 + "");
+				data.setCell(5, 12, 0.3 + "");
+				data.setCell(5, 13, 0.38 + "");
+				
+				data.setCell(6, 1, 1.935 + "");
+				data.setCell(6, 2, 9.37 + "");
+				data.setCell(6, 3, 9.41 + "");
+				data.setCell(6, 4, 9.41 + "");
+				data.setCell(6, 5, 9.25 + "");
+				data.setCell(6, 6, 9.15 + "");
+				data.setCell(6, 7, 9.02 + "");
+				data.setCell(6, 8, -1.13 + "");
+				data.setCell(6, 9, -1.11 + "");
+				data.setCell(6, 10, -0.82 + "");
+				data.setCell(6, 11, 0.25 + "");
+				data.setCell(6, 12, 0.31 + "");
+				data.setCell(6, 13, 0.39 + "");
+				
+				data.setCell(7, 1, 1.9575 + "");
+				data.setCell(7, 2, 8.91 + "");
+				data.setCell(7, 3, 9.05 + "");
+				data.setCell(7, 4, 9.05 + "");
+				data.setCell(7, 5, 9 + "");
+				data.setCell(7, 6, 8.95 + "");
+				data.setCell(7, 7, 8.83 + "");
+				data.setCell(7, 8, -1.08 + "");
+				data.setCell(7, 9, -1.09 + "");
+				data.setCell(7, 10, -0.52 + "");
+				data.setCell(7, 11, 0.24 + "");
+				data.setCell(7, 12, 0.31 + "");
+				data.setCell(7, 13, 0.38 + "");
+				
+				data.setCell(8, 1, 1.9591 + "");
+				data.setCell(8, 2, 8.82 + "");
+				data.setCell(8, 3, 9.15 + "");
+				data.setCell(8, 4, 9.15 + "");
+				data.setCell(8, 5, 9.01 + "");
+				data.setCell(8, 6, 8.98 + "");
+				data.setCell(8, 7, 8.85 + "");
+				data.setCell(8, 8, -0.95 + "");
+				data.setCell(8, 9, -0.98 + "");
+				data.setCell(8, 10, -0.49 + "");
+				data.setCell(8, 11, 0.24 + "");
+				data.setCell(8, 12, 0.31 + "");
+				data.setCell(8, 13, 0.38 + "");
+				
+				data.setCell(9, 1, 1.9584 + "");
+				data.setCell(9, 2, 8.9 + "");
+				data.setCell(9, 3, 9.18 + "");
+				data.setCell(9, 4, 9.18 + "");
+				data.setCell(9, 5, 8.97 + "");
+				data.setCell(9, 6, 8.94 + "");
+				data.setCell(9, 7, 8.81 + "");
+				data.setCell(9, 8, -0.88 + "");
+				data.setCell(9, 9, -0.94 + "");
+				data.setCell(9, 10, -0.63 + "");
+				data.setCell(9, 11, 0.24 + "");
+				data.setCell(9, 12, 0.31 + "");
+				data.setCell(9, 13, 0.38 + "");
+				
+				data.setCell(10, 1, 1.9708 + "");
+				data.setCell(10, 2, 8.78 + "");
+				data.setCell(10, 3, 9.16 + "");
+				data.setCell(10, 4, 9.16 + "");
+				data.setCell(10, 5, 8.93 + "");
+				data.setCell(10, 6, 8.88 + "");
+				data.setCell(10, 7, 8.8 + "");
+				data.setCell(10, 8, -0.78 + "");
+				data.setCell(10, 9, -0.83 + "");
+				data.setCell(10, 10, -0.4 + "");
+				data.setCell(10, 11, 0.24 + "");
+				data.setCell(10, 12, 0.31 + "");
+				data.setCell(10, 13, 0.38 + "");
+				
+				data.setCell(11, 1, 1.9664 + "");
+				data.setCell(11, 2, 9.1 + "");
+				data.setCell(11, 3, 9.31 + "");
+				data.setCell(11, 4, 9.31 + "");
+				data.setCell(11, 5, 9.07 + "");
+				data.setCell(11, 6, 8.97 + "");
+				data.setCell(11, 7, 8.85 + "");
+				data.setCell(11, 8, -0.73 + "");
+				data.setCell(11, 9, -0.84 + "");
+				data.setCell(11, 10, -0.54 + "");
+				data.setCell(11, 11, 0.25 + "");
+				data.setCell(11, 12, 0.31 + "");
+				data.setCell(11, 13, 0.38 + "");
+				
+				data.setCell(12, 1, 1.9753 + "");
+				data.setCell(12, 2, 8.96 + "");
+				data.setCell(12, 3, 9.32 + "");
+				data.setCell(12, 4, 9.32 + "");
+				data.setCell(12, 5, 9.13 + "");
+				data.setCell(12, 6, 9.01 + "");
+				data.setCell(12, 7, 8.89 + "");
+				data.setCell(12, 8, -0.71 + "");
+				data.setCell(12, 9, -0.81 + "");
+				data.setCell(12, 10, -0.53 + "");
+				data.setCell(12, 11, 0.25 + "");
+				data.setCell(12, 12, 0.31 + "");
+				data.setCell(12, 13, 0.38 + "");
+				
+				data.setCell(13, 1, 1.9547 + "");
+				data.setCell(13, 2, 9.05 + "");
+				data.setCell(13, 3, 9.33 + "");
+				data.setCell(13, 4, 9.33 + "");
+				data.setCell(13, 5, 9.21 + "");
+				data.setCell(13, 6, 9.13 + "");
+				data.setCell(13, 7, 8.98 + "");
+				data.setCell(13, 8, -0.76 + "");
+				data.setCell(13, 9, -0.81 + "");
+				data.setCell(13, 10, -0.59 + "");
+				data.setCell(13, 11, 0.25 + "");
+				data.setCell(13, 12, 0.31 + "");
+				data.setCell(13, 13, 0.38 + "");
+				
+				data.setCell(14, 1, 1.9456 + "");
+				data.setCell(14, 2, 9.56 + "");
+				data.setCell(14, 3, 9.89 + "");
+				data.setCell(14, 4, 9.89 + "");
+				data.setCell(14, 5, 9.49 + "");
+				data.setCell(14, 6, 9.28 + "");
+				data.setCell(14, 7, 9.07 + "");
+				data.setCell(14, 8, -0.82 + "");
+				data.setCell(14, 9, -0.91 + "");
+				data.setCell(14, 10, -0.59 + "");
+				data.setCell(14, 11, 0.25 + "");
+				data.setCell(14, 12, 0.31 + "");
+				data.setCell(14, 13, 0.38 + "");
+				
+				data.setCell(15, 1, 1.9856 + "");
+				data.setCell(15, 2, 9.23 + "");
+				data.setCell(15, 3, 8.97 + "");
+				data.setCell(15, 4, 8.97 + "");
+				data.setCell(15, 5, 8.72 + "");
+				data.setCell(15, 6, 8.68 + "");
+				data.setCell(15, 7, 8.59 + "");
+				data.setCell(15, 8, -0.69 + "");
+				data.setCell(15, 9, -0.75 + "");
+				data.setCell(15, 10, -0.52 + "");
+				data.setCell(15, 11, 0.25 + "");
+				data.setCell(15, 12, 0.31 + "");
+				data.setCell(15, 13, 0.38 + "");
+				
+				data.setCell(16, 1, 1.9862 + "");
+				data.setCell(16, 2, 9.18 + "");
+				data.setCell(16, 3, 8.98 + "");
+				data.setCell(16, 4, 8.98 + "");
+				data.setCell(16, 5, 8.71 + "");
+				data.setCell(16, 6, 8.64 + "");
+				data.setCell(16, 7, 8.55 + "");
+				data.setCell(16, 8, -0.63 + "");
+				data.setCell(16, 9, -0.7 + "");
+				data.setCell(16, 10, -0.4 + "");
+				data.setCell(16, 11, 0.24 + "");
+				data.setCell(16, 12, 0.31 + "");
+				data.setCell(16, 13, 0.38 + "");
+				
+				data.setCell(17, 1, 1.9691 + "");
+				data.setCell(17, 2, 9.57 + "");
+				data.setCell(17, 3, 9.4 + "");
+				data.setCell(17, 4, 9.4 + "");
+				data.setCell(17, 5, 9.26 + "");
+				data.setCell(17, 6, 9.15 + "");
+				data.setCell(17, 7, 9.02 + "");
+				data.setCell(17, 8, -0.83 + "");
+				data.setCell(17, 9, -0.92 + "");
+				data.setCell(17, 10, -0.6 + "");
+				data.setCell(17, 11, 0.24 + "");
+				data.setCell(17, 12, 0.31 + "");
+				data.setCell(17, 13, 0.38 + "");
+				
+				data.setCell(18, 1, 1.9821 + "");
+				data.setCell(18, 2, 9.1 + "");
+				data.setCell(18, 3, 8.84 + "");
+				data.setCell(18, 4, 8.84 + "");
+				data.setCell(18, 5, 8.85 + "");
+				data.setCell(18, 6, 8.78 + "");
+				data.setCell(18, 7, 8.63 + "");
+				data.setCell(18, 8, -0.72 + "");
+				data.setCell(18, 9, -0.83 + "");
+				data.setCell(18, 10, -0.52 + "");
+				data.setCell(18, 11, 0.25 + "");
+				data.setCell(18, 12, 0.31 + "");
+				data.setCell(18, 13, 0.38 + "");
+				
+				data.setCell(19, 1, 1.9855 + "");
+				data.setCell(19, 2, 9.33 + "");
+				data.setCell(19, 3, 9.02 + "");
+				data.setCell(19, 4, 9.02 + "");
+				data.setCell(19, 5, 8.84 + "");
+				data.setCell(19, 6, 8.74 + "");
+				data.setCell(19, 7, 8.64 + "");
+				data.setCell(19, 8, -0.69 + "");
+				data.setCell(19, 9, -0.78 + "");
+				data.setCell(19, 10, -0.83 + "");
+				data.setCell(19, 11, 0.26 + "");
+				data.setCell(19, 12, 0.31 + "");
+				data.setCell(19, 13, 0.38 + "");
+				
+				data.setCell(20, 1, 1.9873 + "");
+				data.setCell(20, 2, 9.2 + "");
+				data.setCell(20, 3, 8.8 + "");
+				data.setCell(20, 4, 8.8 + "");
+				data.setCell(20, 5, 8.6 + "");
+				data.setCell(20, 6, 8.51 + "");
+				data.setCell(20, 7, 8.43 + "");
+				data.setCell(20, 8, -0.48 + "");
+				data.setCell(20, 9, -0.65 + "");
+				data.setCell(20, 10, -0.39 + "");
+				data.setCell(20, 11, 0.24 + "");
+				data.setCell(20, 12, 0.31 + "");
+				data.setCell(20, 13, 0.38 + "");
+				
+				data.setCell(21, 1, 1.9862 + "");
+				data.setCell(21, 2, 9.18 + "");
+				data.setCell(21, 3, 8.98 + "");
+				data.setCell(21, 4, 8.98 + "");
+				data.setCell(21, 5, 8.71 + "");
+				data.setCell(21, 6, 8.64 + "");
+				data.setCell(21, 7, 8.55 + "");
+				data.setCell(21, 8, -0.63 + "");
+				data.setCell(21, 9, -0.7 + "");
+				data.setCell(21, 10, -0.4 + "");
+				data.setCell(21, 11, 0.24 + "");
+				data.setCell(21, 12, 0.31 + "");
+				data.setCell(21, 13, 0.38 + "");
+				
+				
+				data.setCell(22, 1, 1.9591 + "");
+				data.setCell(22, 2, 8.82 + "");
+				data.setCell(22, 3, 9.15 + "");
+				data.setCell(22, 4, 9.15 + "");
+				data.setCell(22, 5, 9.01 + "");
+				data.setCell(22, 6, 7.98 + "");
+				data.setCell(22, 7, 7.85 + "");
+				data.setCell(22, 8, -0.95 + "");
+				data.setCell(22, 9, -0.98 + "");
+				data.setCell(22, 10, -0.49 + "");
+				data.setCell(22, 11, 0.24 + "");
+				data.setCell(22, 12, 0.31 + "");
+				data.setCell(22, 13, 0.38 + "");
+				
+				data.setCell(23, 1, 1.9456 + "");
+				data.setCell(23, 2, 9.56 + "");
+				data.setCell(23, 3, 9.89 + "");
+				data.setCell(23, 4, 9.89 + "");
+				data.setCell(23, 5, 9.49 + "");
+				data.setCell(23, 6, 9.28 + "");
+				data.setCell(23, 7, 9.07 + "");
+				data.setCell(23, 8, -0.82 + "");
+				data.setCell(23, 9, -0.91 + "");
+				data.setCell(23, 10, -0.59 + "");
+				data.setCell(23, 11, 0.25 + "");
+				data.setCell(23, 12, 0.31 + "");
+				data.setCell(23, 13, 0.38 + "");
 			}
 		</script>
 		
@@ -96,6 +467,15 @@
 
 	<br>
 	<div id="chart_div"></div>
+	<br>
+	<br>
+	<span class='bodyText'>This example demonstrates a table view of financial volatilities.
+	If the data were to be rendered in a normal table the number of rows and columns would
+	make it difficult to view them all in one go. Uncheck the 'Fisheye' box and observe how you now
+	have to scroll both horizontally and vertically. However, with the fisheye visualisation, you
+	can now see all of the data simultaneously - no need for tiresome scrolling...</span>
+	<br>
+	<br>
 
 	<pre class="prettyprint">
 &lt;html&gt;
@@ -240,6 +620,12 @@
 	    <td>number</td>
 	    <td>none</td>
 	    <td>The default width of columns when the fisheye function is switched off.</td>
+	  </tr>
+	  <tr>
+	    <td>columnWidths</td>
+	    <td>object</td>
+	    <td>none</td>
+	    <td>An array of objects. Each object has a 'column' index property and a 'width' property.</td>
 	  </tr>
 	  <tr>
 	    <td>rowHeaderCount</td>
