@@ -24,9 +24,11 @@ Download or checkout the code and follow the *[http://code.google.com/p/magic-ta
 
 
 ===Browsers===
-The library has been tested in Firefox, Opera and Safari. It's super-fast in Safari. However, since it uses the canvas element, it does not work in Interner Explorer (boooooooooooooo!). I tried to get it to work with [http://excanvas.sourceforge.net/ ExplorerCanvas] but IE is stupendously slow when it comes to [http://www.w3.org/TR/NOTE-VML VML] path rendering. In fact, Internet Snorer is around 10 orders of magnitude slower than Safari! Alas, I decided not to continue my effort in making it compatible with IE. Instead, it is intended that the library is used in applications that have, wisely, embedded a non-IE browser engine such as [http://developer.mozilla.org/en/docs/Gecko_Embedding_Basics Gecko].
+The library has been tested in Firefox, Opera, Safari and Chrome. It's super-fast in Safari. However, since it uses the canvas element, it does not work in Interner Explorer (boooooooooooooo!). I tried to get it to work with [http://excanvas.sourceforge.net/ ExplorerCanvas] but IE is stupendously slow when it comes to [http://www.w3.org/TR/NOTE-VML VML] path rendering. In fact, Internet Snorer is around 10 orders of magnitude slower than Safari! Alas, I decided not to continue my effort in making it compatible with IE. Instead, it is intended that the library is used in applications that have, wisely, embedded a non-IE browser engine such as [http://developer.mozilla.org/en/docs/Gecko_Embedding_Basics Gecko] or [http://en.wikipedia.org/wiki/Presto_(layout_engine) Presto].
 
 ----
+
+Click on the images below to see working examples:
 
 [http://magic-table.googlecode.com/svn/trunk/magic-table/examples/colour%20ramps.html http://magic-table.googlecode.com/svn/trunk/images/gradients.png]
 [http://magic-table.googlecode.com/svn/trunk/magic-table/examples/volatilities.html http://magic-table.googlecode.com/svn/trunk/images/vols_bar.png]
