@@ -62,11 +62,12 @@ greg.ross.visualisation.MagicTable.prototype.draw = function(data, options)
     var tableWidth = options.tableWidth;
     var rowHeaderCount = options.rowHeaderCount;
     var columnHeaderCount = options.columnHeaderCount;
+    var colourRamp = options.colourRamp;
     var rows = data.getNumberOfRows();
     var columns = data.getNumberOfColumns();
     var tableModel
     
-    tableModel = new greg.ross.visualisation.TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
+    tableModel = new greg.ross.visualisation.TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount, colourRamp);
     
     var i = rows - 1;
     var j;
