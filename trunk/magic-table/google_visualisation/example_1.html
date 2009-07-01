@@ -51,9 +51,20 @@
 				options.tablePositionY = 0;
 				options.tableHeight = 400;
 				options.tableWidth = 600;
+				options.colourRamp = getColourRamp();
 				
 				vis.draw(data, options);
 			}
+			
+			function getColourRamp()
+		    {
+		        var colour1 = {red:0, green:0, blue:255};
+		        var colour2 = {red:0, green:255, blue:255};
+		        var colour3 = {red:0, green:255, blue:0};
+		        var colour4 = {red:255, green:255, blue:0};
+		        var colour5 = {red:255, green:0, blue:0};
+		        return [colour1, colour2, colour3, colour4, colour5];
+		    }
 			
 			function setRowHeaders(data)
 			{
@@ -542,9 +553,21 @@
       options.tablePositionY = 0;
       options.tableHeight = 403;
       options.tableWidth = 315;
+      options.colourRamp = getColourRamp();
 
       vis.draw(data, options);
   }
+  
+  function getColourRamp()
+  {
+      var colour1 = {red:0, green:0, blue:255};
+      var colour2 = {red:0, green:255, blue:255};
+      var colour3 = {red:0, green:255, blue:0};
+      var colour4 = {red:255, green:255, blue:0};
+      var colour5 = {red:255, green:0, blue:0};
+      return [colour1, colour2, colour3, colour4, colour5];
+  }
+	
   &lt;/script&gt;
 		
   &lt;/head&gt;
@@ -679,6 +702,13 @@
 	    <td>number</td>
 	    <td>none</td>
 	    <td>The width of the table.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>colourRamp</td>
+	    <td>Colour array</td>
+	    <td>none</td>
+	    <td>Provides colours that will be applied across the range of values in the table.
 	    </td>
 	  </tr>
 	</table>
