@@ -63,7 +63,7 @@ greg.ross.visualisation.FisheyeCellRenderer = function(tableModel, colourRamp)
 		var colr;
 		
 		if (rowGradientEnabled)
-			colr = tableModel.getColourGradientForRow(row);
+			colr = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(tableModel.getColourGradientForRow(row), cellValue, defaultCellBackgroundColour);
 		else
 			colr = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
 		
