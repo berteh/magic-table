@@ -170,6 +170,35 @@
 				return colourGradient;
 			}
 			
+			function getColourGradientForRow(row)
+			{
+				var tableModel = new greg.ross.visualisation.TableModel(1, 2, 5, 5, 0, 0);
+				tableModel.setContentAt(0, 0, minValue);
+				tableModel.setContentAt(0, 1, maxValue);
+						
+				assertEquals(minValue, tableModel.getMinValue());
+				assertEquals(maxValue, tableModel.getMaxValue());
+				
+				var colour1 = {red:253, green:72, blue:72};
+				var colour2 = {red:72, green:253, blue:72};
+				var colour3 = {red:253, green:253, blue:72};
+				var rgbArray = [colour1, colour2, colour3];
+				
+				var colourGradient = greg.ross.visualisation.TableGradientColourProvider.createGradientForRow(tableModel, rgbArray, row);
+				return colourGradient;
+			}
+			
+			function testColourGradientForMaxRowValue()
+			{
+				var colourGradient = getColourGradientForRow(0);
+				
+				// Maximum value colour.
+				cellValue = maxValue;
+				var colour = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultColour);
+				
+				assertEquals('rgb(253,253,72)', colour);
+			}
+			
 			function testColourGradientForMaxValue()
 			{
 				var colourGradient = getColourGradient();
