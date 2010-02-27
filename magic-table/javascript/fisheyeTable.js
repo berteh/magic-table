@@ -88,7 +88,7 @@ greg.ross.visualisation.FisheyeTable = function(tableModel, x, y, width, height,
 	 * @member greg.ross.visualisation.FisheyeTable
 	 * @param rowGradient (true/false)
 	 */
-	this.setGradientAndFillByRow = function(rowGradient)
+	this.setGradientByRow = function(rowGradient)
 	{
 		this.rowGradientEnabled = rowGradient;
 		this.redraw();
