@@ -192,9 +192,11 @@
 				tableModel.recalculateMinMaxValues();
 				var colourGradient;
 				
-				colourGradient = tableModel.getColourGradientForRow(0);
-				
-				assertNotEquals(null, colourGradient);
+				for (var i = 0; i < rows; i++) 
+				{
+					colourGradient = tableModel.getColourGradientForRow(i);
+					assertNotEquals(null, colourGradient);
+				}
 			}
 			
 			function testMinMaxRowValuesAfterAddingAString()
