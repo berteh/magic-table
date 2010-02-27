@@ -90,6 +90,7 @@ greg.ross.visualisation.DefaultCellRenderer = function(tableModel, cellAlignment
 	 * @param cellValue the value ot be rendered in the cell
 	 * @param fisheyeEnabled true if the fisheye feature is turned on
 	 * @param barFillEnabled true if the bar-fill feature is turned on
+	 * @param rowGradientEnabled true if the cells are to be coloured according to row min and max values instead of globals
 	 */
 	this.drawCell = function(canvasContext, row, column, x1, y1, width, height, cellValue, fisheyeEnabled, barFillEnabled, rowGradientEnabled)
 	{

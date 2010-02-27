@@ -57,8 +57,9 @@ greg.ross.visualisation.FisheyeCellRenderer = function(tableModel, colourRamp)
 	 * @param cellValue the value ot be rendered in the cell
 	 * @param barFillEnabled true if the bar-fill feature is turned on
 	 * @param cellWidth the width of the cell
+	 * @param rowGradientEnabled true if the cells are to be coloured according to row min and max values instead of globals
 	 */
-	this.drawCell = function(canvasContext, column, cellCoordinates, cellValue, barFillEnabled, cellWidth, rowGradientEnabled)
+	this.drawCell = function(canvasContext, column, row, cellCoordinates, cellValue, barFillEnabled, cellWidth, rowGradientEnabled)
 	{
 		var colr;
 		

@@ -638,7 +638,8 @@ greg.ross.visualisation.FisheyeTable = function(tableModel, x, y, width, height,
 					
 					if (cellCoordinates.x1 > 0 && cellCoordinates.y1 > 0) 
 					{
-						tableModel.getCellRendererAt(baseRow, baseCol, true).drawCell(canvasContext, baseCol+tableModel.rowHeaderCount, cellCoordinates, cellValue, me.barFillEnabled, getColumnWidth(), me.rowGradientEnabled);
+						tableModel.getCellRendererAt(baseRow, baseCol, true).drawCell(canvasContext, baseCol+tableModel.rowHeaderCount, baseRow+tableModel.columnHeaderCount,
+					 		cellCoordinates, cellValue, me.barFillEnabled, getColumnWidth(), me.rowGradientEnabled);
 						
 						var cellArea = greg.ross.visualisation.TableGeometry.getArea(cellCoordinates.x1, cellCoordinates.y1, cellCoordinates.x2, cellCoordinates.y2, cellCoordinates.x3, cellCoordinates.y3, cellCoordinates.x4, cellCoordinates.y4);
 						if (cellArea > maxCellArea) 
