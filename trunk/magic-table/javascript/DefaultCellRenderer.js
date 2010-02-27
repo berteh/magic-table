@@ -96,7 +96,7 @@ greg.ross.visualisation.DefaultCellRenderer = function(tableModel, cellAlignment
 		var colr;
 		
 		if (rowGradientEnabled)
-			colr = tableModel.getColourGradientForRow(row);
+			colr = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(tableModel.getColourGradientForRow(row), cellValue, defaultCellBackgroundColour);
 		else
 			colr = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
 		
