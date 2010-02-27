@@ -58,9 +58,14 @@ greg.ross.visualisation.FisheyeCellRenderer = function(tableModel, colourRamp)
 	 * @param barFillEnabled true if the bar-fill feature is turned on
 	 * @param cellWidth the width of the cell
 	 */
-	this.drawCell = function(canvasContext, column, cellCoordinates, cellValue, barFillEnabled, cellWidth)
+	this.drawCell = function(canvasContext, column, cellCoordinates, cellValue, barFillEnabled, cellWidth, rowGradientEnabled)
 	{
-		var colr = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
+		var colr;
+		
+		if (rowGradientEnabled)
+			colr = tableModel.getColourGradientForRow(row);
+		else
+			colr = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
 		
 		if (!barFillEnabled) 
 		{
