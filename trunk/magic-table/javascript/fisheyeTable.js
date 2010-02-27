@@ -52,6 +52,7 @@ greg.ross.visualisation.FisheyeTable = function(tableModel, x, y, width, height,
 
 	this.fisheyeEnabled = true;
 	this.barFillEnabled = false;
+	this.rowGradientEnabled = false;
 	this.autoSize = false;
 	
 	var DEFAULT_FISHEYE_MARGIN = 43;
@@ -80,6 +81,18 @@ greg.ross.visualisation.FisheyeTable = function(tableModel, x, y, width, height,
 	var bufferContext = null;
 	var canvasContext = null;
 	var backgroundColour = 'rgb(0, 0, 0)';
+	
+	/**
+	 * Setting this to true tells the table to colour cell values according to min and max
+	 * values for the current row rather than for the global min and mac values.
+	 * @member greg.ross.visualisation.FisheyeTable
+	 * @param rowGradient (true/false)
+	 */
+	this.setGradientAndFillByRow = function(rowGradient)
+	{
+		this.rowGradientEnabled = barfill;
+		this.redraw();
+	}
 	
 	/**
 	 * Setting this to true fills in cells by an amount proportional to the value contained.
@@ -625,7 +638,7 @@ greg.ross.visualisation.FisheyeTable = function(tableModel, x, y, width, height,
 					
 					if (cellCoordinates.x1 > 0 && cellCoordinates.y1 > 0) 
 					{
-						tableModel.getCellRendererAt(baseRow, baseCol, true).drawCell(canvasContext, baseCol+tableModel.rowHeaderCount, cellCoordinates, cellValue, me.barFillEnabled, getColumnWidth());
+						tableModel.getCellRendererAt(baseRow, baseCol, true).drawCell(canvasContext, baseCol+tableModel.rowHeaderCount, cellCoordinates, cellValue, me.barFillEnabled, getColumnWidth(), me.rowGradientEnabled);
 						
 						var cellArea = greg.ross.visualisation.TableGeometry.getArea(cellCoordinates.x1, cellCoordinates.y1, cellCoordinates.x2, cellCoordinates.y2, cellCoordinates.x3, cellCoordinates.y3, cellCoordinates.x4, cellCoordinates.y4);
 						if (cellArea > maxCellArea) 
@@ -725,7 +738,7 @@ greg.ross.visualisation.FisheyeTable = function(tableModel, x, y, width, height,
 					cellRenderer = tableModel.getCellRendererAt(row, column, false);
 						
 					cellRenderer.drawCell(bufferContext, row, column, tlX, tlY, getColumnWidth(column),
-						getRowHeight(row), cellValue, me.fisheyeEnabled, me.barFillEnabled);
+						getRowHeight(row), cellValue, me.fisheyeEnabled, me.barFillEnabled, me.rowGradientEnabled);
 					
 					count++;
 				}

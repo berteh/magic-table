@@ -91,9 +91,14 @@ greg.ross.visualisation.DefaultCellRenderer = function(tableModel, cellAlignment
 	 * @param fisheyeEnabled true if the fisheye feature is turned on
 	 * @param barFillEnabled true if the bar-fill feature is turned on
 	 */
-	this.drawCell = function(canvasContext, row, column, x1, y1, width, height, cellValue, fisheyeEnabled, barFillEnabled)
+	this.drawCell = function(canvasContext, row, column, x1, y1, width, height, cellValue, fisheyeEnabled, barFillEnabled, rowGradientEnabled)
 	{
-		var colr = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
+		var colr;
+		
+		if (rowGradientEnabled)
+			colr = tableModel.getColourGradientForRow(row);
+		else
+			colr = greg.ross.visualisation.TableGradientColourProvider.getColourFromValue(colourGradient, cellValue, defaultCellBackgroundColour);
 		
 		if (!barFillEnabled) 
 		{
