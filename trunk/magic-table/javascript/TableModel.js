@@ -45,6 +45,8 @@ greg.ross.visualisation.TableModel = function(rowCount, columnCount, defaultRowH
 	this.minColumnValues = [];
 	this.maxColumnValues = [];
 	
+	this.rowGradients = [];
+	
 	this.rowHeights = [];
 	this.columnWidths = [];
 	
@@ -200,6 +202,27 @@ greg.ross.visualisation.TableModel = function(rowCount, columnCount, defaultRowH
 			while(--j > 0)
 		}
 		while(--i > 0)
+		
+		this.createRowColourGradients();
+	}
+	
+	/**
+	 * This method is called after recalculating the min and max values across the table.
+	 * Its purpose is to create colour gradients relative to each row's min and max values.
+	 * @member greg.ross.visualisation.TableModel
+	 */
+	this.createRowColourGradients = function()
+	{
+		this.rowGradients = [];
+		var i = this.rowCount;
+		var row;
+		
+		do
+		{
+			row = this.rowCount - i;
+			this.rowGradients[row] = greg.ross.visualisation.TableGradientColourProvider.createGradientForRow(tableModel, colourRamp, row);
+		}
+		while (--i > 0)
 	}
 	
 	/**
@@ -313,6 +336,16 @@ greg.ross.visualisation.TableModel.prototype.getMinValueForColumn = function(col
 greg.ross.visualisation.TableModel.prototype.getMaxValueForColumn = function(column)
 {
 	return this.maxColumnValues[column];
+}
+
+/**
+ * Return the colour gradient for a given row.
+ * @member greg.ross.visualisation.TableModel
+ * @param row
+ */
+greg.ross.visualisation.TableModel.prototype.getColourGradientForRow = function(row)
+{
+	return this.rowGradients[row];
 }
 
 
