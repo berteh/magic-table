@@ -220,7 +220,8 @@ greg.ross.visualisation.TableModel = function(rowCount, columnCount, defaultRowH
 		do
 		{
 			row = this.rowCount - i;
-			this.rowGradients[row] = greg.ross.visualisation.TableGradientColourProvider.createGradientForRow(tableModel, colourRamp, row);
+			this.rowGradients[row] = new greg.ross.visualisation.ColourGradient(this.getMinValueForRow(row), this.getMaxValueForRow(row), colourRamp);
+			//greg.ross.visualisation.TableGradientColourProvider.createGradientForRow(tableModel, colourRamp, row);
 		}
 		while (--i > 0)
 	}
