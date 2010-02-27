@@ -899,6 +899,18 @@ greg.ross.visualisation.TableGradientColourProvider.createGradient = function(ta
 }
 
 /**
+ * Creates and returns a colour ramp for the min and max values for a given row.
+ * @member greg.ross.visualisation.TableGradientColourProvider
+ * @param tableModel
+ * @param rgbArray an array of colours, of arbitrary length, that specifies
+ * the path taken by the ramp through RGB space.
+ */
+greg.ross.visualisation.TableGradientColourProvider.createGradientForRow = function(tableModel, rgbArray, row)
+{
+	return new greg.ross.visualisation.ColourGradient(tableModel.getMinValueForRow(row), tableModel.getMaxValueForRow(row), rgbArray);
+}
+
+/**
  * Return a colour from the ramp according to the specified numeric value.
  * @member greg.ross.visualisation.TableGradientColourProvider
  * @param colourGradient the colour gradient from which the colour will be derived.
