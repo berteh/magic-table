@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Throughout 
+Description: A two-column, fixed-width design for 1024x768 screen resolutions.
+Version    : 1.0
+Released   : 20100423
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Magic Table - Colour gradients example</title>
+<meta name="keywords" content="Google visualisation API, html, html 5, javascript, table, visualisation, visualization, information visualisation, information visualization, InfoVis, data visualisation, data visualization, web vis, web visualisation, web visualization, distortion, fish-eye, fish-eye lens, fisheye, fisheye lens, chart, barchart, scatterplot, graph, graphics, canvas, canvas element" />
+<meta name="description" content="The Magic Table is a JavaScript library that allows you to see more in your data by applying some simple visual techniques to transform a table." />
+<script type="text/javascript" src='http://magic-table.googlecode.com/svn/trunk/magic-table/javascript/magic_table.js'></script>
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<style type="text/css">
+@import "slidertron.css";
+</style>
+</head>
+<body onload='drawTable();'>
+<!-- end #header-wrapper -->
+<div id="logo">
+	<h1>Magic Table </h1>
+	<em> by Dr Greg Ross</em>
+</div>
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li><a href="index.html" class="first">Homepage</a></li>
+			<li><a href="contact.html">Contact</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="search">
+		<form method="get" action="">
+			<fieldset>
+				<input type="text" name="s" id="search-text" size="15" />
+			</fieldset>
+		</form>
+	</div>
+	<!-- end #search -->
+</div>
+<!-- end #header -->
+<hr />
+<!-- end #logo -->
+<div id="page">
+	<div id="page-bgtop">
+		<div id="content">
+			<div class="post">
+				<h2 class="title">Table gradients </h2>
+				<div class="entry">
+					This example demonstrates how to use colour ramps with the table.
+					The colours are only applied to cells that hold numbers, and the range of numbers across the whole table
+					determines which colour is taken from the ramp, from minimum to maximum.
+					<br>
+					<br>
+					<div id='target1'></div>
+					<br>
+					<br>
+					<div id='target2'></div>
+					<br>
+					<br>
+					<div id='target3'></div>
+					<br>
+					<br>
+					<div id='target4'></div>
+					<br>
+					<br>
+					<div id='target5'></div>
+					<br>
+					<br>
+					<div id='target6'></div>
+				</div>
+				
+			</div>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>Downloads and source</h2>
+					<div><a href="http://code.google.com/p/magic-table/downloads/detail?name=magic-table-v2.0.0.3.zip" class="links">Download</a></div>
+					<div><a href="http://code.google.com/p/magic-table/source/checkout" class="links">SVN checkout</a></div>
+				</li>
+				<li>
+					<h2>Features </h2>
+					<ul>
+						<li class="feature">fisheye table view</li>
+						<li class="feature">bar-fill table cells</li>
+						<li class="feature">cumstomisable colour ramp</li>
+						<li class="feature">colour and fill by global or by column values</li>
+					</ul>
+				</li>
+				<li>
+					<h2>Ads by Google AdSense</h2>
+					<ul>
+						<li><a href="#">Nec metus sed donec</a></li>
+						<li><a href="#">Magna lacus bibendum mauris</a></li>
+						<li><a href="#">Velit semper nisi molestie</a></li>
+						<li><a href="#">Eget tempor eget nonummy</a></li>
+						<li><a href="#">Nec metus sed donec</a></li>
+						<li><a href="#">Nec metus sed donec</a></li>
+						<li><a href="#">Magna lacus bibendum mauris</a></li>
+						<li><a href="#">Velit semper nisi molestie</a></li>
+						<li><a href="#">Eget tempor eget nonummy</a></li>
+						<li><a href="#">Nec metus sed donec</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2>License </h2>
+					<ul>
+						<li><a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License v3</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+</div>
+<div id="footer">
+	<p>Copyright (c) 2008 Dr Greg Ross. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
+<!-- end #footer -->
+<script type='text/javascript'>
+	
+	var targetElement1 = document.getElementById('target1');
+	var targetElement2 = document.getElementById('target2');
+	var targetElement3 = document.getElementById('target3');
+	var targetElement4 = document.getElementById('target4');
+	var targetElement5 = document.getElementById('target5');
+	var targetElement6 = document.getElementById('target6');
+	
+			/*********************************************************************************
+			 * When you instantiate the table model without explicitly setting a colour ramp,
+			 * the model defaults to the classic blue-through-red heatmap.
+			 *********************************************************************************/
+			function renderDefaultcolourRamp()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 5;
+				var tablePositionY = 5;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				var tableModel = new greg.ross.visualisation.TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount);
+
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+						tableModel.setContentAt(i, j, i*j);
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "classic heatmap", targetElement1);
+			}
+			
+			/*********************************************************************************
+			 * The colour ramp can be created by building an array of two or more colours...
+			 *********************************************************************************/
+			function renderBlueYellowRamp()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 5;
+				var tablePositionY = 5;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				// Create the ramp.
+				var colour1 = {red:0, green:0, blue:255};
+				var colour2 = {red:0, green:255, blue:254};
+				var colour3 = {red:1, green:255, blue:0};
+				var colour4 = {red:255, green:255, blue:2};
+				var ramp = [colour1, colour2, colour3, colour4];
+				
+				// ...and pass it into the table model
+				var tableModel = new greg.ross.visualisation.TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+					{
+						tableModel.setContentAt(i, j, i*j);
+					}
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Blue to yellow", targetElement2);
+			}
+			
+			/*********************************************************************************
+			 * The minimum value in the table is mapped to the first colour while the maximum
+			 * value in the table is allocated the last colour, with all values in between smoothly
+			 * mapped to the colour surface.
+			 *********************************************************************************/
+			function renderRedPurpleRamp()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 5;
+				var tablePositionY = 5;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				// Create the ramp. From 6 colours, this time.
+				var colour1 = {red:255, green:0, blue:0};
+				var colour2 = {red:66, green:0, blue:189};
+				var colour3 = {red:63, green:0, blue:191};
+				var colour4 = {red:63, green:191, blue:255};
+				var colour5 = {red:66, green:189, blue:255};
+				var colour6 = {red:255, green:0, blue:255};
+				var ramp = [colour1, colour2, colour3, colour4, colour5, colour6];
+				
+				// ...and pass it into the table model
+				var tableModel = new greg.ross.visualisation.TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+					{
+						tableModel.setContentAt(i, j, i*j);
+					}
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Red to purple", targetElement3);
+			}
+			
+			/*********************************************************************************
+			 * Here's a yellow to aqua ramp.
+			 *********************************************************************************/
+			function renderYellowAquaRamp()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 5;
+				var tablePositionY = 5;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				// Create the ramp.
+				var colour1 = {red:255, green:255, blue:0};
+				var colour2 = {red:255, green:127, blue:127};
+				var colour3 = {red:254, green:0, blue:255};
+				var colour4 = {red:126, green:128, blue:255};
+				var colour5 = {red:0, green:255, blue:255};
+				var ramp = [colour1, colour2, colour3, colour4, colour5];
+				
+				// ...and pass it into the table model
+				var tableModel = new greg.ross.visualisation.TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+					{
+						tableModel.setContentAt(i, j, count++);
+					}
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Yellow to aqua", targetElement4);
+			}
+			
+			/*********************************************************************************
+			 * Here's a blue to yellow ramp.
+			 *********************************************************************************/
+			function renderBlueGradientRamp()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 5;
+				var tablePositionY = 5;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				// Create the ramp. From 4 colours in this instance.
+				var colour1 = {red:0, green:0, blue:255};
+				var colour2 = {red:0, green:127, blue:255};
+				var colour3 = {red:0, green:191, blue:255};
+				var colour4 = {red:0, green:255, blue:255};
+				var ramp = [colour1, colour2, colour3, colour4];
+				
+				// ...and pass it into the table model
+				var tableModel = new greg.ross.visualisation.TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+					{
+						tableModel.setContentAt(i, j, count++);
+					}
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Blue gradient", targetElement5);
+			}
+			
+			/*********************************************************************************
+			 * Greyscale
+			 *********************************************************************************/
+			function renderGreyScale()
+			{
+				var rows = 20;
+				var columns = 25;
+				var rowHeight = 40;
+				var columnWidth = 70;
+				var tablePositionX = 5;
+				var tablePositionY = 5;
+				var tableHeight = 300;
+				var tableWidth = 300;
+				var rowHeaderCount = 0;
+				var columnHeaderCount = 0;
+				var count = 0;
+				
+				// Create the ramp.
+				var colour1 = {red:0, green:0, blue:0};
+				var colour2 = {red:128, green:128, blue:128};
+				var colour3 = {red:255, green:255, blue:255};
+				var ramp = [colour1, colour2, colour3];
+				
+				// ...and pass it into the table model
+				var tableModel = new greg.ross.visualisation.TableModel(rows, columns, rowHeight, columnWidth, rowHeaderCount, columnHeaderCount, ramp);
+				
+				for (var i = 0; i < rows; i++) 
+					for (var j = 0; j < columns; j++)
+					{
+						tableModel.setContentAt(i, j, count++);
+					}
+				
+				tableModel.recalculateMinMaxValues();
+				
+				var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Greyscale", targetElement6);
+			}
+			
+			function drawTable()
+			{
+				renderDefaultcolourRamp();
+				renderBlueYellowRamp();
+				renderRedPurpleRamp();
+				renderYellowAquaRamp();
+				renderBlueGradientRamp();
+				renderGreyScale();
+			}			
+						
+		</script>
+</body>
+</html>

@@ -13,17 +13,16 @@ Released   : 20100423
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Magic Table - Contact</title>
+<title>Magic Table - Barchart example</title>
 <meta name="keywords" content="Google visualisation API, html, html 5, javascript, table, visualisation, visualization, information visualisation, information visualization, InfoVis, data visualisation, data visualization, web vis, web visualisation, web visualization, distortion, fish-eye, fish-eye lens, fisheye, fisheye lens, chart, barchart, scatterplot, graph, graphics, canvas, canvas element" />
 <meta name="description" content="The Magic Table is a JavaScript library that allows you to see more in your data by applying some simple visual techniques to transform a table." />
-<script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="jquery/jquery.slidertron-0.1.js"></script>
+<script type="text/javascript" src='http://magic-table.googlecode.com/svn/trunk/magic-table/javascript/magic_table.js'></script>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 <style type="text/css">
 @import "slidertron.css";
 </style>
 </head>
-<body>
+<body onload='drawTable();'>
 <!-- end #header-wrapper -->
 <div id="logo">
 	<h1>Magic Table </h1>
@@ -33,7 +32,7 @@ Released   : 20100423
 	<div id="menu">
 		<ul>
 			<li><a href="index.html" class="first">Homepage</a></li>
-			<li><a href="examples.html">Examples</a></li>
+			<li><a href="contact.html">Contact</a></li>
 		</ul>
 	</div>
 	<!-- end #menu -->
@@ -53,14 +52,18 @@ Released   : 20100423
 	<div id="page-bgtop">
 		<div id="content">
 			<div class="post">
-				<h2 class="title">email </h2>
+				<h2 class="title">Table of barcharts </h2>
 				<div class="entry">
-					<p>gregxross (at) googlemail (dot) com </p>
-				</div>
-				
-				<h2 class="title">Report bugs</h2>
-				<div class="entry">
-					<p>Bugs can be reported on the <a href="http://code.google.com/p/magic-table/issues/list">Google Visualisation</a> site. </p>
+						This example demonstrates how we can obain a sideways barchart view of data with the table. This is achieved simply by filling each table 
+						cell by an amount proportional to the value it contains. With large sets of data this technique can effectively depict correlations 
+						between columns, especially when the fisheye is enabled.  
+						
+						<br>
+						<br>
+						The barchart effect is obtained by calling the table's "setBarFill" method. It can also be controlled by the "Bar fill" checkbox on the user interface.
+						<br>
+						<br>
+						<div id='tableTargetDiv'></div>
 				</div>
 				
 			</div>
@@ -114,5 +117,53 @@ Released   : 20100423
 	<p>Copyright (c) 2008 Dr Greg Ross. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
 </div>
 <!-- end #footer -->
+<script type='text/javascript'>
+	
+		var targetElement = document.getElementById('tableTargetDiv');
+			
+			var defaultRowHeight = 25;
+			var defaultColumnWidth = 60;
+			var tablePositionX = 5;
+			var tablePositionY = 5;
+			var tableHeight = 403;
+			var tableWidth = 315;
+			var rowHeaderCount = 0;
+			var columnHeaderCount = 0;
+			var rows = 16 + columnHeaderCount;
+			var columns = 5 + rowHeaderCount;
+			var tableModel
+				
+			function drawTable()
+			{
+				tableModel = new greg.ross.visualisation.TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
+
+				setData();
+				
+				var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Bar-fill", targetElement);
+				fisheyeTable.setBarFill(true);
+				fisheyeTable.enableFisheye(false);
+			}
+			
+			function setData()
+			{
+				var i = rows - 1;
+				var j;
+				
+				do
+				{
+					j = columns - 1;
+					do
+					{
+						tableModel.setContentAt(i, j, Math.round(Math.random()*10));
+					}
+					while (j-- > 0) 
+				}
+				while (i-- > 0)
+				
+				tableModel.recalculateMinMaxValues();
+			}			
+						
+		</script>
 </body>
 </html>

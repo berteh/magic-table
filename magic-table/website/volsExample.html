@@ -1,0 +1,535 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Throughout 
+Description: A two-column, fixed-width design for 1024x768 screen resolutions.
+Version    : 1.0
+Released   : 20100423
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Magic Table - Vols example</title>
+<meta name="keywords" content="Google visualisation API, html, html 5, javascript, table, visualisation, visualization, information visualisation, information visualization, InfoVis, data visualisation, data visualization, web vis, web visualisation, web visualization, distortion, fish-eye, fish-eye lens, fisheye, fisheye lens, chart, barchart, scatterplot, graph, graphics, canvas, canvas element" />
+<meta name="description" content="The Magic Table is a JavaScript library that allows you to see more in your data by applying some simple visual techniques to transform a table." />
+<script type="text/javascript" src='http://magic-table.googlecode.com/svn/trunk/magic-table/javascript/magic_table.js'></script>
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<style type="text/css">
+@import "slidertron.css";
+</style>
+</head>
+<body onload='drawVolsTable();'>
+<!-- end #header-wrapper -->
+<div id="logo">
+	<h1>Magic Table </h1>
+	<em> by Dr Greg Ross</em>
+</div>
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li><a href="index.html" class="first">Homepage</a></li>
+			<li><a href="contact.html">Contact</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="search">
+		<form method="get" action="">
+			<fieldset>
+				<input type="text" name="s" id="search-text" size="15" />
+			</fieldset>
+		</form>
+	</div>
+	<!-- end #search -->
+</div>
+<!-- end #header -->
+<hr />
+<!-- end #logo -->
+<div id="page">
+	<div id="page-bgtop">
+		<div id="content">
+			<div class="post">
+				<h2 class="title">View financial volatilities </h2>
+				<div class="entry">
+					<div id='volsDiv'></div>
+					<br>
+						<br>
+						<br>
+						This example demonstrates a table view of financial volatilities.
+						If the data were to be rendered in a normal table the number of rows and columns would
+						make it difficult to view them all in one go. Uncheck the 'Fisheye' box and observe how you now
+						have to scroll both horizontally and vertically. However, with the fisheye visualisation, you
+						can now see all of the data simultaneously - no need for tiresome scrolling...
+						
+						<br>
+						<br>
+						When you move the mouse over the surface of the table, the row and column headers
+						are displayed on the axes. Values at points near the focus are also rendered.
+
+						<br>
+						<br>
+						Check the "Bar fill' box to see correlations and outliers.
+				</div>
+				
+			</div>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>Downloads and source</h2>
+					<div><a href="http://code.google.com/p/magic-table/downloads/detail?name=magic-table-v2.0.0.3.zip" class="links">Download</a></div>
+					<div><a href="http://code.google.com/p/magic-table/source/checkout" class="links">SVN checkout</a></div>
+				</li>
+				<li>
+					<h2>Features </h2>
+					<ul>
+						<li class="feature">fisheye table view</li>
+						<li class="feature">bar-fill table cells</li>
+						<li class="feature">cumstomisable colour ramp</li>
+						<li class="feature">colour and fill by global or by column values</li>
+					</ul>
+				</li>
+				<li>
+					<h2>Ads by Google AdSense</h2>
+					<ul>
+						<li><a href="#">Nec metus sed donec</a></li>
+						<li><a href="#">Magna lacus bibendum mauris</a></li>
+						<li><a href="#">Velit semper nisi molestie</a></li>
+						<li><a href="#">Eget tempor eget nonummy</a></li>
+						<li><a href="#">Nec metus sed donec</a></li>
+						<li><a href="#">Nec metus sed donec</a></li>
+						<li><a href="#">Magna lacus bibendum mauris</a></li>
+						<li><a href="#">Velit semper nisi molestie</a></li>
+						<li><a href="#">Eget tempor eget nonummy</a></li>
+						<li><a href="#">Nec metus sed donec</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2>License </h2>
+					<ul>
+						<li><a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License v3</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+</div>
+<div id="footer">
+	<p>Copyright (c) 2008 Dr Greg Ross. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
+<!-- end #footer -->
+<script type='text/javascript'>
+	
+			// Volatilities example
+			var targetElement = document.getElementById('volsDiv');
+			
+			var defaultRowHeight = 25;
+			var defaultColumnWidth = 70;
+			var tablePositionX = 5;
+			var tablePositionY = 5;
+			var tableHeight = 400;
+			var tableWidth = 500;
+			var rowHeaderCount = 1;
+			var columnHeaderCount = 1;
+			var rows = 23 + columnHeaderCount;
+			var columns = 13 + rowHeaderCount;
+			var count = 0;
+			var tableModel
+			
+				
+			function drawVolsTable()
+			{
+				tableModel = new greg.ross.visualisation.TableModel(rows, columns, defaultRowHeight, defaultColumnWidth, rowHeaderCount, columnHeaderCount);
+
+				setVolsRowHeaders();
+				setVolsColumnHeaders();
+				setVolsData();
+				
+				var fisheyeTable = new greg.ross.visualisation.FisheyeTable(tableModel, tablePositionX, tablePositionY,
+					tableWidth, tableHeight, "Volatilities", targetElement);
+			}
+			
+			function setVolsRowHeaders()
+			{
+				tableModel.setColumnWidth(0, 130);
+				tableModel.setContentAt(0, 0, "expiry/maturity");
+				tableModel.setContentAt(1, 0, "01-Jan-08");
+				tableModel.setContentAt(2, 0, "02-Jan-08");
+				tableModel.setContentAt(3, 0, "03-Jan-08");
+				tableModel.setContentAt(4, 0, "04-Jan-08");
+				tableModel.setContentAt(5, 0, "07-Jan-08");
+				tableModel.setContentAt(6, 0, "08-Jan-08");
+				tableModel.setContentAt(7, 0, "09-Jan-08");
+				tableModel.setContentAt(8, 0, "10-Jan-08");
+				tableModel.setContentAt(9, 0, "11-Jan-08");
+				tableModel.setContentAt(10, 0, "14-Jan-08");
+				tableModel.setContentAt(11, 0, "15-Jan-08");
+				tableModel.setContentAt(12, 0, "16-Jan-08");
+				tableModel.setContentAt(13, 0, "17-Jan-08");
+				tableModel.setContentAt(14, 0, "18-Jan-08");
+				tableModel.setContentAt(15, 0, "21-Jan-08");
+				tableModel.setContentAt(16, 0, "22-Jan-08");
+				tableModel.setContentAt(17, 0, "23-Jan-08");
+				tableModel.setContentAt(18, 0, "24-Jan-08");
+				tableModel.setContentAt(19, 0, "25-Jan-08");
+				tableModel.setContentAt(20, 0, "28-Jan-08");
+				tableModel.setContentAt(21, 0, "29-Jan-08");
+				tableModel.setContentAt(22, 0, "30-Jan-08");
+				tableModel.setContentAt(23, 0, "31-Jan-08");
+			}
+			
+			function setVolsColumnHeaders()
+			{
+				tableModel.setContentAt(0, 1, "Spot rate");
+				tableModel.setContentAt(0, 2, "1 week");
+				tableModel.setContentAt(0, 3, "1 month");
+				tableModel.setContentAt(0, 4, "3 months");
+				tableModel.setContentAt(0, 5, "6 months");
+				tableModel.setContentAt(0, 6, "1 year");
+				tableModel.setContentAt(0, 7, "2 years");
+				tableModel.setContentAt(0, 8, "3 years");
+				tableModel.setContentAt(0, 9, "5 years");
+				tableModel.setContentAt(0, 10, "6 years");
+				tableModel.setContentAt(0, 11, "7 years");
+				tableModel.setContentAt(0, 12, "9 years");
+				tableModel.setContentAt(0, 13, "10 years");
+			}
+			
+			function setVolsData()
+			{
+				tableModel.setContentAt(1, 1, 1.9795);
+				tableModel.setContentAt(1, 2, 9.93);
+				tableModel.setContentAt(1, 3, 9.8);
+				tableModel.setContentAt(1, 4, 9.8);
+				tableModel.setContentAt(1, 5, 9.42);
+				tableModel.setContentAt(1, 6, 9.25);
+				tableModel.setContentAt(1, 7, 9.05);
+				tableModel.setContentAt(1, 8, -0.82);
+				tableModel.setContentAt(1, 9, -0.79);
+				tableModel.setContentAt(1, 10, -0.38);
+				tableModel.setContentAt(1, 11, 0.23);
+				tableModel.setContentAt(1, 12, 0.32);
+				tableModel.setContentAt(1, 13, 0.39);
+				
+				tableModel.setContentAt(2, 1, 1.9732);
+				tableModel.setContentAt(2, 2, 9.98);
+				tableModel.setContentAt(2, 3, 9.73);
+				tableModel.setContentAt(2, 4, 9.73);
+				tableModel.setContentAt(2, 5, 9.48);
+				tableModel.setContentAt(2, 6, 9.25);
+				tableModel.setContentAt(2, 7, 9.11);
+				tableModel.setContentAt(2, 8, -0.61);
+				tableModel.setContentAt(2, 9, -0.59);
+				tableModel.setContentAt(2, 10, -0.62);
+				tableModel.setContentAt(2, 11, 0.26);
+				tableModel.setContentAt(2, 12, 0.33);
+				tableModel.setContentAt(2, 13, 0.39);
+				
+				tableModel.setContentAt(3, 1, 1.9754);
+				tableModel.setContentAt(3, 2, 9.25);
+				tableModel.setContentAt(3, 3, 9.45);
+				tableModel.setContentAt(3, 4, 9.45);
+				tableModel.setContentAt(3, 5, 9.38);
+				tableModel.setContentAt(3, 6, 9.2);
+				tableModel.setContentAt(3, 7, 9.1);
+				tableModel.setContentAt(3, 8, -1.2);
+				tableModel.setContentAt(3, 9, -1.22);
+				tableModel.setContentAt(3, 10, -1.3);
+				tableModel.setContentAt(3, 11, 0.29);
+				tableModel.setContentAt(3, 12, 0.33);
+				tableModel.setContentAt(3, 13, 0.39);
+				
+				tableModel.setContentAt(4, 1, 1.9725);
+				tableModel.setContentAt(4, 2, 9.25);
+				tableModel.setContentAt(4, 3, 9.55);
+				tableModel.setContentAt(4, 4, 9.55);
+				tableModel.setContentAt(4, 5, 9.23);
+				tableModel.setContentAt(4, 6, 9.18);
+				tableModel.setContentAt(4, 7, 9.03);
+				tableModel.setContentAt(4, 8, -1.14);
+				tableModel.setContentAt(4, 9, -1.18);
+				tableModel.setContentAt(4, 10, -0.83);
+				tableModel.setContentAt(4, 11, 0.27);
+				tableModel.setContentAt(4, 12, 0.32);
+				tableModel.setContentAt(4, 13, 0.39);
+				
+				tableModel.setContentAt(5, 1, 1.9724);
+				tableModel.setContentAt(5, 2, 8.83);
+				tableModel.setContentAt(5, 3, 9.32);
+				tableModel.setContentAt(5, 4, 9.32);
+				tableModel.setContentAt(5, 5, 9.13);
+				tableModel.setContentAt(5, 6, 9.07);
+				tableModel.setContentAt(5, 7, 8.92);
+				tableModel.setContentAt(5, 8, -0.72);
+				tableModel.setContentAt(5, 9, -0.73);
+				tableModel.setContentAt(5, 10, -0.42);
+				tableModel.setContentAt(5, 11, 0.22);
+				tableModel.setContentAt(5, 12, 0.3);
+				tableModel.setContentAt(5, 13, 0.38);
+				
+				tableModel.setContentAt(6, 1, 1.935);
+				tableModel.setContentAt(6, 2, 9.37);
+				tableModel.setContentAt(6, 3, 9.41);
+				tableModel.setContentAt(6, 4, 9.41);
+				tableModel.setContentAt(6, 5, 9.25);
+				tableModel.setContentAt(6, 6, 9.15);
+				tableModel.setContentAt(6, 7, 9.02);
+				tableModel.setContentAt(6, 8, -1.13);
+				tableModel.setContentAt(6, 9, -1.11);
+				tableModel.setContentAt(6, 10, -0.82);
+				tableModel.setContentAt(6, 11, 0.25);
+				tableModel.setContentAt(6, 12, 0.31);
+				tableModel.setContentAt(6, 13, 0.39);
+				
+				tableModel.setContentAt(7, 1, 1.9575);
+				tableModel.setContentAt(7, 2, 8.91);
+				tableModel.setContentAt(7, 3, 9.05);
+				tableModel.setContentAt(7, 4, 9.05);
+				tableModel.setContentAt(7, 5, 9);
+				tableModel.setContentAt(7, 6, 8.95);
+				tableModel.setContentAt(7, 7, 8.83);
+				tableModel.setContentAt(7, 8, -1.08);
+				tableModel.setContentAt(7, 9, -1.09);
+				tableModel.setContentAt(7, 10, -0.52);
+				tableModel.setContentAt(7, 11, 0.24);
+				tableModel.setContentAt(7, 12, 0.31);
+				tableModel.setContentAt(7, 13, 0.38);
+				
+				tableModel.setContentAt(8, 1, 1.9591);
+				tableModel.setContentAt(8, 2, 8.82);
+				tableModel.setContentAt(8, 3, 9.15);
+				tableModel.setContentAt(8, 4, 9.15);
+				tableModel.setContentAt(8, 5, 9.01);
+				tableModel.setContentAt(8, 6, 8.98);
+				tableModel.setContentAt(8, 7, 8.85);
+				tableModel.setContentAt(8, 8, -0.95);
+				tableModel.setContentAt(8, 9, -0.98);
+				tableModel.setContentAt(8, 10, -0.49);
+				tableModel.setContentAt(8, 11, 0.24);
+				tableModel.setContentAt(8, 12, 0.31);
+				tableModel.setContentAt(8, 13, 0.38);
+				
+				tableModel.setContentAt(9, 1, 1.9584);
+				tableModel.setContentAt(9, 2, 8.9);
+				tableModel.setContentAt(9, 3, 9.18);
+				tableModel.setContentAt(9, 4, 9.18);
+				tableModel.setContentAt(9, 5, 8.97);
+				tableModel.setContentAt(9, 6, 8.94);
+				tableModel.setContentAt(9, 7, 8.81);
+				tableModel.setContentAt(9, 8, -0.88);
+				tableModel.setContentAt(9, 9, -0.94);
+				tableModel.setContentAt(9, 10, -0.63);
+				tableModel.setContentAt(9, 11, 0.24);
+				tableModel.setContentAt(9, 12, 0.31);
+				tableModel.setContentAt(9, 13, 0.38);
+				
+				tableModel.setContentAt(10, 1, 1.9708);
+				tableModel.setContentAt(10, 2, 8.78);
+				tableModel.setContentAt(10, 3, 9.16);
+				tableModel.setContentAt(10, 4, 9.16);
+				tableModel.setContentAt(10, 5, 8.93);
+				tableModel.setContentAt(10, 6, 8.88);
+				tableModel.setContentAt(10, 7, 8.8);
+				tableModel.setContentAt(10, 8, -0.78);
+				tableModel.setContentAt(10, 9, -0.83);
+				tableModel.setContentAt(10, 10, -0.4);
+				tableModel.setContentAt(10, 11, 0.24);
+				tableModel.setContentAt(10, 12, 0.31);
+				tableModel.setContentAt(10, 13, 0.38);
+				
+				tableModel.setContentAt(11, 1, 1.9664);
+				tableModel.setContentAt(11, 2, 9.1);
+				tableModel.setContentAt(11, 3, 9.31);
+				tableModel.setContentAt(11, 4, 9.31);
+				tableModel.setContentAt(11, 5, 9.07);
+				tableModel.setContentAt(11, 6, 8.97);
+				tableModel.setContentAt(11, 7, 8.85);
+				tableModel.setContentAt(11, 8, -0.73);
+				tableModel.setContentAt(11, 9, -0.84);
+				tableModel.setContentAt(11, 10, -0.54);
+				tableModel.setContentAt(11, 11, 0.25);
+				tableModel.setContentAt(11, 12, 0.31);
+				tableModel.setContentAt(11, 13, 0.38);
+				
+				tableModel.setContentAt(12, 1, 1.9753);
+				tableModel.setContentAt(12, 2, 8.96);
+				tableModel.setContentAt(12, 3, 9.32);
+				tableModel.setContentAt(12, 4, 9.32);
+				tableModel.setContentAt(12, 5, 9.13);
+				tableModel.setContentAt(12, 6, 9.01);
+				tableModel.setContentAt(12, 7, 8.89);
+				tableModel.setContentAt(12, 8, -0.71);
+				tableModel.setContentAt(12, 9, -0.81);
+				tableModel.setContentAt(12, 10, -0.53);
+				tableModel.setContentAt(12, 11, 0.25);
+				tableModel.setContentAt(12, 12, 0.31);
+				tableModel.setContentAt(12, 13, 0.38);
+				
+				tableModel.setContentAt(13, 1, 1.9547);
+				tableModel.setContentAt(13, 2, 9.05);
+				tableModel.setContentAt(13, 3, 9.33);
+				tableModel.setContentAt(13, 4, 9.33);
+				tableModel.setContentAt(13, 5, 9.21);
+				tableModel.setContentAt(13, 6, 9.13);
+				tableModel.setContentAt(13, 7, 8.98);
+				tableModel.setContentAt(13, 8, -0.76);
+				tableModel.setContentAt(13, 9, -0.81);
+				tableModel.setContentAt(13, 10, -0.59);
+				tableModel.setContentAt(13, 11, 0.25);
+				tableModel.setContentAt(13, 12, 0.31);
+				tableModel.setContentAt(13, 13, 0.38);
+				
+				tableModel.setContentAt(14, 1, 1.9456);
+				tableModel.setContentAt(14, 2, 9.56);
+				tableModel.setContentAt(14, 3, 9.89);
+				tableModel.setContentAt(14, 4, 9.89);
+				tableModel.setContentAt(14, 5, 9.49);
+				tableModel.setContentAt(14, 6, 9.28);
+				tableModel.setContentAt(14, 7, 9.07);
+				tableModel.setContentAt(14, 8, -0.82);
+				tableModel.setContentAt(14, 9, -0.91);
+				tableModel.setContentAt(14, 10, -0.59);
+				tableModel.setContentAt(14, 11, 0.25);
+				tableModel.setContentAt(14, 12, 0.31);
+				tableModel.setContentAt(14, 13, 0.38);
+				
+				tableModel.setContentAt(15, 1, 1.9856);
+				tableModel.setContentAt(15, 2, 9.23);
+				tableModel.setContentAt(15, 3, 8.97);
+				tableModel.setContentAt(15, 4, 8.97);
+				tableModel.setContentAt(15, 5, 8.72);
+				tableModel.setContentAt(15, 6, 8.68);
+				tableModel.setContentAt(15, 7, 8.59);
+				tableModel.setContentAt(15, 8, -0.69);
+				tableModel.setContentAt(15, 9, -0.75);
+				tableModel.setContentAt(15, 10, -0.52);
+				tableModel.setContentAt(15, 11, 0.25);
+				tableModel.setContentAt(15, 12, 0.31);
+				tableModel.setContentAt(15, 13, 0.38);
+				
+				tableModel.setContentAt(16, 1, 1.9862);
+				tableModel.setContentAt(16, 2, 9.18);
+				tableModel.setContentAt(16, 3, 8.98);
+				tableModel.setContentAt(16, 4, 8.98);
+				tableModel.setContentAt(16, 5, 8.71);
+				tableModel.setContentAt(16, 6, 8.64);
+				tableModel.setContentAt(16, 7, 8.55);
+				tableModel.setContentAt(16, 8, -0.63);
+				tableModel.setContentAt(16, 9, -0.7);
+				tableModel.setContentAt(16, 10, -0.4);
+				tableModel.setContentAt(16, 11, 0.24);
+				tableModel.setContentAt(16, 12, 0.31);
+				tableModel.setContentAt(16, 13, 0.38);
+				
+				tableModel.setContentAt(17, 1, 1.9691);
+				tableModel.setContentAt(17, 2, 9.57);
+				tableModel.setContentAt(17, 3, 9.4);
+				tableModel.setContentAt(17, 4, 9.4);
+				tableModel.setContentAt(17, 5, 9.26);
+				tableModel.setContentAt(17, 6, 9.15);
+				tableModel.setContentAt(17, 7, 9.02);
+				tableModel.setContentAt(17, 8, -0.83);
+				tableModel.setContentAt(17, 9, -0.92);
+				tableModel.setContentAt(17, 10, -0.6);
+				tableModel.setContentAt(17, 11, 0.24);
+				tableModel.setContentAt(17, 12, 0.31);
+				tableModel.setContentAt(17, 13, 0.38);
+				
+				tableModel.setContentAt(18, 1, 1.9821);
+				tableModel.setContentAt(18, 2, 9.1);
+				tableModel.setContentAt(18, 3, 8.84);
+				tableModel.setContentAt(18, 4, 8.84);
+				tableModel.setContentAt(18, 5, 8.85);
+				tableModel.setContentAt(18, 6, 8.78);
+				tableModel.setContentAt(18, 7, 8.63);
+				tableModel.setContentAt(18, 8, -0.72);
+				tableModel.setContentAt(18, 9, -0.83);
+				tableModel.setContentAt(18, 10, -0.52);
+				tableModel.setContentAt(18, 11, 0.25);
+				tableModel.setContentAt(18, 12, 0.31);
+				tableModel.setContentAt(18, 13, 0.38);
+				
+				tableModel.setContentAt(19, 1, 1.9855);
+				tableModel.setContentAt(19, 2, 9.33);
+				tableModel.setContentAt(19, 3, 9.02);
+				tableModel.setContentAt(19, 4, 9.02);
+				tableModel.setContentAt(19, 5, 8.84);
+				tableModel.setContentAt(19, 6, 8.74);
+				tableModel.setContentAt(19, 7, 8.64);
+				tableModel.setContentAt(19, 8, -0.69);
+				tableModel.setContentAt(19, 9, -0.78);
+				tableModel.setContentAt(19, 10, -0.83);
+				tableModel.setContentAt(19, 11, 0.26);
+				tableModel.setContentAt(19, 12, 0.31);
+				tableModel.setContentAt(19, 13, 0.38);
+				
+				tableModel.setContentAt(20, 1, 1.9873);
+				tableModel.setContentAt(20, 2, 9.2);
+				tableModel.setContentAt(20, 3, 8.8);
+				tableModel.setContentAt(20, 4, 8.8);
+				tableModel.setContentAt(20, 5, 8.6);
+				tableModel.setContentAt(20, 6, 8.51);
+				tableModel.setContentAt(20, 7, 8.43);
+				tableModel.setContentAt(20, 8, -0.48);
+				tableModel.setContentAt(20, 9, -0.65);
+				tableModel.setContentAt(20, 10, -0.39);
+				tableModel.setContentAt(20, 11, 0.24);
+				tableModel.setContentAt(20, 12, 0.31);
+				tableModel.setContentAt(20, 13, 0.38);
+				
+				tableModel.setContentAt(21, 1, 1.9862);
+				tableModel.setContentAt(21, 2, 9.18);
+				tableModel.setContentAt(21, 3, 8.98);
+				tableModel.setContentAt(21, 4, 8.98);
+				tableModel.setContentAt(21, 5, 8.71);
+				tableModel.setContentAt(21, 6, 8.64);
+				tableModel.setContentAt(21, 7, 8.55);
+				tableModel.setContentAt(21, 8, -0.63);
+				tableModel.setContentAt(21, 9, -0.7);
+				tableModel.setContentAt(21, 10, -0.4);
+				tableModel.setContentAt(21, 11, 0.24);
+				tableModel.setContentAt(21, 12, 0.31);
+				tableModel.setContentAt(21, 13, 0.38);
+				
+				
+				tableModel.setContentAt(22, 1, 1.9591);
+				tableModel.setContentAt(22, 2, 8.82);
+				tableModel.setContentAt(22, 3, 9.15);
+				tableModel.setContentAt(22, 4, 9.15);
+				tableModel.setContentAt(22, 5, 9.01);
+				tableModel.setContentAt(22, 6, 7.98);
+				tableModel.setContentAt(22, 7, 7.85);
+				tableModel.setContentAt(22, 8, -0.95);
+				tableModel.setContentAt(22, 9, -0.98);
+				tableModel.setContentAt(22, 10, -0.49);
+				tableModel.setContentAt(22, 11, 0.24);
+				tableModel.setContentAt(22, 12, 0.31);
+				tableModel.setContentAt(22, 13, 0.38);
+				
+				tableModel.setContentAt(23, 1, 1.9456);
+				tableModel.setContentAt(23, 2, 9.56);
+				tableModel.setContentAt(23, 3, 9.89);
+				tableModel.setContentAt(23, 4, 9.89);
+				tableModel.setContentAt(23, 5, 9.49);
+				tableModel.setContentAt(23, 6, 9.28);
+				tableModel.setContentAt(23, 7, 9.07);
+				tableModel.setContentAt(23, 8, -0.82);
+				tableModel.setContentAt(23, 9, -0.91);
+				tableModel.setContentAt(23, 10, -0.59);
+				tableModel.setContentAt(23, 11, 0.25);
+				tableModel.setContentAt(23, 12, 0.31);
+				tableModel.setContentAt(23, 13, 0.38);
+				
+				tableModel.recalculateMinMaxValues();
+			}
+						
+		</script>
+</body>
+</html>
