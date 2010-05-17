@@ -1,85 +1,180 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title>Greg Ross, Visualisation</title>
-		
-		<style type="text/css">
-			<!--
-			body
-			{
-				background-color: #6688cc;
-			}
-			
-			div#header
-			{
-				position: absolute;
-				top: 0px;
-				left: 0px;
-				text-align: center;
-				background-color:#6688cc;
-				width: 100%;
-				height:90px;
-			}
-			
-			div#outerWrap
-			{
-				position: absolute;
-				top: 70px;
-				height: 600px;
-				width: 800px;
-				min-width: 1300px;
-			}
-			
-			div#leftColumn
-			{
-				height: 600px;
-				float: left;
-				width: 115px;
-				background: #6688cc;
-			}
-			
-			div#rightColumn
-			{
-				height: 600px;
-				float: right;
-				width: 115px;
-				background: #6688cc;
-			}
-			
-			div#middleColumn
-			{
-				height: 600px;
-				background: #ffffff;
-			}
-			
-			span.bodyText
-			{
-				font-family: arial;
-				color:#2233cc;
-			}
-			-->
-		</style>
-			
-	</head>
-	<body>
-		<div id='header'>
-			<br>
-			<span style="font-family:arial; font-size: 26pt; color:#ffffff;">
-				Magic table
-			</span>
-		</div>
-		
-		<div id='outerWrap'>
-			<div id='leftColumn'></div>
-			<div id='rightColumn'></div>
-			<div id='middleColumn'>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Throughout 
+Description: A two-column, fixed-width design for 1024x768 screen resolutions.
+Version    : 1.0
+Released   : 20100423
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Magic Table</title>
+<meta name="keywords" content="Google visualisation API, html, html 5, javascript, table, visualisation, visualization, information visualisation, information visualization, InfoVis, data visualisation, data visualization, web vis, web visualisation, web visualization, distortion, fish-eye, fish-eye lens, fisheye, fisheye lens, chart, barchart, scatterplot, graph, graphics, canvas, canvas element" />
+<meta name="description" content="The Magic Table is a JavaScript library that allows you to see more in your data by applying some simple visual techniques to transform a table." />
+<script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="jquery/jquery.slidertron-0.1.js"></script>
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<style type="text/css">
+@import "slidertron.css";
+</style>
+</head>
+<body>
+<!-- end #header-wrapper -->
+<div id="logo">
+	<h1>Magic Table </h1>
+	<em> by Dr Greg Ross</em>
+</div>
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li><a href="#" class="first">Homepage</a></li>
+			<li><a href="#">Examples</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="search">
+		<form method="get" action="">
+			<fieldset>
+				<input type="text" name="s" id="search-text" size="15" />
+			</fieldset>
+		</form>
+	</div>
+	<!-- end #search -->
+</div>
+<!-- end #header -->
+<hr />
+<!-- end #logo -->
+<div id="slideshow">
+	<!-- start -->
+	<div id="foobar">
+		<div id="col1"><a href="#" class="previous">&nbsp;</a></div>
+		<div id="col2">
+			<div class="viewer">
+				<div class="reel">
+					<div class="slide"><img src="images/img04.jpg" width="726" height="335" alt="" /> <span>Lorem Ipsum Dolor Sit Amet.</span> </div>
+					<div class="slide"><img src="images/img07.jpg" width="726" height="335" alt="" /> <span>Mauris vitae nisl nec metus placerat consectetuer.</span> </div>
+					<div class="slide"><img src="images/img08.jpg" width="726" height="335" alt="" /> <span>Nam bibendum dadn nulla tortor elementum ipsum</span> </div>
+				</div>
 			</div>
-			<p>
-	    		<img
-		        src="http://www.w3.org/Icons/valid-html401-blue"
-		        alt="Valid HTML 4.01 Strict" height="31" width="88">
-		  	</p>
 		</div>
-	</body>
+		<div id="col3"><a href="#" class="next">&nbsp;</a></div>
+	</div>
+	<script type="text/javascript">
+
+						$('#foobar').slidertron({
+							viewerSelector:			'.viewer',
+							reelSelector:			'.viewer .reel',
+							slidesSelector:			'.viewer .reel .slide',
+							navPreviousSelector:	'.previous',
+							navNextSelector:		'.next',
+							navFirstSelector:		'.first',
+							navLastSelector:		'.last'
+						});
+						
+					</script>
+	<!-- end -->
+</div>
+<div id="page">
+	<div id="page-bgtop">
+		<div id="content">
+			<div class="post">
+				<h2 class="title">See more of your data at a glance </h2>
+				<div class="entry">
+					<p>The <strong>Magic Table </strong>is a JavaScript library that allows you to see more in your data by applying some simple visual techniques to transform a table. </p>
+				</div>
+				
+				<h2 class="title">Information Visualisation</h2>
+				<div class="entry">
+					<p>The <a href="#">examples</a> show how you can obtain a <strong>barchart</strong> or <strong>scatterplot</strong> 
+					view in the table as well as a novel approach to displaying a lot more of your data without using up much valuable screen real estate. 
+					The latter technique has adopted the concept of spatial distortion, using a <strong>fisheye lens</strong> model. 
+					Reducing the row height and column widths so that all of the cells become visible and using colour to encode the cell 
+					values affords the user an informative overview of all the data in one go. By moving a lens over this overview we can 
+					magnify the cells under the lens so that we obtain detail within the overview. </p>
+				</div>
+				
+				<h2 class="title">Google visualisation API</h2>
+				<div class="entry">
+					<p>The library has now also been wrapped in Google's visualisation API. 
+					<a href="http://magic-table.googlecode.com/svn/trunk/magic-table/google_visualisation/example_1.html">Here's an example of how to use it this way</a>.  </p>
+				</div>
+				
+				<h2 class="title">Easy to use</h2>
+				<div class="entry">
+					<p><a href="http://code.google.com/p/magic-table/downloads/detail?name=magic-table-v2.0.0.3.zip">Download</a> or 
+					<a href="http://code.google.com/p/magic-table/source/checkout">checkout</a> the code and follow the 
+					<a href="http://code.google.com/p/magic-table/wiki/WalkThrough">walk-through</a> 
+					or the example web pages to quickly create a magic table.   </p>
+				</div>
+				
+				<h2 class="title">Browsers</h2>
+				<div class="entry">
+					<p>The library has been tested in Firefox, Opera, Safari and Chrome. 
+					It's super-fast in Safari. However, since it uses the canvas element, 
+					it does not work in Interner Explorer. I tried to get it to work with <a href="http://excanvas.sourceforge.net/">ExplorerCanvas</a>
+					  but IE is stupendously slow when it comes to <a href="http://www.w3.org/TR/NOTE-VML">VML</a> path rendering. In fact, Internet Snorer is around 10 
+					  orders of magnitude slower than Safari! Alas, I decided not to continue my effort in making it compatible with IE. Instead, 
+					  it is intended that the library is used in applications that have, wisely, embedded a non-IE browser engine
+					   such as <a href="http://developer.mozilla.org/en/docs/Gecko_Embedding_Basics">Gecko</a> or 
+					   <a href="http://en.wikipedia.org/wiki/Presto_(layout_engine)">Presto</a>.    </p>
+				</div>
+				
+			</div>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>Downloads and source</h2>
+					<div><a href="http://code.google.com/p/magic-table/downloads/detail?name=magic-table-v2.0.0.3.zip" class="links">Download</a></div>
+					<div><a href="http://code.google.com/p/magic-table/source/checkout" class="links">SVN checkout</a></div>
+				</li>
+				<li>
+					<h2>Features </h2>
+					<ul>
+						<li class="feature">Nec metus sed donec</li>
+						<li class="feature">Nec metus sed donec</li>
+						<li class="feature">Nec metus sed donec</li>
+						<li class="feature">Nec metus sed donec</li>
+					</ul>
+				</li>
+				<li>
+					<h2>Ads by Google AdSense</h2>
+					<ul>
+						<li><a href="#">Nec metus sed donec</a></li>
+						<li><a href="#">Magna lacus bibendum mauris</a></li>
+						<li><a href="#">Velit semper nisi molestie</a></li>
+						<li><a href="#">Eget tempor eget nonummy</a></li>
+						<li><a href="#">Nec metus sed donec</a></li>
+						<li><a href="#">Nec metus sed donec</a></li>
+						<li><a href="#">Magna lacus bibendum mauris</a></li>
+						<li><a href="#">Velit semper nisi molestie</a></li>
+						<li><a href="#">Eget tempor eget nonummy</a></li>
+						<li><a href="#">Nec metus sed donec</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2>License </h2>
+					<ul>
+						<li><a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License v3</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+</div>
+<div id="footer">
+	<p>Copyright (c) 2008 Dr Greg Ross. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
+<!-- end #footer -->
+</body>
 </html>
