@@ -236,6 +236,11 @@ hr { display: none; }
 	width: 600px;
 }
 
+#textContent {
+	float: left;
+	width: 900px;
+}
+
 /* Post */
 
 .post {
