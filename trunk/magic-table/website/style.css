@@ -14,6 +14,11 @@ body {
 	color: #919191;
 }
 
+thead th{
+	font-weight:600;
+	color: #ffffff;
+}
+
 div#toc ul {
   list-style-type: none;
 }
@@ -21,7 +26,7 @@ div#toc ul {
 h1, h2, h3 {
 	margin: 0;
 	font-weight: normal;
-	color: #549900;
+	color: #ffffff;
 }
 
 h1 { font-size: 44px; }
@@ -34,6 +39,20 @@ p, ul, ol {
 	margin-top: 0;
 	line-height: 240%;
 	text-align: justify;
+}
+
+p.text {
+	margin-top: 0;
+	line-height: 120%;
+	text-align: left;
+	font-size: 13pt;
+}
+
+p.figureCaption {
+	margin-top: 0;
+	line-height: 120%;
+	text-align: left;
+	font-style: italic;
 }
 
 ul, ol { }
