@@ -344,6 +344,15 @@ hr { display: none; }
 	color: #FFFFFF;
 }
 
+.italicBlue {
+	font-style:italic;
+	color: #4999CB;
+}
+
+.bold {
+	font-weight: bold;
+}
+
 .post .comments {
 	display: block;
 	width: 120px;
