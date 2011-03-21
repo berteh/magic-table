@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Throughout 
+Description: A two-column, fixed-width design for 1024x768 screen resolutions.
+Version    : 1.0
+Released   : 20100423
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if IE]><script type="text/javascript" src="javascript/voronoi/excanvas.js"></script><![endif]-->
+<script type="text/javascript" src='javascript/voronoi/Voronoi.js'></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<title>JavaScript Voronoi Diagram</title>
+<meta name="keywords" content="html5, canvas, JavaScript, incremental, algorithm, voronoi, tesselation, delaunay, Google Code, visualisation, visualization, information visualisation, information visualization, InfoVis, data visualisation, data visualization, overview plus detail, overview + detail, overview" />
+<meta name="description" content="This is a pure JavaScript implementation of an incremental algorithm for a planar ordinary Voronoi diagram." />
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<style type="text/css">
+@import "slidertron.css";
+</style>
+<LINK REL="SHORTCUT ICON" HREF="http://www.grvisualisation.50webs.com/favicon.ico"> 
+</head>
+<body>
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5253719-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- end #header-wrapper -->
+<div id="logo">
+	<h1>JavaScript Voronoi </h1>
+	<em> &nbsp;by Dr Greg Ross</em>
+</div>
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li><a href="http://www.grvisualisation.50webs.com/" class="first">Magic Table</a></li>
+			<li><a href="infovis.html">Information Visualisation</a></li>
+			<li><a href="excelrangefinder.html">Excel RangeFinder</a></li>
+			<li><a href="contact.html">Contact</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="search">
+		<form method="get" action="http://www.google.com/search">
+			<fieldset>
+				<input type="text" name="q" id="search-text" size="15" />
+				<input style="display:none;" type="checkbox"  name="sitesearch" value="grvisualisation.50webs.com" checked />
+			</fieldset>
+		</form>
+	</div>
+	<!-- end #search -->
+</div>
+<!-- end #header -->
+<hr />
+<!-- end #logo -->
+
+<div id="page">
+	<div style="text-align:left; clear:both;" width=100%>
+			<img src="images/voronoi/voronoiScreenShot.png" alt="Examples of the JavaScript Voronoi implementation." />
+		</div>
+		<br>
+	
+	<div id="page-bgtop">
+		<div id="content">
+			<!-- adsense container -->
+			<div>
+				<div class="post" style="float: left; width:40%;">
+					<h2 class="title">Voronoi diaigram</h2>
+					<div class="entry">
+						<p>
+							This is a JavaScript implementation of an incremental algorithm for a 
+							planar ordinary Voronoi diagram. It's totally free. Give it a go...
+						</p>
+					</div>
+				</div>
+				
+				<div style="float: right;">
+					<!--adsense code-->
+					<script type="text/javascript"><!--
+					google_ad_client = "pub-5899093360211244";
+					/* 336x280, created 5/19/10 */
+					google_ad_slot = "8698410079";
+					google_ad_width = 336;
+					google_ad_height = 280;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>
+					<!--end-->
+				</div>
+				
+				<div style="clear: both;"></div>
+			</div>
+			<br><br>
+			<!-- end adsense container -->
+			
+			<div class="post">
+				<h2 class="title">JavaScript Voronoi diagram </h2>
+				<div class="entry">
+						This is a pure JavaScript implementation of an incremental algorithm for a planar ordinary 
+						Voronoi diagram. The algorithm uses a quaternary tree for spatial indexing to enhance 
+						performance and facilitate efficient nearest neighbor searches. The geometry is represented 
+						by a winged-edge data structure. This provides a succinct representation from which 
+						information such as the minimum spanning tree can be derived.
+						
+						<br>
+						
+						<script type='text/javascript'>
+			
+							google.load("visualization", "1");
+							google.setOnLoadCallback(setUp);
+							
+							function isIE()
+						    {
+								return /msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent);
+						    }
+							
+							function setUp()
+							{
+								var numPoints = 100;
+								var tooltipStrings = [];
+								var data = new google.visualization.DataTable();
+						        data.addColumn('number', 'Age');
+						        data.addColumn('number', 'Weight');
+						        data.addRows(numPoints);
+								
+								for (var i = 0; i < numPoints; i++) 
+								{
+									var randomX = Math.floor(Math.random() * (numPoints + 1));
+									var randomY = Math.floor(Math.random() * (numPoints + 1));
+									
+									data.setValue(i, 0, randomX);
+									data.setValue(i, 1, randomY);
+									
+									tooltipStrings[i] = "x = " + randomX + ", y = " + randomY;
+								}
+				
+								voronoi = new greg.ross.visualisation.Voronoi(document.getElementById("voronoiDiv"));
+								
+								// Don't fill polygons in IE. It's too slow.
+								var fillPly = !isIE();
+								
+								var colours = ['#A9D30C', '#010F62', 'rgba(1,159,98,0)'];
+								voronoi.draw(data, {xPos: 50, yPos: 50, width: 460, height: 460, colourGradient: colours, fillPolygons: fillPly, tooltips: tooltipStrings});
+							}
+							
+						</script>
+						
+						<div id='voronoiDiv' style="width:5%;height:5%;">
+							<!-- voronoi goes here... -->
+									
+						</div>						
+
+						<br><br><br><br>
+						
+						An incremental algorithm was chosen over Fortune's sweepline solution so that 
+						new points can be inserted into the diagram without needing to regenerate the 
+						whole tessellation. The use of the quaternary tree also reduces the average 
+						time complexity to <span class="boldBlue">O(n)</span>.
+						
+						<br>
+						<br>
+						
+						Tested in Chrome, Firefox, Opera, Safari and Internet Explorer 6. <span class="boldBlue">Works in IE via use of excanvas.</span>
+						 (See test.html in the download.) 
+						 
+						<br>
+						<br>
+						 
+						Since VML renders very slowly in IE it is advised that the <span class="boldBlue">fillPolygons</span> 
+						option is set to false when the script is run in IE, especially when 
+						there are a substantial number of points in the diagram.
+				</div>
+			</div>
+			<div class="post">
+				<h2 class="title">Features </h2>
+				<div class="entry">
+					<ul>
+						<li class="feature">fast incremental algorithm: potentially faster than Fortune's </li>
+						<li class="feature">add points without entire redraw </li>
+						<li class="feature">pure JavaScript implementation. No need for Flash. </li>
+						<li class="feature">supports tooltips over Voronoi regions </li>
+						<li class="feature">customisable colour gradients</li>
+						<li class="feature">works in all popular browsers </li>
+						<li class="feature">wrapped in the Google Visualization API</li>
+					</ul>
+				</div>
+			</div>
+			<div class="post">
+				<h2 class="title">Applications </h2>
+				<div class="entry">
+					<ul>
+						<li class="feature">spatial distributions, e.g. animal territories and bird nesting patterns</li>
+				    	<li class="feature">nearest neighbor search</li>
+				    	<li class="feature">terrain modelling</li>
+				    	<li class="feature">robot path planning</li>
+				    	<li class="feature">Delaunay Triangulation and mesh generation</li>
+					</ul>
+				</div>
+			</div>
+			<div class="post">
+				<h2 class="title">Resources </h2>
+				The following book provides an excellent description of the above algorithm. This is what was followed in its implementation:
+				<br>
+				<br>
+				Okabe A., Boots B., Sugihara K., Chiu S.N.: <span class="it">"Spatial Tessellations. Concepts and Applications of Voronoi Diagrams."</span> Wiley, Chichester, second edition (2000). 
+				<br>
+				<br>
+				<br>
+				also see...
+				<br>
+				<br>
+				<a href="http://en.wikipedia.org/wiki/Voronoi_diagram">wikipedia</a>
+			</div>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>License </h2>
+					<ul>
+						<li><a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License v3</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2>Downloads and source</h2>
+					<div><a href="http://code.google.com/p/javascript-voronoi/downloads/list" class="links">Download</a></div>
+					<div><a href="http://code.google.com/p/javascript-voronoi/source/checkout" class="links">SVN checkout</a></div>
+					<p>
+						I spent a lot of time and effort building this Voronoi implementation and it's totally free. It's thirsty work, so if you like it then 
+						I'd appreciate it if you...
+					</p>
+					<div style="text-align:center;">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="JZSZZTB8LXNBG">
+							<input type="image" src="http://www.grvisualisation.50webs.com/images/bmab.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
+							<img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+</div>
+<div id="footer">
+	<p>Copyright (c) 2008 Dr Greg Ross. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
+<!-- end #footer -->
+</body>
+</html>
