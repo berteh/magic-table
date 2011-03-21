@@ -349,6 +349,11 @@ hr { display: none; }
 	color: #4999CB;
 }
 
+.boldBlue {
+	font-weight: bold;
+	color: #4999CB;
+}
+
 .bold {
 	font-weight: bold;
 }
