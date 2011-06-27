@@ -18,6 +18,16 @@ a.backTop{
 	color:#0000cc;
 }
 
+.post .title a.paperLink{
+	text-transform: inherit;
+	color:#ffffff;
+	font-size: 16px;
+}
+
+.borderless-image{
+	border: 0px;
+}
+
 span.it{
 	font-style:italic;
 }
