@@ -129,7 +129,7 @@ hr { display: none; }
 
 #menu {
 	float: left;
-	width: 800px;
+	width: 900px;
 	height: 68px;
 }
 
@@ -362,6 +362,11 @@ hr { display: none; }
 .boldBlue {
 	font-weight: bold;
 	color: #4999CB;
+}
+
+.boldWhite {
+	font-weight: bold;
+	color: #ffffff;
 }
 
 .bold {

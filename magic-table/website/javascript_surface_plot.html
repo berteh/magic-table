@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Throughout 
+Description: A two-column, fixed-width design for 1024x768 screen resolutions.
+Version    : 1.0
+Released   : 20100423
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if IE]><script type="text/javascript" src="javascript/surfaceplot/excanvas.js"></script><![endif]-->
+    <script type="text/javascript" src='javascript/surfaceplot/SurfacePlot.js'></script>
+    <script type="text/javascript" src='javascript/surfaceplot/ColourGradient.js'></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<title>JavaScript 3D Surface Plot</title>
+<meta name="keywords" content="html5, canvas, JavaScript, 3D, surface, plot, graph, 3D suface plot, Google Code, visualisation, visualization, information visualisation, information visualization, InfoVis, data visualisation, data visualization, overview plus detail, overview + detail, overview" />
+<meta name="description" content="3D Surface Plotting in JavaScript!" />
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<style type="text/css">
+@import "slidertron.css";
+</style>
+<LINK REL="SHORTCUT ICON" HREF="http://www.grvisualisation.50webs.com/favicon.ico"> 
+</head>
+<body>
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5253719-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- end #header-wrapper -->
+<div id="logo">
+	<h1>3D Surface Plotting in JavaScript </h1>
+	<em> &nbsp;by Dr Greg Ross</em>
+</div>
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li><a href="http://www.grvisualisation.50webs.com/" class="first">Magic Table</a></li>
+			<li><a href="infovis.html">Information Visualisation</a></li>
+			<li><a href="excelrangefinder.html">Excel RangeFinder</a></li>
+			<li><a href="javascript_voronoi.html">Voronoi</a></li>
+			<li><a href="contact.html">Contact</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+</div>
+<!-- end #header -->
+<hr />
+<!-- end #logo -->
+
+<div id="page">
+	<div style="text-align:left; clear:both;" width=100%>
+		<img src="images/surfaceplot/surfaceplotScreenShot1.png" alt="Examples of the JavaScript 3D surface plot implementation." />
+		<img src="images/surfaceplot/surfaceplotScreenShot2.png" alt="Examples of the JavaScript 3D surface plot implementation." />
+		<img src="images/surfaceplot/surfaceplotScreenShot3.png" alt="Examples of the JavaScript 3D surface plot implementation." />
+		<img src="images/surfaceplot/surfaceplotScreenShot4.png" alt="Examples of the JavaScript 3D surface plot implementation." />
+		<img src="images/surfaceplot/surfaceplotScreenShot5.png" alt="Examples of the JavaScript 3D surface plot implementation." />
+		<img src="images/surfaceplot/surfaceplotScreenShot6.png" alt="Examples of the JavaScript 3D surface plot implementation." />
+		<img src="images/surfaceplot/surfaceplotScreenShot7.png" alt="Examples of the JavaScript 3D surface plot implementation." />
+	</div>
+	<br>
+	
+	<div id="page-bgtop">
+		<div id="content">
+			<!-- adsense container -->
+			<div>
+				<div class="post" style="float: left; width:40%;">
+					<h2 class="title">3D Surface Plot</h2>
+					<div class="entry">
+						<p>
+							This JavaScript code allows one to plot 3D surfaces. It's totally free. Give it a go...
+						</p>
+					</div>
+				</div>
+				
+				<div style="float: right;">
+					<!--adsense code-->
+					<script type="text/javascript"><!--
+					google_ad_client = "pub-5899093360211244";
+					/* 336x280, created 5/19/10 */
+					google_ad_slot = "8698410079";
+					google_ad_width = 336;
+					google_ad_height = 280;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>
+					<!--end-->
+				</div>
+				
+				<div style="clear: both;"></div>
+			</div>
+			<br><br>
+			<!-- end adsense container -->
+			
+			<div class="post">
+				<h2 class="title">JavaScript 3D Surface Plot </h2>
+				<div class="entry">
+						This is a pure JavaScript implementation of a 3D surface plot.
+						
+						<br>
+						
+						<script type='text/javascript'>
+			
+							google.load("visualization", "1");
+							google.setOnLoadCallback(setUp);
+							
+							function isIE()
+						    {
+								return /msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent);
+						    }
+							
+							function setUp()
+							{
+								var numRows = 45.0;
+								var numCols = 45;
+								
+								var tooltipStrings = new Array();
+								var data = new google.visualization.DataTable();
+								
+								for (var i = 0; i < numCols; i++)
+								{
+						        	data.addColumn('number', 'col'+i);
+								}
+								
+						        data.addRows(numRows);
+								var d = 360 / numRows;
+								var idx = 0;
+								
+								for (var i = 0; i < numRows; i++) 
+								{
+									for (var j = 0; j < numCols; j++)
+									{
+										//var value = (Math.cos(i * d * Math.PI / 180.0) * Math.cos(j * d * Math.PI / 180.0) + Math.sin(i * d * Math.PI / 180.0));
+										var value = (Math.cos(i * d * Math.PI / 180.0) * Math.cos(j * d * Math.PI / 180.0));
+										//var value = (Math.sin(i * d * Math.PI / 180.0) * Math.cos(j * d * Math.PI / 180.0)) * 1.5;
+										
+										data.setValue(i, j, value / 4.0);
+										
+										tooltipStrings[idx] = "x:" + i + ", y:" + j + " = " + value;
+										idx++;
+									}
+								}
+				
+								var surfacePlot = new greg.ross.visualisation.SurfacePlot(document.getElementById("surfacePlotDiv"));
+								
+								// Don't fill polygons in IE. It's too slow.
+								var fillPly = !isIE();
+								
+								// Define a colour gradient.
+								var colour1 = {red:0, green:0, blue:255};
+								var colour2 = {red:0, green:255, blue:255};
+								var colour3 = {red:0, green:255, blue:0};
+								var colour4 = {red:255, green:255, blue:0};
+								var colour5 = {red:255, green:0, blue:0};
+								var colours = [colour1, colour2, colour3, colour4, colour5];
+								
+								// Axis labels.
+								var xAxisHeader	= "X";
+								var yAxisHeader	= "Y";
+								var zAxisHeader	= "Z";
+								
+								var options = {xPos: 50, yPos: 50, width: 460, height: 460, colourGradient: colours, fillPolygons: fillPly,
+									tooltips: tooltipStrings, xTitle: xAxisHeader, yTitle: yAxisHeader, zTitle: zAxisHeader};
+								
+								surfacePlot.draw(data, options);
+							}
+							
+						</script>
+						
+						<div id='surfacePlotDiv' style="width:5%;height:5%;">
+							<!-- surface plot goes here... -->
+									
+						</div>						
+
+						<br><br><br><br>
+						
+						The above example demonstrates the JavaScript 3D surface plot. This is generated by the code shown 
+						<a href="http://javascript-surface-plot.googlecode.com/svn/trunk/googleVizApi.html">here</a>. 
+						The code creates a plot representing the trigonometric function z = cos(x) * cos(y). Click and drag 
+						the above to rotate. Hold the shift key and drag to scale.
+						
+						<br>
+						<br>
+						
+						Tested in Chrome, Firefox, Opera, Safari and Internet Explorer 6. <span class="boldWhite">Works in IE via use of 
+						<a href="http://code.google.com/p/explorercanvas/">excanvas</a>.</span>
+						
+						<br>
+						<br>
+						
+						Performs best in Safari and Chrome.
+						 
+						<br>
+						<br>
+						
+						For implementation details and how to use it on your own web page, 
+							see <a href="http://javascript-surface-plot.googlecode.com/svn/trunk/googleVizApi.html">here</a>.
+						
+						<br>
+						<br>
+						 
+						Since VML renders very slowly in IE it is advised that the <span class="boldWhite">fillPolygons</span> 
+						option is set to false when the script is run in IE, especially when 
+						there are a substantial number of points in the diagram.
+				</div>
+			</div>
+			<div class="post">
+				<h2 class="title">Features </h2>
+				<div class="entry">
+					<ul>
+						<li class="feature">pure JavaScript implementation. No need for Flash.  </li>
+						<li class="feature">rotation - left-click and drag the mouse to rotate the surface </li>
+						<li class="feature">scaling - hold down the shift key and drag the mouse to scale </li>
+						<li class="feature">hover the mouse over the surface to see values </li>
+						<li class="feature">custom axis titles  </li>
+						<li class="feature">customisable colour gradients</li>
+						<li class="feature">works in all popular browsers </li>
+						<li class="feature">wrapped in the Google Visualization API. 
+							See <a href="http://javascript-surface-plot.googlecode.com/svn/trunk/googleVizApi.html">here</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="post">
+				<h2 class="title">Applications </h2>
+				<div class="entry">
+					<ul>
+						<li class="feature">visualise correlation surfaces </li>
+				    	<li class="feature">plot trigonometric functions </li>
+				    	<li class="feature">chart financial volatilities in 3D </li>
+					</ul>
+				</div>
+			</div>
+			<div class="post">
+				<h2 class="title">Implementation </h2>
+				In all browsers with the exception of IE, everything is rendered on the HTML-5 Canvas element. In IE, 
+				<a href="http://code.google.com/p/explorercanvas/">excanvas</a> is used for VML rendering. 
+				<br>
+				<br>
+				Each segment on the graph is a ploygon and its geometric centroid is used in measuring distance from the 'camera' 
+				so that we can determine the order in which to render all segments. 
+				This is a simple implementation of <a href="http://en.wikipedia.org/wiki/Painter%27s_algorithm">Painter's algorithm</a>.
+				<br>
+				<br>
+				Rotation and scaling are achieved by simple matrix manipulation.
+				<br>
+				<br>
+				Colour gradients are defined by the <a href="http://code.google.com/p/javascript-surface-plot/source/browse/trunk/javascript/ColourGradient.js">ColourGradient class</a>. 
+				This is a utility I wrote a while ago to create gradients 
+				through any path in RGB space using any number of colours. Each colour defines a point in the space and when traveling from 
+				the start colour to the end colour we obtain a path. The start and end colours are mapped to given min and max numerical bounds. 
+				When provided with a number within those bounds, a new colour is obtained by linearly interpolating along the path in RGB space. Simples! 
+			</div>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>License </h2>
+					<ul>
+						<li><a href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2>Downloads and source</h2>
+					<div><a href="http://code.google.com/p/javascript-surface-plot/downloads/list" class="links">Download</a></div>
+					<div><a href="http://code.google.com/p/javascript-surface-plot/source/checkout" class="links">SVN checkout</a></div>
+					<p>
+						I spent a lot of time and effort building this and it's totally free. It's thirsty work, so if you like it then 
+						I'd appreciate it if you...
+					</p>
+					<div style="text-align:center;">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="JZSZZTB8LXNBG">
+							<input type="image" src="http://www.grvisualisation.50webs.com/images/bmab.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
+							<img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</div>
+				</li>
+				<li>
+					<h2>iPhone Apps </h2>
+					<ul>
+						<li class="feature"><a href="peekaboo.html">Peekaboo 3D</a></li>
+						<li class="feature"><a href="claptrax.html">ClapTrax</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+</div>
+<div id="footer">
+	<p>Copyright (c) 2008 Dr Greg Ross. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
+<!-- end #footer -->
+</body>
+</html>
