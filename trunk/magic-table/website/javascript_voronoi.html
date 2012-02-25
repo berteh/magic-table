@@ -14,7 +14,7 @@ Released   : 20100423
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <!--[if IE]><script type="text/javascript" src="javascript/voronoi/excanvas.js"></script><![endif]-->
-<script type="text/javascript" src='javascript/voronoi/Voronoi.js'></script>
+<script type="text/javascript" src='http://javascript-voronoi.googlecode.com/svn/trunk/javascript/Voronoi.js'></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <title>JavaScript Voronoi Diagram</title>
 <meta name="keywords" content="html5, canvas, JavaScript, incremental, algorithm, voronoi, tesselation, delaunay, Google Code, visualisation, visualization, information visualisation, information visualization, InfoVis, data visualisation, data visualization, overview plus detail, overview + detail, overview" />
@@ -133,6 +133,8 @@ Released   : 20100423
 			
 							google.load("visualization", "1");
 							google.setOnLoadCallback(setUp);
+							var data;
+							var voronoi;
 							
 							function isIE()
 						    {
@@ -143,7 +145,7 @@ Released   : 20100423
 							{
 								var numPoints = 100;
 								var tooltipStrings = [];
-								var data = new google.visualization.DataTable();
+								data = new google.visualization.DataTable();
 						        data.addColumn('number', 'Age');
 						        data.addColumn('number', 'Weight');
 						        data.addRows(numPoints);
@@ -168,6 +170,14 @@ Released   : 20100423
 								voronoi.draw(data, {xPos: 50, yPos: 50, width: 460, height: 460, colourGradient: colours, fillPolygons: fillPly, tooltips: tooltipStrings});
 							}
 							
+							function addRandomPoint()
+							{
+								var numPoints = data.getNumberOfRows() + 1;
+								var p = new greg.ross.visualisation.Vertex(Math.random() * (numPoints + 1), Math.random() * (numPoints + 1), 1);
+								
+								voronoi.addNewPoint(p);
+							}
+							
 						</script>
 						
 						<div id='voronoiDiv' style="width:5%;height:5%;">
@@ -176,6 +186,8 @@ Released   : 20100423
 						</div>						
 
 						<br><br><br><br>
+						<input type="button" value="add random point" onclick="addRandomPoint();" />
+						<br><br>
 						
 						An incremental algorithm was chosen over Fortune's sweepline solution so that 
 						new points can be inserted into the diagram without needing to regenerate the 
