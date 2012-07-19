@@ -537,3 +537,8 @@ hr { display: none; }
 
 #footer a {
 }
+
+.code {
+    padding-top: 10px;
+    background: #eee;
+}
